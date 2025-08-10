@@ -1,0 +1,30 @@
+name: Formating, Linting, Typecheck and Build
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    name: ⬣ Lint repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          cache-dependency-path: ./package.json
+          node-version: 22
+
+      - name: 📥 Install deps
+        run: npm install
+
+      - name: 🔬 Lint and Format
+        run: npm run ci:check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: build
+        run: npm run build
