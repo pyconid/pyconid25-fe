@@ -53,6 +53,9 @@ Create a production build:
 npm run build
 ```
 
+## Kontribusi
+untuk tata cara kontribusi bisa dilihat di [CONTRIBUTING.md](./CONTRIBUTING.md) dan diharapkan kontributor memematuhi [Code of Conduct](./CODE%20OF%20CONDUCT.md) yang berlaku.
+
 ## Deployment
 
 ### Docker Deployment
