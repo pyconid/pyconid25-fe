@@ -1,6 +1,6 @@
 import type { FC } from "react";
 
-export const LoginSection: FC = () => (
+export const RegisterSection: FC = () => (
   <section className="p-2">
     <div className="flex gap-x-[20px] items-center">
       <div className="hidden lg:block lg:w-1/2 h-[992px]">
@@ -12,11 +12,9 @@ export const LoginSection: FC = () => (
       <div className="w-full lg:w-1/2 h-[992px]">
         <div className="flex flex-col shadow-2xl rounded-3xl relative w-full h-full">
           <div className="flex justify-end">
-            <div className="w-[185px] h-[60px]">
-              <div className="flex bg-[#F27F20] items-center justify-center rounded-br-sm rounded-bl-3xl rounded-tl-sm rounded-tr-3xl ">
-                <div className="text-white font-bold font-display text-3xl">
-                  Login
-                </div>
+            <div className="w-[230px] h-[60px]">
+              <div className="flex bg-[#F27F20] items-center justify-center rounded-br-sm rounded-bl-3xl rounded-tl-sm rounded-tr-3xl">
+                <div className="text-white text-3xl font-bold font-display">Register</div>
               </div>
             </div>
           </div>
@@ -41,15 +39,23 @@ export const LoginSection: FC = () => (
                 className="border rounded-sm bg-gray-50 border-gray text-[#909090] w-[300px]  sm:w-[484px] xl:w-[607px]  h-[60px]  pl-4 text-[24px]"
               ></input>
             </div>
+            <div className="flex flex-col mt-[30px]">
+              <div className="text-xs text">Confirm Password</div>
+
+              <input
+                type="password"
+                className="border rounded-sm bg-gray-50 border-gray text-[#909090] w-[300px]  sm:w-[484px] xl:w-[607px]  h-[60px]  pl-4 text-[24px]"
+              ></input>
+            </div>
             <button className="bg-[#224083] w-[300px]  sm:w-[484px] xl:w-[607px] h-[60px] font-sans  rounded-sm text-white font-semibold text-2xl mt-[30px]">
-              Login to Your Account
+              Continue with Email
             </button>
-            <div className="flex items-center w-[300px]  sm:w-[484px] xl:w-[607px] h-[36px] mt-[65px]">
+            <div className="flex items-center w-[300px]  sm:w-[484px] xl:w-[607px] h-[36px] mt-[10px]">
               <div className="flex-grow border-t border-[#C4C4C4]"></div>
               <span className="px-4 text-[#C4C4C4]">or</span>
               <div className="flex-grow border-t border-[#C4C4C4]"></div>
             </div>
-            <div className="flex justify-between gap-x-2 w-[300px]  sm:w-[484px] xl:w-[607px] mt-[65px] ">
+            <div className="flex justify-between gap-x-2 w-[300px]  sm:w-[484px] xl:w-[607px] mt-[10px] ">
               <div className="flex w-[170px] sm:w-[236px]  xl:w-[296px] h-[70px] items-center justify-center gap-x-2 bg-[#F1F1F1] rounded-sm p-2">
                 <img
                   src="/images/google-logo.svg"
