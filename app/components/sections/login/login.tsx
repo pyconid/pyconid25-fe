@@ -2,7 +2,7 @@ import type { FC } from "react";
 
 export const LoginSection: FC = () => (
   <section className="p-2">
-    <div className="flex gap-x-[20px] items-center">
+    <div className="flex gap-x-[30px] items-center">
       <div className="hidden lg:block lg:w-1/2 h-[992px]">
         <img
           src="/images/login-reg-card.svg"
