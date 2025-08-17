@@ -28,7 +28,7 @@ export const LoginSection: FC = () => (
               <input
                 placeholder="yourmail@example.com"
                 type="input"
-                className="border border-slate-400 rounded-sm bg-slate-50 w-[350px]  sm:w-[484px] xl:w-[607px]  h-[60px] text-[#909090] pl-4 text-[24px]"
+                className="border border-slate-400 rounded-sm bg-slate-50 w-[300px]  sm:w-[484px] xl:w-[607px]  h-[60px] text-[#909090] pl-4 text-[24px]"
               ></input>
             </div>
             <div className="flex flex-col mt-[30px]">
@@ -36,18 +36,18 @@ export const LoginSection: FC = () => (
 
               <input
                 type="password"
-                className="border rounded-sm bg-gray-50 border-gray text-[#909090] w-[350px]  sm:w-[484px] xl:w-[607px]  h-[60px]  pl-4 text-[24px]"
+                className="border rounded-sm bg-gray-50 border-gray text-[#909090] w-[300px]  sm:w-[484px] xl:w-[607px]  h-[60px]  pl-4 text-[24px]"
               ></input>
             </div>
-            <button className="bg-[#224083] w-[350px]  sm:w-[484px] xl:w-[607px] h-[60px] font-sans  rounded-sm text-white font-semibold text-2xl mt-[30px]">
+            <button className="bg-[#224083] w-[300px]  sm:w-[484px] xl:w-[607px] h-[60px] font-sans  rounded-sm text-white font-semibold text-2xl mt-[30px]">
               Login to Your Account
             </button>
-            <div className="flex items-center w-[350px]  sm:w-[484px] xl:w-[607px] h-[36px] mt-[65px]">
+            <div className="flex items-center w-[300px]  sm:w-[484px] xl:w-[607px] h-[36px] mt-[65px]">
               <div className="flex-grow border-t border-[#C4C4C4]"></div>
               <span className="px-4 text-[#C4C4C4]">or</span>
               <div className="flex-grow border-t border-[#C4C4C4]"></div>
             </div>
-            <div className="flex justify-between gap-x-2 w-[350px]  sm:w-[484px] xl:w-[607px] mt-[65px] ">
+            <div className="flex justify-between gap-x-2 w-[300px]  sm:w-[484px] xl:w-[607px] mt-[65px] ">
               <div className="flex w-[170px] sm:w-[236px]  xl:w-[296px] h-[70px] items-center justify-center gap-x-1 sm:gap-x-2 bg-[#F1F1F1] rounded-sm p-2">
                 <img
                   src="/images/google-logo.svg"
