@@ -15,7 +15,7 @@ export const Header = () => {
 	const [expand, setExpand] = useState(false);
 
 	return (
-		<header className="pt-8 fixed inset-0 top-0 z-50 mx-6 overflow-x-clip xl:mx-0">
+		<header className="pt-8 fixed inset-x-0 top-0 z-50 mx-6 overflow-x-clip xl:mx-0">
 			<div className="flex items-center justify-between container mx-auto py-5 px-6 bg-white/60 rounded-2xl backdrop-blur-md lg:px-8">
 				<div>
 					<img
