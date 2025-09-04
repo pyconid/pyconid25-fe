@@ -20,10 +20,18 @@ export const ScheduleSection = () => {
 		<section className="pt-36 pb-20 bg-[#F1F1F1] relative min-h-[70svh] lg:min-h-[120svh]">
 			{/* wing decoretion */}
 			<div className="absolute top-8 left-0">
-				<img src="/svg/wing-decoration-blue.svg" alt="" className="w-10 md:w-16 lg:w-auto" />
+				<img
+					src="/svg/wing-decoration-blue.svg"
+					alt=""
+					className="w-10 md:w-16 lg:w-auto"
+				/>
 			</div>
 			<div className="absolute top-96 lg:top-[calc(24rem*2)] right-0">
-				<img src="/svg/wing-decoration-orange.svg" alt="" className="w-10 md:w-16 lg:w-auto" />
+				<img
+					src="/svg/wing-decoration-orange.svg"
+					alt=""
+					className="w-10 md:w-16 lg:w-auto"
+				/>
 			</div>
 
 			<div className="container mx-auto">
