@@ -17,31 +17,31 @@ const SCHEDULE_CARDS: (ScheduleCardProps & { id: string })[] = Array.from({
 
 export const ScheduleSection = () => {
 	return (
-		<section className="pt-36 pb-20 bg-[#F1F1F1] relative min-h-[120svh]">
+		<section className="pt-36 pb-20 bg-[#F1F1F1] relative min-h-[70svh] lg:min-h-[120svh]">
 			{/* wing decoretion */}
 			<div className="absolute top-8 left-0">
-				<img src="/svg/wing-decoration-blue.svg" alt="" />
+				<img src="/svg/wing-decoration-blue.svg" alt="" className="w-10 md:w-16 lg:w-auto" />
 			</div>
-			<div className="absolute top-[calc(24rem*2)] right-0">
-				<img src="/svg/wing-decoration-orange.svg" alt="" />
+			<div className="absolute top-96 lg:top-[calc(24rem*2)] right-0">
+				<img src="/svg/wing-decoration-orange.svg" alt="" className="w-10 md:w-16 lg:w-auto" />
 			</div>
 
 			<div className="container mx-auto">
 				<div className="mb-8 relative w-max mx-auto z-10">
 					{/* square decoration */}
-					<div className="absolute -left-32 -top-10">
+					<div className="absolute -left-32 -top-10 hidden md:block">
 						<img src="/svg/square-decoration.svg" alt="" />
 					</div>
-					<div className="absolute -right-32 -bottom-16">
+					<div className="absolute -right-32 -bottom-16 hidden md:block">
 						<img src="/svg/square-decoration.svg" alt="" />
 					</div>
 
-					<h1 className="font-display text-center text-[4rem] font-bold text-secondary">
+					<h1 className="font-display text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-secondary">
 						SCHEDULES
 					</h1>
 				</div>
 
-				<div className="space-y-4 z-20 relative">
+				<div className="space-y-4 z-20 relative px-5 2xl:px-0">
 					{[1, 2, 3].map((id, index) => (
 						<Accordion
 							key={id}
@@ -53,7 +53,7 @@ export const ScheduleSection = () => {
 								index % 2 ? "bg-primary" : "bg-secondary",
 							)}
 						>
-							<div className="grid grid-cols-2 gap-6">
+							<div className="grid gap-6 md:grid-cols-2">
 								{SCHEDULE_CARDS.map(({ id, ...props }) => (
 									<ScheduleCard key={id} {...props} />
 								))}

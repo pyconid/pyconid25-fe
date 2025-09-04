@@ -53,7 +53,7 @@ export const Accordion: FC<AccordionProps> = ({
 			>
 				<h4
 					className={cn(
-						"text-primary-500 font-semibold text-lg leading-tight md:text-xl",
+						"text-primary-500 font-semibold text-xs leading-tight md:text-xl",
 						titleClassName,
 					)}
 				>
