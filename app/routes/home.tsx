@@ -1,4 +1,6 @@
+import { Header } from "~/components/layouts/navigation/header";
 import { HeroSection } from "~/components/sections/home/hero";
+import { ScheduleSection } from "~/components/sections/home/schedule";
 
 export function meta() {
 	return [
@@ -10,7 +12,9 @@ export function meta() {
 export default function Home() {
 	return (
 		<main>
+			<Header />
 			<HeroSection />
+			<ScheduleSection />
 		</main>
 	);
 }
