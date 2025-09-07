@@ -5,5 +5,5 @@ export default [
 	route("/login", "routes/login.tsx"),
 	route("/register", "routes/register.tsx"),
 	route("/internal-error", "routes/internal-error.tsx"),
-	route("/not-found", "routes/not-found.tsx")
+	route("/not-found", "routes/not-found.tsx"),
 ] satisfies RouteConfig;
