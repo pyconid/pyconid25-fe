@@ -191,6 +191,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            height : 100px;
             gap: 0.5rem;
         }
 
@@ -209,10 +210,24 @@
         /* Social media icons */
         .social-media {
             display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height : 100px;
+            gap: 0.5rem;
+        }
+
+        .social-label {
+            font-weight: 500;
+            font-size: 0.875rem;
+            line-height: 1.2;
+            color: #000000;
+        }
+
+        .social-icon-list {
+            display: flex;
             gap: 0.75rem;
             align-items: center;
         }
-
         .social-icon {
             width: 50px;
             height: 50px;
@@ -319,10 +334,22 @@
                 </a>
             </div>
 
+            
+            <!-- Sponsorship heading -->
+            <h1 class="cfp-heading">SPONSORSHIP APPLICATION IS NOW OPEN</h1>
+
+            <!-- Submit Sponsorship button -->
+            <div class="btn-container">
+                <a href="https://drive.google.com/file/d/1eBvk9M9VfZZLGejicUXc6f3lBuO9snJV/view" target="_blank" class="submit-btn">
+                    <img src="./submit.svg" alt="Submit Icon">
+                    <span class="submit-btn-text">CHECK SPONSORSHIP PROSPECTUS</span>
+                </a>
+            </div>
+
             <!-- Event info -->
             <div class="event-info">
-                <div class="event-detail">📅 December 2025</div>
-                <div class="event-detail">🏢 Jakarta, Indonesia</div>
+                <div class="event-detail">📅 6th-7th December 2025</div>
+                <div class="event-detail">🏢 South Jakarta, Indonesia</div>
             </div>
         </div>
 
@@ -337,23 +364,26 @@
             </div>
 
             <!-- Social media icons -->
-<div class="social-media">
-    <div class="social-icon">
-        <a href="https://www.instagram.com/pythonid" target="_blank" rel="noopener noreferrer">
-            <img src="./insta.svg" alt="Instagram Icon">
-        </a>
-    </div>
-    <div class="social-icon">
-        <a href="https://x.com/id_python" target="_blank" rel="noopener noreferrer">
-            <img src="./x.svg" alt="X (Twitter) Icon">
-        </a>
-    </div>
-    <div class="social-icon">
-        <a href="mailto:pycon@python.or.id">
-            <img src="./mail.svg" alt="Email Icon">
-        </a>
-    </div>
-</div>
+            <div class="social-media">
+                <div class="social-label">Contact us on:</div>
+                <div class="social-icon-list">
+                    <div class="social-icon">
+                        <a href="https://www.instagram.com/pythonid" target="_blank" rel="noopener noreferrer">
+                            <img src="./insta.svg" alt="Instagram Icon">
+                        </a>
+                    </div>
+                    <div class="social-icon">
+                        <a href="https://x.com/id_python" target="_blank" rel="noopener noreferrer">
+                            <img src="./x.svg" alt="X (Twitter) Icon">
+                        </a>
+                    </div>
+                    <div class="social-icon">
+                        <a href="mailto:pycon@python.or.id">
+                            <img src="./mail.svg" alt="Email Icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
