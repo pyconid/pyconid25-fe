@@ -6,7 +6,7 @@ import { cn } from "~/lib/utils";
 const MENU = [
 	{ name: "Home", href: "/" },
 	{ name: "About Us", href: "/about" },
-	{ name: "Proposals", href: "/proposal" },
+	{ name: "Proposals", href: "/call-for-proposal" },
 	{ name: "Our Sponsors", href: "/sponsor" },
 	{ name: "Schedule", href: "/schedule" },
 ];
