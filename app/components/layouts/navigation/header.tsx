@@ -45,7 +45,7 @@ export const Header = () => {
 								</NavLink>
 							</li>
 						))}
-						<li className="w-full lg:hidden">
+						{/* <li className="w-full lg:hidden">
 							<button
 								type="button"
 								disabled
@@ -53,11 +53,11 @@ export const Header = () => {
 							>
 								Ticket Available Soon
 							</button>
-						</li>
+						</li> */}
 					</ul>
 				</div>
 
-				<div className="hidden lg:block">
+				{/* <div className="hidden lg:block">
 					<button
 						type="button"
 						disabled
@@ -65,7 +65,7 @@ export const Header = () => {
 					>
 						Ticket Available Soon
 					</button>
-				</div>
+				</div> */}
 
 				<button
 					type="button"
