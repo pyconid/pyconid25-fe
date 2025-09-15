@@ -1,3 +1,7 @@
+import { Header } from "~/components/layouts/navigation/header";
+import { HeroSection } from "~/components/sections/home/hero";
+import { ScheduleSection } from "~/components/sections/home/schedule";
+
 export function meta() {
 	return [
 		{ title: "PyconID 2025" },
@@ -6,5 +10,11 @@ export function meta() {
 }
 
 export default function Home() {
-	return <h1 className="text-lg font-bold">PyconID 2025</h1>;
+	return (
+		<main>
+			<Header />
+			<HeroSection />
+			<ScheduleSection />
+		</main>
+	);
 }
