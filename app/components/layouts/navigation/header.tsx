@@ -45,27 +45,27 @@ export const Header = () => {
 								</NavLink>
 							</li>
 						))}
-						{/* <li className="w-full lg:hidden">
-							<button
+						<li className="w-full lg:hidden">
+							{/* <button
 								type="button"
 								disabled
 								className="bg-secondary/75 text-background text-sm px-5 py-2.5 font-bold rounded-xl lg:text-base w-full"
 							>
 								Ticket Available Soon
-							</button>
-						</li> */}
+							</button> */}
+						</li>
 					</ul>
 				</div>
 
-				{/* <div className="hidden lg:block">
-					<button
+				<div className="hidden lg:block">
+					{/* <button
 						type="button"
 						disabled
 						className="bg-secondary/75 text-background text-sm px-5 py-2.5 font-bold rounded-xl lg:text-base"
 					>
 						Ticket Available Soon
-					</button>
-				</div> */}
+					</button> */}
+				</div>
 
 				<button
 					type="button"
