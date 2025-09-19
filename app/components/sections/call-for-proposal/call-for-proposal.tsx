@@ -6,7 +6,9 @@ export const CallForProposalSection: FC = () => (
   <section className="min-h-screen relative">
     <div className="absolute inset-0 bg-[url('/images/bg-call-for-proposal.png')] bg-center bg-cover bg-repeat"></div>
     <div className="absolute inset-0 bg-black/40"></div>
-    <Header />
+    <div className="flex items-center justify-center">
+      <Header />
+    </div>
 
     <div className="z-10 relative h-screen">
       <div className="absolute inset-0  mt-[23vh]">
@@ -43,7 +45,7 @@ export const CallForProposalSection: FC = () => (
             Submit Proposal
           </button>
           <div className="mt-[5vh] flex gap-x-5 flex-col gap-y-3 lg:flex-row items-center justify-center ml-[8vw] mr-[8vw]">
-            <div className="border border-[#224083] bg-[#224083]/15 rounded-lg backdrop-blur-xl p-2 w-100">
+            <div className="border border-[#224083] bg-[#224083]/15 rounded-lg backdrop-blur-xl p-2">
               <p className="border-b-1 border-[#F9F9F9]/25 font-display font-bold text-white">
                 Conference Format:
               </p>
@@ -54,7 +56,7 @@ export const CallForProposalSection: FC = () => (
                 of type and scrambled it to make a type specimen book.
               </p>
             </div>
-            <div className="border border-[#E8D41C] bg-[#E8D41C]/15 rounded-lg backdrop-blur-xl p-2 w-100">
+            <div className="border border-[#E8D41C] bg-[#E8D41C]/15 rounded-lg backdrop-blur-xl p-2">
               <p className="border-b-1 border-[#F9F9F9]/25 font-display font-bold text-white">
                 Topics
               </p>
@@ -65,7 +67,7 @@ export const CallForProposalSection: FC = () => (
                 of type and scrambled it to make a type specimen book.
               </p>
             </div>
-            <div className="border border-[#F37F20] bg-[#F37F20]/15 rounded-lg backdrop-blur-xl p-2 w-100">
+            <div className="border border-[#F37F20] bg-[#F37F20]/15 rounded-lg backdrop-blur-xl p-2">
               <p className="border-b-1 border-[#F9F9F9]/25 font-display font-bold text-white">
                 Your Submission:
               </p>
