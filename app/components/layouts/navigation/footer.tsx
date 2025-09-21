@@ -7,7 +7,7 @@ export const Footer = ({ path }: { path: string }) => {
 		<ul className="flex bg-[#162342] gap-x-2 justify-center bottom-5 fixed z-50 px-2 w-full lg:hidden">
 			{MENU.map((menu) => {
 				return (
-					<li key={menu.name}>
+					<li key={menu.name} className="text-center">
 						<NavLink
 							to={menu.href}
 							className={cn(
