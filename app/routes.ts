@@ -5,5 +5,5 @@ export default [
 	route("/login", "routes/login.tsx"),
 	route("/register", "routes/register.tsx"),
 	route("/call-for-proposal", "routes/call-for-proposal.tsx"),
-	route("/call-for-sponsor", "routes/call-for-sponsor.tsx")
+	route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
 ] satisfies RouteConfig;
