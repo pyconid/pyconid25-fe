@@ -1,5 +1,6 @@
-import { SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { MailIcon } from "lucide-react";
+import { Instagram } from "../icons/instagram";
+import { Twitter } from "../icons/twitter";
 
 export const SpeakerCard = () => {
 	return (
@@ -26,7 +27,7 @@ export const SpeakerCard = () => {
 							rel="noopener noreferrer"
 							className="bg-[#22408340] p-3 rounded-full"
 						>
-							<SiInstagram className="size-4 md:size-5" />
+							<Instagram className="size-4 md:size-5" />
 						</a>
 						<a
 							href="##"
@@ -34,7 +35,7 @@ export const SpeakerCard = () => {
 							rel="noopener noreferrer"
 							className="bg-[#22408340] p-3 rounded-full"
 						>
-							<SiX className="size-4 md:size-5" />
+							<Twitter className="size-4 md:size-5" />
 						</a>
 						<a
 							href="##"
