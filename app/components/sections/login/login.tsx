@@ -6,7 +6,7 @@ export const LoginSection: FC = () => (
 			<div className="hidden lg:block h-screen lg:w-1/2">
 				<img
 					alt="login and registration left card"
-					src="/images/login-reg-card.svg"
+					src="/svg/login-reg-card.svg"
 					className="w-full h-full object-cover rounded-3xl shadow-2xl"
 				></img>
 			</div>
@@ -24,7 +24,7 @@ export const LoginSection: FC = () => (
 					<div className="flex items-center justify-center mt-[30px]">
 						<img
 							alt="pycon id dark logo"
-							src="/images/logo-dark.svg"
+							src="/svg/logo-dark.svg"
 							className="w-50 h-15"
 						/>
 					</div>
@@ -64,7 +64,7 @@ export const LoginSection: FC = () => (
 							>
 								<img
 									alt="google logo"
-									src="/images/google-logo.svg"
+									src="/svg/google-logo.svg"
 									className="w-4 h-4 sm:w-8 sm:h-8"
 								></img>
 								<div>Continue with Google</div>
@@ -75,7 +75,7 @@ export const LoginSection: FC = () => (
 							>
 								<img
 									alt="github log"
-									src="/images/github-logo.svg"
+									src="/svg/github-logo.svg"
 									className="w-4 h-4 sm:w-8 sm:h-8"
 								></img>
 								<div>Continue with Github</div>
