@@ -30,3 +30,19 @@
 @layer base {
 	@apply bg-background text-foreground;
 }
+
+.scrollbar {
+	&::-webkit-scrollbar {
+		@apply h-[.35vw] opacity-0 hidden md:block;
+	}
+
+	&:hover {
+		&::-webkit-scrollbar {
+			@apply opacity-100 rounded-xl block;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			@apply bg-neutral-400 rounded-xl;
+		}
+	}
+}
