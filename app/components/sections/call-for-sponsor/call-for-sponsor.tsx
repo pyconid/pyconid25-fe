@@ -1,6 +1,6 @@
 import { Calendar, MapPinned } from "lucide-react";
 import type { FC } from "react";
-import { Footer } from "~/components/layouts/navigation/footer";
+import { FooterMobile } from "~/components/layouts/navigation/footer-mobile";
 import { Header } from "~/components/layouts/navigation/header";
 
 export const CallForSponsorSection: FC = () => (
@@ -124,6 +124,6 @@ export const CallForSponsorSection: FC = () => (
 				</div>
 			</div>
 		</div>
-		<Footer path="/call-for-sponsor" />
+		<FooterMobile path="/call-for-sponsor" />
 	</section>
 );

@@ -1,6 +1,7 @@
 import { Calendar, MapPinned } from "lucide-react";
 import type { FC } from "react";
-import { Footer } from "~/components/layouts/navigation/footer";
+import { FooterMobile } from "~/components/layouts/navigation/footer-mobile";
+
 import { Header } from "~/components/layouts/navigation/header";
 
 export const CallForProposalSection: FC = () => (
@@ -127,6 +128,6 @@ export const CallForProposalSection: FC = () => (
 				</div>
 			</div>
 		</div>
-		<Footer path="/call-for-proposal" />
+		<FooterMobile path="/call-for-proposal" />
 	</section>
 );
