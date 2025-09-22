@@ -39,25 +39,25 @@ export const Header = () => {
 							</li>
 						))}
 						<li className="w-full lg:hidden">
-							<button
+							{/* <button
 								type="button"
 								disabled
 								className="bg-secondary/75 text-background text-sm px-5 py-2.5 font-bold rounded-xl lg:text-base w-full"
 							>
 								Ticket Available Soon
-							</button>
+							</button> */}
 						</li>
 					</ul>
 				</div>
 
 				<div className="hidden lg:block">
-					<button
+					{/* <button
 						type="button"
 						disabled
 						className="bg-secondary/75 text-background text-sm px-5 py-2.5 font-bold rounded-xl lg:text-base"
 					>
 						Ticket Available Soon
-					</button>
+					</button> */}
 				</div>
 
 				<button
