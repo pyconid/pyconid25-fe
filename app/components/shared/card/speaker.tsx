@@ -1,10 +1,11 @@
-import { SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { MailIcon } from "lucide-react";
+import { Instagram } from "../icons/instagram";
+import { Twitter } from "../icons/twitter";
 
-export const OurTeamCard = () => {
+export const SpeakerCard = () => {
 	return (
 		<div className="aspect-24/37 w-72 md:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
-			<div className="absolute inset-0 bg-[url('/svg/our-team-decoration.svg')] bg-[100%_auto] bg-no-repeat" />
+			<div className="absolute inset-0 bg-[url('/images/speaker-decoration.webp')] bg-[100%_auto] bg-no-repeat" />
 
 			<div className="relative flex flex-col justify-between h-full">
 				<img
@@ -26,7 +27,7 @@ export const OurTeamCard = () => {
 							rel="noopener noreferrer"
 							className="bg-[#22408340] p-3 rounded-full"
 						>
-							<SiInstagram className="size-4 md:size-5" />
+							<Instagram className="size-4 md:size-5" />
 						</a>
 						<a
 							href="##"
@@ -34,7 +35,7 @@ export const OurTeamCard = () => {
 							rel="noopener noreferrer"
 							className="bg-[#22408340] p-3 rounded-full"
 						>
-							<SiX className="size-4 md:size-5" />
+							<Twitter className="size-4 md:size-5" />
 						</a>
 						<a
 							href="##"

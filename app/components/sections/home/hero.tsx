@@ -16,12 +16,12 @@ export const HeroSection: FC = () => {
 						<h1 className="text-8xl mb-2">Dec 6th- 7th, 2025</h1>
 						<p className="text-6xl">Jakarta, Indonesia</p>
 					</div>
-					<button
+					{/* <button
 						type="button"
 						className="text-white font-sans font-bold border border-neutral-100/40 px-8 py-4 rounded-xl bg-gradient-to-br from-secondary via-secondary to-background/10"
 					>
 						Ticket Available Soon
-					</button>
+					</button> */}
 				</div>
 
 				<div className="bg-[#832E9F] size-[44rem] rounded-full absolute -left-96 -top-96 2xl:-left-64 2xl:-top-80 blur-2xl" />

@@ -1,22 +1,23 @@
+import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { HeroSection } from "~/components/sections/home/hero";
 import { ScheduleSection } from "~/components/sections/home/schedule";
-import { Footer } from "~/components/layouts/navigation/footer";
+// import { ScheduleSection } from "~/components/sections/home/schedule";
 
 export function meta() {
-  return [
-    { title: "PyconID 2025" },
-    { name: "description", content: "Website for PyconID 2025" },
-  ];
+	return [
+		{ title: "PyconID 2025" },
+		{ name: "description", content: "Website for PyconID 2025" },
+	];
 }
 
 export default function Home() {
-  return (
-    <main>
-      <Header />
-      <HeroSection />
-      <ScheduleSection />
-      <Footer path="/" />
-    </main>
-  );
+	return (
+		<main>
+			<Header />
+			<HeroSection />
+			<ScheduleSection />
+			<Footer path="/" />
+		</main>
+	);
 }
