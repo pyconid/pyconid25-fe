@@ -2,6 +2,7 @@ import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { HeroSection } from "~/components/sections/home/hero";
 import { ScheduleSection } from "~/components/sections/home/schedule";
+import { Footer2 } from "~/components/layouts/navigation/footer2";
 // import { ScheduleSection } from "~/components/sections/home/schedule";
 
 export function meta() {
@@ -17,7 +18,8 @@ export default function Home() {
 			<Header />
 			<HeroSection />
 			<ScheduleSection />
-			<Footer path="/" />
+			<Footer2 />
+
 		</main>
 	);
 }
