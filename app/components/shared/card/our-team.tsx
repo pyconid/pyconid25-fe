@@ -1,6 +1,12 @@
 import { SiInstagram, SiX } from "@icons-pack/react-simple-icons";
 import { MailIcon } from "lucide-react";
 
+export interface OurTeamCardProps {
+	title: string;
+	time: string;
+	description: string;
+}
+
 export const OurTeamCard = () => {
 	return (
 		<div className="aspect-24/37 w-72 md:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
