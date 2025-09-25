@@ -49,7 +49,7 @@ export const Footer = () => {
           </h1>
         </div>
 
-        <div className="space-y-4 z-20 relative px-5 2xl:px-0">
+        <div className="space-y-4 z-20 relative px-5 ml-[8vw] 2xl:px-0">
           <div className="flex gap-x-4">
             {OURTEAM_CARDS.map(({ id, ...props }) => (
               <OurTeamCard key={id} {...props} />
