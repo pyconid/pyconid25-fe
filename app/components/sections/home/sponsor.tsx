@@ -21,13 +21,13 @@ const SponsorItem: FC<SponsorItemProps> = ({ image, name, rank }) => {
 export const SponsorSection = () => {
 	return (
 		<section className="py-28 bg-gradient-to-r from-[#162D61] via-[#224083] to-[#224083]">
-			<div className="container mx-auto text-white">
-				<div className="grid grid-cols-2">
-					<div className="h-max sticky top-36">
+			<div className="container mx-auto text-white px-5 2xl:px-0">
+				<div className="grid md:grid-cols-2">
+					<div className="h-max mb-16 md:mb-0 md:sticky md:top-36">
 						<p className="text-primary font-display font-medium">
 							We appreciate your support!
 						</p>
-						<h1 className="font-display font-bold text-[3.5rem] leading-tight mb-10">
+						<h1 className="font-display font-bold text-4xl md:text-[2.5rem] lg:text-[3.5rem] leading-tight mb-10">
 							Help us make this conference truly unforgettable
 						</h1>
 						<button
@@ -41,7 +41,7 @@ export const SponsorSection = () => {
 					<div className="bg-[#162D61] p-10 rounded-3xl max-w-2xl justify-self-end space-y-5">
 						<div>
 							<h3 className="mb-5 font-display font-bold">Supported by</h3>
-							<div className="grid grid-cols-2 gap-5">
+							<div className="grid md:grid-cols-2 gap-5">
 								{Array.from({ length: 2 }).map((_, index) => (
 									<SponsorItem
 										key={`${index + 1}-supported`}
@@ -53,7 +53,7 @@ export const SponsorSection = () => {
 						</div>
 						<div>
 							<h3 className="mb-5 font-display font-bold">Sponsored by</h3>
-							<div className="grid grid-cols-2 gap-5">
+							<div className="grid md:grid-cols-2 gap-5">
 								{Array.from({ length: 10 }).map((_, index) => (
 									<SponsorItem
 										key={`${index + 1}-sponsored`}
@@ -66,7 +66,7 @@ export const SponsorSection = () => {
 						</div>
 						<div>
 							<h3 className="mb-5 font-display font-bold">Partners</h3>
-							<div className="grid grid-cols-2 gap-5">
+							<div className="grid md:grid-cols-2 gap-5">
 								{Array.from({ length: 2 }).map((_, index) => (
 									<SponsorItem
 										key={`${index + 1}-partner`}
@@ -78,7 +78,7 @@ export const SponsorSection = () => {
 						</div>
 						<div>
 							<h3 className="mb-5 font-display font-bold">Media Partners</h3>
-							<div className="grid grid-cols-2 gap-5">
+							<div className="grid md:grid-cols-2 gap-5">
 								{Array.from({ length: 10 }).map((_, index) => (
 									<SponsorItem
 										key={`${index + 1}-media-partner`}
@@ -91,7 +91,7 @@ export const SponsorSection = () => {
 						</div>
 						<div>
 							<h3 className="mb-5 font-display font-bold">Patron</h3>
-							<div className="grid grid-cols-2 gap-5">
+							<div className="grid md:grid-cols-2 gap-5">
 								{Array.from({ length: 2 }).map((_, index) => (
 									<SponsorItem
 										key={`${index + 1}-patron`}
