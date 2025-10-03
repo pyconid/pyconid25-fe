@@ -8,6 +8,5 @@ export default [
   route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
   route("/internal-error", "routes/internal-error.tsx"),
   route("/500", "routes/errors/500.tsx"),
-  route("*", "routes/errors/404.tsx"),
-  //   route("/*", "routes/not-found.tsx"),
+  route("/*", "routes/errors/404.tsx"),
 ] satisfies RouteConfig;
