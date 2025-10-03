@@ -12,16 +12,16 @@ export default function ErrorNotFound() {
     <MainLayout className="bg-[#F1F1F1]">
       <img
         src="/svg/wing-decoration-blue.svg"
-        className="absolute top-[130px] w-14 lg:w-auto right-0 scale-x-[-1]"
+        className="absolute top-[130px] w-14 md:w-20 lg:w-auto right-0 scale-x-[-1]"
         alt=""
       />
       <img
         src="/svg/wing-decoration-orange.svg"
-        className="absolute top-[550px] lg:top-[800px] w-14 lg:w-auto left-0 scale-x-[-1]"
+        className="absolute top-[600px] lg:top-[800px] w-14 md:w-20 lg:w-auto left-0 scale-x-[-1]"
         alt=""
       />
 
-      <div className="flex flex-col gap-5 lg:gap-4">
+      <div className="flex flex-col gap-5 lg:gap-4 mt-10 lg:mt-0">
         <img
           src="/svg/oops.svg"
           className="mx-auto h-10 lg:h-auto"
@@ -30,7 +30,7 @@ export default function ErrorNotFound() {
         <img
           src="/svg/error-not-found.svg"
           className="mx-auto h-25 lg:h-auto"
-          alt="Oops"
+          alt="404"
         />
 
         <div className="flex flex-col gap-5 lg:gap-4 text-center px-5">
