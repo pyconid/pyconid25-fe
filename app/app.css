@@ -2,36 +2,49 @@
 @import "tailwindcss";
 
 :root {
-	--background: oklch(0.985 0 0);
-	--foreground: oklch(0.145 0 0);
-	--primary: oklch(0.7148 0.1712 52.97);
-	--primary-foreground: oklch(0.985 0 0);
-	--secondary: oklch(0.3883 0.1185 263.67);
-	--secondary-foreground: oklch(0.985 0 0);
+  --background: oklch(0.985 0 0);
+  --foreground: oklch(0.145 0 0);
+  --primary: oklch(0.7148 0.1712 52.97);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.3883 0.1185 263.67);
+  --secondary-foreground: oklch(0.985 0 0);
 
-	--font-sans:
-		"Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif,
-		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--font-display: "Quicksand", sans-serif;
+  --font-sans:
+    "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Quicksand", sans-serif;
 }
 
 @theme inline {
-	--color-background: var(--background);
-	--color-foreground: var(--foreground);
-	--color-primary: var(--primary);
-	--color-primary-foreground: var(--primary-foreground);
-	--color-secondary: var(--secondary);
-	--color-secondary-foreground: var(--secondary-foreground);
+  --color-general-blue: #224083;
+  --color-general-orange: #f27f20;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
 
-	--font-sans: var(--font-sans);
-	--font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
 }
 
 @layer base {
-	@apply bg-background text-foreground;
+  @apply bg-background text-foreground;
 }
 
-@theme {
-	--color-general-blue: #224083;
-	--color-general-orange: #f27f20;
+.scrollbar {
+  &::-webkit-scrollbar {
+    @apply h-[.35vw] opacity-0 hidden md:block;
+  }
+
+  &:hover {
+    &::-webkit-scrollbar {
+      @apply opacity-100 rounded-xl block;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      @apply bg-neutral-400 rounded-xl;
+    }
+  }
 }

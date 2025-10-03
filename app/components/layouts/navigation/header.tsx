@@ -1,15 +1,8 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router";
+import MENU from "~/lib/menu";
 import { cn } from "~/lib/utils";
-
-const MENU = [
-	{ name: "Home", href: "/" },
-	{ name: "About Us", href: "/about" },
-	{ name: "Proposals", href: "/proposal" },
-	{ name: "Our Sponsors", href: "/sponsor" },
-	{ name: "Schedule", href: "/schedule" },
-];
 
 export const Header = () => {
 	const [expand, setExpand] = useState(false);
