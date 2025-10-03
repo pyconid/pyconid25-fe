@@ -7,10 +7,21 @@ export function meta() {
   ];
 }
 
-export default function Home() {
+export default function ErrorNotFound() {
   return (
     <MainLayout className="bg-[#F1F1F1]">
-      <div className="flex flex-col gap-4">
+      <img
+        src="/svg/wing-decoration-blue.svg"
+        className="absolute top-[130px] w-14 lg:w-auto right-0 scale-x-[-1]"
+        alt=""
+      />
+      <img
+        src="/svg/wing-decoration-orange.svg"
+        className="absolute top-[550px] lg:top-[800px] w-14 lg:w-auto left-0 scale-x-[-1]"
+        alt=""
+      />
+
+      <div className="flex flex-col gap-5 lg:gap-4">
         <img
           src="/svg/oops.svg"
           className="mx-auto h-10 lg:h-auto"
@@ -22,8 +33,8 @@ export default function Home() {
           alt="Oops"
         />
 
-        <div className="flex flex-col gap-3 text-center">
-          <h1 className="text-2xl lg:text-[60px] text-general-blue lg:leading-20 font-bold">
+        <div className="flex flex-col gap-5 lg:gap-4 text-center px-5">
+          <h1 className="text-2xl lg:text-[60px] text-general-blue leading-9 lg:leading-20 font-bold">
             Ouups! <br /> You’ve found a 404 page
           </h1>
 
