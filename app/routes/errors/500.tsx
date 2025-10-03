@@ -11,15 +11,19 @@ export default function Home() {
   return (
     <MainLayout className="bg-[#F1F1F1]">
       <div className="flex flex-col gap-4">
-        <img src="/svg/oops.svg" className="mx-auto" alt="Oops" />
+        <img
+          src="/svg/oops.svg"
+          className="mx-auto h-10 lg:h-auto"
+          alt="Oops"
+        />
         <img
           src="/svg/error-internal-server.svg"
-          className="mx-auto"
+          className="mx-auto h-25 lg:h-auto"
           alt="Oops"
         />
 
         <div className="flex flex-col gap-2 text-center">
-          <h1 className="text-[60px] text-general-blue leading-20 font-bold">
+          <h1 className="text-2xl lg:text-[60px] text-general-blue lg:leading-20 font-bold">
             Oh Snakes! <br /> There’s an error!
           </h1>
 
