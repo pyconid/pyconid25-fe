@@ -1,3 +1,4 @@
+import { Main as MainLayout } from "~/components/layouts/app/main";
 import { InternalErrorSection } from "~/components/sections/internal-error/internal-error";
 
 export function meta() {
@@ -9,8 +10,8 @@ export function meta() {
 
 export default function InternalError() {
 	return (
-		<main>
+		<MainLayout className="bg-[#F1F1F1]">
 			<InternalErrorSection />
-		</main>
+		</MainLayout>
 	);
 }
