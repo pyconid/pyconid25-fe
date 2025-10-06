@@ -1,3 +1,4 @@
+import { Main as MainLayout } from "~/components/layouts/app/main";
 import { NotFoundSection } from "~/components/sections/not-found/not-found";
 
 export function meta() {
@@ -9,8 +10,8 @@ export function meta() {
 
 export default function NotFound() {
 	return (
-		<main>
+		<MainLayout className="bg-[#F1F1F1]">
 			<NotFoundSection />
-		</main>
+		</MainLayout>
 	);
 }
