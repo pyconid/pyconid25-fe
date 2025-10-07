@@ -14,12 +14,15 @@
     "@react-router/node": "^7.8.0",
     "@react-router/serve": "^7.8.0",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "isbot": "^5.1.27",
     "lucide-react": "^0.542.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router": "^7.8.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "znv": "^0.5.0",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.4",
