@@ -1,8 +1,7 @@
 // This file is server-side only. Do not use it directly in the client as it will throw an error.
 
 import dotenv from "dotenv";
-import { parseEnv } from "znv";
-import z from "zod";
+import { parseEnv, z } from "znv/compat";
 
 dotenv.config();
 
