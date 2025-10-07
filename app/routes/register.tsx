@@ -1,4 +1,5 @@
 import { Form } from "react-router";
+import { StrategyOptions } from "~/services/auth/strategy";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
 export const handle: AuthLayoutHanleProps = { title: "Register" };
@@ -13,7 +14,11 @@ export function meta() {
 export default function Register() {
 	return (
 		<main className="w-full">
-			<Form action="/auth/login" method="post" className="space-y-3 w-full">
+			<Form
+				action={`/auth/${StrategyOptions.SIGNUP_FORM}`}
+				method="post"
+				className="space-y-3 w-full"
+			>
 				<div className="flex flex-col w-full">
 					<label htmlFor="email" className="text-sm font-bold mb-1">
 						Email
