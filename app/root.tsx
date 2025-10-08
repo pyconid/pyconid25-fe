@@ -26,13 +26,13 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export const loader = () => {
-	const env = { baseAPI: String(parsedEnv.BASE_API) }
+	const env = { baseAPI: String(parsedEnv.BASE_API) };
 
 	return { env };
 };
 
 export function useRootLoaderData() {
-	return useRouteLoaderData('root') as Awaited<ReturnType<typeof loader>>;
+	return useRouteLoaderData("root") as Awaited<ReturnType<typeof loader>>;
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {

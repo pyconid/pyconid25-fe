@@ -1,8 +1,6 @@
 // biome-ignore lint/suspicious/noExplicitAny: _
 type TODO = any;
 
-export type ResponseTypeProps = "JSON";
-
 export const ContentType = {
 	JSON: "application/json",
 	FORMDATA: "multipart/form-data",
@@ -14,7 +12,6 @@ export interface RequestProps {
 	baseAPI?: string;
 	body?: TODO;
 	withAuth?: boolean;
-	responseType?: ResponseTypeProps;
 	contentType?: ContentTypeProps;
 	request?: Request | null;
 }
@@ -47,7 +44,7 @@ export class HTTP {
 
 	protected async processRequest(_request: Request) {}
 
-	private async client<Type>({
+	private async client({
 		baseAPI = "",
 		url,
 		body = null,
@@ -58,7 +55,7 @@ export class HTTP {
 	}: RequestProps & {
 		url: string;
 		method: RequestMethodType;
-	}): Promise<Type> {
+	}): Promise<Response> {
 		if (request) await this.processRequest(request);
 		const apiUrl = (baseAPI || this.baseAPI) + url;
 
@@ -73,52 +70,44 @@ export class HTTP {
 			requestInit.body =
 				contentType === ContentType.FORMDATA ? body : JSON.stringify(body);
 
-		const data = await fetch(apiUrl, requestInit);
-
-		return await data.json();
+		return await fetch(apiUrl, requestInit);
 	}
 
-	public async get<T = ResponseProps>(
-		url: string,
-		options: Omit<RequestProps, "body"> = {},
-	) {
-		return await this.client<T>({ url, method: RequestMethod.GET, ...options });
+	public async get(url: string, options: Omit<RequestProps, "body"> = {}) {
+		return await this.client({ url, method: RequestMethod.GET, ...options });
 	}
 
-	public async post<T = ResponseProps, B = TODO>(
+	public async post<B = TODO>(
 		url: string,
 		options: Omit<RequestProps, "body"> & { body?: B } = {},
 	) {
-		return await this.client<T>({
+		return await this.client({
 			url,
 			method: RequestMethod.POST,
 			...options,
 		});
 	}
 
-	public async put<T = ResponseProps, B = TODO>(
+	public async put<B = TODO>(
 		url: string,
 		options: Omit<RequestProps, "body"> & { body?: B } = {},
 	) {
-		return await this.client<T>({ url, method: RequestMethod.PUT, ...options });
+		return await this.client({ url, method: RequestMethod.PUT, ...options });
 	}
 
-	public async patch<T = ResponseProps, B = TODO>(
+	public async patch<B = TODO>(
 		url: string,
 		options: Omit<RequestProps, "body"> & { body?: B } = {},
 	) {
-		return await this.client<T>({
+		return await this.client({
 			url,
 			method: RequestMethod.PATCH,
 			...options,
 		});
 	}
 
-	public async delete<T = ResponseProps>(
-		url: string,
-		options: Omit<RequestProps, "body"> = {},
-	) {
-		return await this.client<T>({
+	public async delete(url: string, options: Omit<RequestProps, "body"> = {}) {
+		return await this.client({
 			url,
 			method: RequestMethod.DELETE,
 			...options,
