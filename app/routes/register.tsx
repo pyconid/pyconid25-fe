@@ -71,7 +71,7 @@ export default function Register() {
 					type="submit"
 					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80"
 				>
-					Login to Your Account
+					Create Account
 				</button>
 			</Form>
 		</main>

@@ -5,7 +5,7 @@ export interface CredentialsData {
 	token: string;
 	refresh_token: string;
 
-  is_new_user?: boolean
-  github_username?: string
-  google_email?: string
+	is_new_user?: boolean;
+	github_username?: string;
+	google_email?: string;
 }
