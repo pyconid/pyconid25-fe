@@ -20,3 +20,8 @@ export const signUpWithConfirmPasswordSchema = signUpSchema
 		message: "Passwords do not match",
 		path: ["confirm_password"],
 	});
+
+export type VerifyEmailSchema = z.infer<typeof verifyEmailSchema>;
+export const verifyEmailSchema = z.object({
+	token: z.string(),
+});

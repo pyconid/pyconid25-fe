@@ -19,6 +19,7 @@ export default [
 	...prefix("auth", [
 		...prefix(":provider", [index("routes/auth/$provider.tsx")]),
 	]),
+	route("/email-verification", "routes/email-verification.tsx"),
 
 	// route("/500", "routes/not-foucnd.tsx"),
 	route("/*", "routes/not-found.tsx"),
