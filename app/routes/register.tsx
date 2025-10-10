@@ -1,4 +1,4 @@
-import { Form } from "react-router";
+import { Form, useNavigation } from "react-router";
 import { StrategyOptions } from "~/services/auth/strategy";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
@@ -12,6 +12,9 @@ export function meta() {
 }
 
 export default function Register() {
+	const navigation = useNavigation();
+	const isSubmitting = navigation.state === "submitting";
+
 	return (
 		<main className="w-full">
 			<Form
@@ -69,9 +72,10 @@ export default function Register() {
 				</div>
 				<button
 					type="submit"
-					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80"
+					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80 disabled:bg-secondary/50 disabled:cursor-not-allowed"
+					disabled={isSubmitting}
 				>
-					Create Account
+					{isSubmitting ? "Loading..." : "Create Account"}
 				</button>
 			</Form>
 		</main>

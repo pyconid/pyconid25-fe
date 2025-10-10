@@ -1,16 +1,22 @@
 import {
 	isRouteErrorResponse,
 	Links,
+	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLoaderData,
 	useRouteLoaderData,
 } from "react-router";
+import { toast } from "sonner";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { useEffect } from "react";
+import { Toaster } from "./components/shared/sonner";
 import { parsedEnv } from "./lib/.server/env";
+import { getMessageSession } from "./services/sessions/message.server";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -25,10 +31,18 @@ export const links: Route.LinksFunction = () => [
 	},
 ];
 
-export const loader = () => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const env = { baseAPI: String(parsedEnv.BASE_API) };
+	const messageSession = await getMessageSession(request.headers.get("Cookie"));
 
-	return { env };
+	const toastCookie = await messageSession.get("toast");
+	const toastData = {
+		title: toastCookie?.title,
+		message: toastCookie?.message,
+		type: toastCookie?.type,
+	};
+
+	return { env, toast: toastData };
 };
 
 export function useRootLoaderData() {
@@ -48,12 +62,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				{children}
 				<ScrollRestoration />
 				<Scripts />
+				<Toaster />
 			</body>
 		</html>
 	);
 }
 
 export default function App() {
+	const data = useLoaderData<typeof loader>();
+
+	useEffect(() => {
+		if (data.toast.message) {
+			if (data.toast.type === "error") {
+				toast.error(data.toast.title, {
+					description: data.toast.message,
+				});
+
+				return;
+			}
+
+			toast.success(data.toast.title, {
+				description: data.toast.message,
+			});
+		}
+	}, [data]);
+
 	return <Outlet />;
 }
 

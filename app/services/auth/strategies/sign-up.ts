@@ -31,22 +31,29 @@ export const signUpFormStrategy = new Strategy(
 				throw new Error(error);
 			}
 
-			// TODO: hit API to register
 			const body = { email, username, password };
 			const response = await emailSignup({ body });
-			const message = await response.text();
 
-			if (!response.ok) throw new Error(message);
+			if (!response.ok) throw new Error(response.statusText);
 
-			messageSession.flash("toast", { message });
-			return redirect(referer ?? "/login", {
+			messageSession.flash("toast", {
+				title: "Success!",
+				message:
+					"You have successfully signed up! Please check your email to confirm your account",
+				type: "success",
+			});
+			return redirect("/login", {
 				headers: {
 					"Set-Cookie": await commitMessageSession(messageSession),
 				},
 			});
 		} catch (error) {
 			console.error("error", error);
-			messageSession.flash("toast", { message: (error as Error)?.message });
+			messageSession.flash("toast", {
+				title: "Oops!",
+				message: (error as Error)?.message,
+				type: "error",
+			});
 
 			return redirect(referer ?? "/register", {
 				headers: {
