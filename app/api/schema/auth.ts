@@ -25,3 +25,9 @@ export type VerifyEmailSchema = z.infer<typeof verifyEmailSchema>;
 export const verifyEmailSchema = z.object({
 	token: z.string(),
 });
+
+export type SignInSchema = z.infer<typeof signInSchema>;
+export const signInSchema = z.object({
+	email: z.string().min(1, "Username should be not empty"),
+	password: z.string().min(8, "Password should be at least 8 characters"),
+});

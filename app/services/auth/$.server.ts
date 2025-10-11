@@ -1,7 +1,7 @@
 import { authSessionStorage } from "../sessions/auth.server";
 import { Authenticator } from ".";
-import { signUpFormStrategy } from "./strategies";
+import { signInFormStrategy, signUpFormStrategy } from "./strategies";
 
 export const authenticator = new Authenticator(authSessionStorage);
 
-authenticator.use(signUpFormStrategy);
+authenticator.use(signUpFormStrategy).use(signInFormStrategy);

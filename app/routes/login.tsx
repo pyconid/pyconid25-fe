@@ -1,4 +1,5 @@
-import { Form } from "react-router";
+import { Form, useNavigation } from "react-router";
+import { StrategyOptions } from "~/services/auth/strategy";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
 export const handle: AuthLayoutHanleProps = { title: "Login" };
@@ -11,9 +12,16 @@ export function meta() {
 }
 
 export default function Login() {
+	const navigation = useNavigation();
+	const isSubmitting = navigation.state === "submitting";
+
 	return (
 		<main className="w-full">
-			<Form action="/auth/login" method="post" className="space-y-3 w-full">
+			<Form
+				action={`/auth/${StrategyOptions.SIGNIN_FORM}`}
+				method="post"
+				className="space-y-3 w-full"
+			>
 				<div className="flex flex-col w-full">
 					<label htmlFor="email" className="text-sm font-bold mb-1">
 						Email
@@ -40,9 +48,10 @@ export default function Login() {
 				</div>
 				<button
 					type="submit"
-					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80"
+					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80 disabled:bg-secondary/50 disabled:cursor-not-allowed"
+					disabled={isSubmitting}
 				>
-					Login to Your Account
+					{isSubmitting ? "Loading..." : "Login to Your Account"}
 				</button>
 			</Form>
 		</main>
