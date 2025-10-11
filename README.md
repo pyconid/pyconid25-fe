@@ -53,6 +53,13 @@ Create a production build:
 npm run build
 ```
 
+## Integrasi dengan API
+- dokumentasi (swagger) dan api bisa diakses di https://api-dev.pycon.id/docs
+- untuk mengakses api public. tinggal klik saja pada swagger
+- untuk mengakses api private (gembok) buat akun terlebih dahulu
+- detail cara membuat akun bisa dilihat di [integrasi api](./docs/integrasi_dengan_api.md)
+- Jika terdapat masalah dalam mengakses api backend bisa dengan membuat issue di repo github backend [https://github.com/pyconid/pyconid25-be/issues](https://github.com/pyconid/pyconid25-be/issues) atau melalui telegram bandungpy topic pyconid [https://web.telegram.org/a/#-1001492883261_6340](https://web.telegram.org/a/#-1001492883261_6340)
+
 ## Kontribusi
 untuk tata cara kontribusi bisa dilihat di [CONTRIBUTING.md](./CONTRIBUTING.md) dan diharapkan kontributor memematuhi [Code of Conduct](./CODE%20OF%20CONDUCT.md) yang berlaku.
 
