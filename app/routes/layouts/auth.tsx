@@ -1,6 +1,17 @@
 import type { FC } from "react";
-import { Form, Outlet, useMatches } from "react-router";
+import {
+	Form,
+	type LoaderFunctionArgs,
+	Outlet,
+	redirect,
+	useMatches,
+} from "react-router";
 import { useMergeHanlde } from "~/hooks/use-merge-handle";
+import { authenticator } from "~/services/auth/$.server";
+import {
+	commitMessageSession,
+	getMessageSession,
+} from "~/services/sessions/message.server";
 
 export interface AuthLayoutHanleProps {
 	title: string;
@@ -24,6 +35,25 @@ const LoginOAuth: FC<LoginOAuthProps> = ({ title, provider, image }) => {
 			</button>
 		</Form>
 	);
+};
+
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	const credentials = await authenticator.isAuthenticated(request);
+	const messageSession = await getMessageSession(request.headers.get("Cookie"));
+
+	if (credentials) {
+		messageSession.flash("toast", {
+			title: "Success!",
+			message: "You are already logged in!",
+			type: "success",
+		});
+
+		return redirect("/", {
+			headers: { "Set-Cookie": await commitMessageSession(messageSession) },
+		});
+	}
+
+	return null;
 };
 
 export default function AuthLayout() {
