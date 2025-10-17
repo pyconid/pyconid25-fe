@@ -41,10 +41,15 @@ export const signInFormStrategy = new Strategy(
 			if (!response.ok) throw new Error(data?.message || response.statusText);
 
 			authSession.set("credentials", data);
+			messageSession.flash("toast", {
+				title: "Success!",
+				message: "You have successfully signed in!",
+				type: "success",
+			});
 
 			const headers = new Headers();
-			headers.append("Set-Cookie", await commitMessageSession(messageSession));
 			headers.append("Set-Cookie", await commitAuthSession(authSession));
+			headers.append("Set-Cookie", await commitMessageSession(messageSession));
 
 			return redirect("/", { headers });
 		} catch (error) {

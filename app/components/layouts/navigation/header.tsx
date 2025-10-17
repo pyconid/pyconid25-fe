@@ -1,11 +1,14 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { Form, Link, NavLink } from "react-router";
 import MENU from "~/lib/menu";
 import { cn } from "~/lib/utils";
+import { useRootLoaderData } from "~/root";
 
 export const Header = () => {
 	const [expand, setExpand] = useState(false);
+
+	const { credentials } = useRootLoaderData();
 
 	return (
 		<header className="pt-8 fixed inset-x-0 top-0 z-50 mx-6 overflow-x-clip 2xl:mx-0">
@@ -46,6 +49,26 @@ export const Header = () => {
 							>
 								Ticket Available Soon
 							</button> */}
+
+							{credentials ? (
+								<Form action="/auth/logout" method="post">
+									<button
+										type="submit"
+										className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+									>
+										Logout
+									</button>
+								</Form>
+							) : (
+								<Link to="/login">
+									<button
+										type="button"
+										className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+									>
+										Login
+									</button>
+								</Link>
+							)}
 						</li>
 					</ul>
 				</div>
@@ -58,6 +81,26 @@ export const Header = () => {
 					>
 						Ticket Available Soon
 					</button> */}
+
+					{credentials ? (
+						<Form action="/auth/logout" method="post">
+							<button
+								type="submit"
+								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+							>
+								Logout
+							</button>
+						</Form>
+					) : (
+						<Link to="/login">
+							<button
+								type="button"
+								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+							>
+								Login
+							</button>
+						</Link>
+					)}
 				</div>
 
 				<button

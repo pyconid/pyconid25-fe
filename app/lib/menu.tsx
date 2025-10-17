@@ -4,7 +4,6 @@ const MENU = [
 	{ name: "Proposals", href: "/call-for-proposal" },
 	{ name: "Our Sponsors", href: "/call-for-sponsor" },
 	{ name: "Schedule", href: "/schedule" },
-	{ name: "Login", href: "/login" },
 ];
 
 export default MENU;

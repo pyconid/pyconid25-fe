@@ -1,9 +1,11 @@
 import type { FC } from "react";
 import {
 	Form,
+	Link,
 	type LoaderFunctionArgs,
 	Outlet,
 	redirect,
+	useLocation,
 	useMatches,
 } from "react-router";
 import { useMergeHanlde } from "~/hooks/use-merge-handle";
@@ -63,6 +65,8 @@ export default function AuthLayout() {
 		options: { title: "Pycon 2025" },
 	});
 
+	const { pathname } = useLocation();
+
 	return (
 		<section className="h-screen bg-slate-100">
 			<div className="grid gap-x-8 w-full max-w-[88rem] mx-auto h-full content-center px-5 md:px-8 lg:px-0 lg:grid-cols-2">
@@ -102,6 +106,24 @@ export default function AuthLayout() {
 								image="/svg/github-logo.svg"
 								provider="github"
 							/>
+
+							<p className="col-span-full w-max mx-auto">
+								{pathname === "/login" ? (
+									<>
+										Belum memiliki akun?{" "}
+										<Link to="/register" className="underline text-secondary">
+											Register
+										</Link>
+									</>
+								) : (
+									<>
+										Sudah memiliki akun?{" "}
+										<Link to="/login" className="underline text-secondary">
+											Login
+										</Link>
+									</>
+								)}
+							</p>
 						</div>
 
 						<div className="text-sm mt-12 text-center font-medium">

@@ -1,66 +1,59 @@
 import { LoaderCircle } from "lucide-react";
-import { type LoaderFunctionArgs, redirect } from "react-router";
-import { verifyEmail } from "~/api/endpoint/.server/auth";
+import { useEffect } from "react";
 import {
-	commitMessageSession,
-	getMessageSession,
-} from "~/services/sessions/message.server";
+	type LoaderFunctionArgs,
+	useLoaderData,
+	useNavigate,
+} from "react-router";
+import { toast } from "sonner";
+import { verifyEmail } from "~/api/endpoint/.server/auth";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
-	const messageSession = await getMessageSession(request.headers.get("Cookie"));
 	const url = new URL(request.url);
 	const token = url.searchParams.get("token");
 
-	if (!token) {
-		messageSession.flash("toast", {
-			title: "Oops!",
-			message: "No token found!",
-			type: "error",
-		});
+	let title = "Oops!";
+	let message = "No token found!";
+	let type = "error";
 
-		return redirect("/login", {
-			headers: {
-				"Set-Cookie": await commitMessageSession(messageSession),
-			},
-		});
-	}
+	if (!token) return { title, message, type };
 
 	try {
 		const res = await verifyEmail({ token });
 		const data = await res.json();
 
 		if (res.ok) {
-			messageSession.flash("toast", {
-				title: "Success!",
-				message: data?.message || "Email verified!",
-				type: "success",
-			});
+			title = "Success!";
+			message = data?.message || "Email verified!";
+			type = "success";
 		}
 
-		if (!res.ok) {
-			messageSession.flash("toast", {
-				title: "Oops!",
-				message: data?.message || "Something went wrong!",
-				type: "error",
-			});
-		}
+		if (!res.ok) message = data?.message || "Something went wrong!";
 	} catch (error) {
 		console.error("error", error);
-		messageSession.flash("toast", {
-			title: "Oops!",
-			message: (error as Error)?.message,
-			type: "error",
-		});
+		message = (error as Error)?.message || "Something went wrong!";
 	}
 
-	return redirect("/login", {
-		headers: {
-			"Set-Cookie": await commitMessageSession(messageSession),
-		},
-	});
+	return { title, message, type };
 };
 
 export default function EmailVerificationPage() {
+	const data = useLoaderData<typeof loader>();
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (data.message) {
+			toast[data.type as "error" | "success"](data.title, {
+				description: data.message,
+			});
+
+			setTimeout(() => {
+				navigate("/");
+			}, 1000);
+		}
+	}, [data, navigate]);
+
 	return (
 		<main>
 			<section className="max-w-7xl h-svh flex flex-col justify-center items-center mx-auto gap-6 md:gap-8 lg:gap-10">

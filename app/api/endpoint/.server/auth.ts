@@ -18,3 +18,7 @@ export const verifyEmail = async ({ token }: VerifyEmailSchema) => {
 export const emailSignin = async ({ body }: { body: SignInSchema }) => {
 	return await http.post("/auth/email/signin/", { body, withAuth: false });
 };
+
+export const signOut = async () => {
+	return await http.post("/auth/logout/");
+};

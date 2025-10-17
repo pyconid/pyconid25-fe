@@ -16,6 +16,8 @@ import "./app.css";
 import { useEffect } from "react";
 import { Toaster } from "./components/shared/sonner";
 import { parsedEnv } from "./lib/.server/env";
+import { cn } from "./lib/utils";
+import { authenticator } from "./services/auth/$.server";
 import { getMessageSession } from "./services/sessions/message.server";
 
 export const links: Route.LinksFunction = () => [
@@ -34,6 +36,7 @@ export const links: Route.LinksFunction = () => [
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const env = { baseAPI: String(parsedEnv.BASE_API) };
 	const messageSession = await getMessageSession(request.headers.get("Cookie"));
+	const credentials = await authenticator.isAuthenticated(request);
 
 	const toastCookie = await messageSession.get("toast");
 	const toastData = {
@@ -42,7 +45,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 		type: toastCookie?.type,
 	};
 
-	return { env, toast: toastData };
+	return { env, credentials, toast: toastData };
 };
 
 export function useRootLoaderData() {
@@ -62,7 +65,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				{children}
 				<ScrollRestoration />
 				<Scripts />
-				<Toaster />
+				<Toaster
+					position="top-right"
+					toastOptions={{
+						className: cn("!bg-white !border-2"),
+						classNames: {
+							error: cn("border-red-500"),
+							success: cn("!border-green-500"),
+						},
+					}}
+				/>
 			</body>
 		</html>
 	);

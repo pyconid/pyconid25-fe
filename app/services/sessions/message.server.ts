@@ -9,7 +9,7 @@ export const messageSession = createCookieSessionStorage({
 		httpOnly: true,
 		secure: isProduction,
 		secrets: [String(parsedEnv.SESSION_PUBLIC_SECRET)],
-		maxAge: 10,
+		maxAge: 5,
 	},
 });
 
