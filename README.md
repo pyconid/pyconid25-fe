@@ -40,9 +40,24 @@ Your application will be available at `http://localhost:5173`.
 
 ### Project Structure
 - app/
-    - api/ (store api connection to backend)
-    - components/ (store react component)
-    - routes/ (react router routes)
+    - api/ (API connection to backend)
+        - endpoint/ (List of endpoint)
+            - .client/ (Client-side only endpoints, only accessible from client-side)
+            - .server/ (Server-side only endpoints, only accessible from server-side)
+        - schema/ (schema of endpoint parsed by zod)
+    - components/ (React components)
+    - hooks/ (React custom hooks)
+    - lib/ (Utility functions)
+    - routes/ (React Router routes)
+    - services/
+        - auth/ (Authentication services)
+        - sessions/ (Session Cookie Storage)
+    - types/ (Type definitions)
+    - **/.client/ (Only can access from client-side, code inside this folder will only be executed on client-side)
+    - **/.server/ (Only can access from server-side, code inside this folder will only be executed on server-side)
+    - `**/*.client.ts` (Only can access from client-side, code inside this file will only be executed on client-side)
+    - `**/*.server.ts` (Only can access from server-side, code inside this file will only be executed on server-side)
+        - Note: The `**/*.client.ts` and `**/*.server.ts` are special file naming conventions that React Router uses to separate client-side and server-side code.
 
 
 ## Building for Production
