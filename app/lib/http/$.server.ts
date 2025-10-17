@@ -7,7 +7,7 @@ export class HTTPServer extends HTTP {
 		super(String(parsedEnv.BASE_API));
 	}
 
-	protected async processRequest(request: Request) {
+	protected override async processRequest(request: Request) {
 		const user = await authenticator.isAuthenticated(request);
 		this.authorization = user?.token ?? "";
 	}

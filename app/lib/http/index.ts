@@ -61,7 +61,7 @@ export class HTTP {
 
 		const headers: HeadersInit = {};
 		if (withAuth && this.authorization)
-			headers.authorization = `Bearer ${this.authorization}`;
+			headers.Authorization = `Bearer ${this.authorization}`;
 		if (contentType !== ContentType.FORMDATA)
 			headers["Content-Type"] = contentType;
 
