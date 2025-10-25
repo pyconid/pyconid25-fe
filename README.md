@@ -40,9 +40,24 @@ Your application will be available at `http://localhost:5173`.
 
 ### Project Structure
 - app/
-    - api/ (store api connection to backend)
-    - components/ (store react component)
-    - routes/ (react router routes)
+    - api/ (API connection to backend)
+        - endpoint/ (List of endpoint)
+            - .client/ (Client-side only endpoints, only accessible from client-side)
+            - .server/ (Server-side only endpoints, only accessible from server-side)
+        - schema/ (schema of endpoint parsed by zod)
+    - components/ (React components)
+    - hooks/ (React custom hooks)
+    - lib/ (Utility functions)
+    - routes/ (React Router routes)
+    - services/
+        - auth/ (Authentication services)
+        - sessions/ (Session Cookie Storage)
+    - types/ (Type definitions)
+    - **/.client/ (Only can access from client-side, code inside this folder will only be executed on client-side)
+    - **/.server/ (Only can access from server-side, code inside this folder will only be executed on server-side)
+    - `**/*.client.ts` (Only can access from client-side, code inside this file will only be executed on client-side)
+    - `**/*.server.ts` (Only can access from server-side, code inside this file will only be executed on server-side)
+        - Note: The `**/*.client.ts` and `**/*.server.ts` are special file naming conventions that React Router uses to separate client-side and server-side code.
 
 
 ## Building for Production
@@ -52,6 +67,13 @@ Create a production build:
 ```bash
 npm run build
 ```
+
+## Integrasi dengan API
+- dokumentasi (swagger) dan api bisa diakses di https://api-dev.pycon.id/docs
+- untuk mengakses api public. tinggal klik saja pada swagger
+- untuk mengakses api private (gembok) buat akun terlebih dahulu
+- detail cara membuat akun bisa dilihat di [integrasi api](./docs/integrasi_dengan_api.md)
+- Jika terdapat masalah dalam mengakses api backend bisa dengan membuat issue di repo github backend [https://github.com/pyconid/pyconid25-be/issues](https://github.com/pyconid/pyconid25-be/issues) atau melalui telegram bandungpy topic pyconid [https://web.telegram.org/a/#-1001492883261_6340](https://web.telegram.org/a/#-1001492883261_6340)
 
 ## Kontribusi
 untuk tata cara kontribusi bisa dilihat di [CONTRIBUTING.md](./CONTRIBUTING.md) dan diharapkan kontributor memematuhi [Code of Conduct](./CODE%20OF%20CONDUCT.md) yang berlaku.

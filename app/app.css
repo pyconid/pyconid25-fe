@@ -16,6 +16,8 @@
 }
 
 @theme inline {
+	--color-general-blue: #224083;
+	--color-general-orange: #f27f20;
 	--color-background: var(--background);
 	--color-foreground: var(--foreground);
 	--color-primary: var(--primary);
