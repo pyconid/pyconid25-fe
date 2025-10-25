@@ -7,13 +7,12 @@ export const HeroSection: FC = () => {
 			<div className="hidden lg:block w-full pt-64 z-20 relative font-display">
 				<div className="text-center">
 					<div className="text-background mb-4">
-						<p className="text-2xl font-medium">PYCON ID 2025</p>
 						<p className="text-5xl font-semibold">
-							Let’s see each other again!
+							Let’s meet again in PyCon ID 2025!
 						</p>
 					</div>
 					<div className="text-primary font-bold mb-12">
-						<h1 className="text-8xl mb-2">Dec 6th- 7th, 2025</h1>
+						<h1 className="text-8xl mb-2">Dec 13th-14th, 2025</h1>
 						<p className="text-6xl">Jakarta, Indonesia</p>
 					</div>
 					{/* <button
@@ -47,9 +46,9 @@ export const HeroSection: FC = () => {
 					)}
 				/>
 
-				<p className="hidden lg:block relative z-20 text-background text-center font-display text-3xl font-semibold xl:-top-[3vw]">
+				{/* <p className="hidden lg:block relative z-20 text-background text-center font-display text-3xl font-semibold xl:-top-[3vw]">
 					Previous PyCon ID & APAC History
-				</p>
+				</p> */}
 			</div>
 
 			<div className="hidden lg:block relative text-background w-full pt-40 pb-36 bg-gradient-to-b from-[#1A3064] via-secondary to-background/20 to-100%">
@@ -60,13 +59,6 @@ export const HeroSection: FC = () => {
 						Python enthusiasts share their knowledge with the others, especially
 						in Indonesia regional.
 					</p>
-
-					<button
-						type="button"
-						className="text-white font-sans font-bold px-8 py-4 rounded-xl bg-gradient-to-br from-foreground to-secondary"
-					>
-						Code of Ethics
-					</button>
 				</div>
 			</div>
 
@@ -79,10 +71,10 @@ export const HeroSection: FC = () => {
 					/>
 					<div className="text-center px-5 space-y-4 md:max-w-96">
 						<h1 className="text-4xl text-background font-semibold leading-tight">
-							We’re waiting to see you again!
+							Let’s meet again in PyCon ID 2025!
 						</h1>
 						<div className="text-primary font-bold">
-							<p className="text-2xl">06 - 07 Des, 2025</p>
+							<p className="text-2xl">Dec 13th-14th, 2025</p>
 							<p>Jakarta, Indonesia</p>
 						</div>
 					</div>
