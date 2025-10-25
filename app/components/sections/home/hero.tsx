@@ -59,13 +59,6 @@ export const HeroSection: FC = () => {
 						Python enthusiasts share their knowledge with the others, especially
 						in Indonesia regional.
 					</p>
-{/* 
-					<button
-						type="button"
-						className="text-white font-sans font-bold px-8 py-4 rounded-xl bg-gradient-to-br from-foreground to-secondary"
-					>
-						Code of Ethics
-					</button> */}
 				</div>
 			</div>
 
