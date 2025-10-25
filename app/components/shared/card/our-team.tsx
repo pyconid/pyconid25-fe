@@ -9,7 +9,7 @@ export interface OurTeamCardProps {
 
 export const OurTeamCard = () => {
 	return (
-		<div className="aspect-24/37 w-72 md:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
+		<div className="aspect-24/37 w-72 md:w-96 flex-shrink-0 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
 			<div className="absolute inset-0 bg-[url('/svg/our-team-decoration-orange.svg')] bg-[100%_auto] bg-no-repeat" />
 			<div className="absolute inset-0 bg-[url('/svg/our-team-decoration-blue.svg')] bg-[100%_auto] bg-no-repeat bg-bottom" />
 

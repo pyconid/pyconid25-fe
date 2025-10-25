@@ -6,7 +6,7 @@ import {
 import { cn } from "~/lib/utils";
 
 const OURTEAM_CARDS: (OurTeamCardProps & { id: string })[] = Array.from({
-  length: 3,
+  length: 10,
 }).map((_, index) => ({
   id: `card-${index}`,
   title: "Event Title Too Long...",
@@ -50,7 +50,7 @@ export const Footer = () => {
         </div>
 
         <div className="scrollbar overflow-x-auto relative pb-4 px-5 2xl:px-0">
-          <div className="flex gap-x-4">
+          <div className="flex gap-x-4 overflow-x-auto">
             {OURTEAM_CARDS.map(({ id, ...props }) => (
               <OurTeamCard key={id} {...props} />
             ))}
