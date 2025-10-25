@@ -17,8 +17,8 @@ const OURTEAM_CARDS: (OurTeamCardProps & { id: string })[] = Array.from({
 
 export const Footer = () => {
   return (
-    <section className="pt-36 pb-20 bg-[#F1F1F1] relative min-h-[70svh] lg:min-h-[120svh]">
-      {/* wing decoretion */}
+    <section className="pt-36 pb-20 bg-[#F1F1F1] relative lg:min-h-[120svh]">
+      {/* wing decoration */}
       <div className="absolute top-8 left-0">
         <img
           src="/svg/wing-decoration-blue.svg"
@@ -49,7 +49,7 @@ export const Footer = () => {
           </h1>
         </div>
 
-        <div className="space-y-4 z-20 relative px-5 ml-[8vw] 2xl:px-0">
+        <div className="scrollbar overflow-x-auto relative pb-4 px-5 2xl:px-0">
           <div className="flex gap-x-4">
             {OURTEAM_CARDS.map(({ id, ...props }) => (
               <OurTeamCard key={id} {...props} />
