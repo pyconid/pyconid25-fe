@@ -31,3 +31,9 @@ export const signInSchema = z.object({
 	email: z.string().min(1, "Username should be not empty"),
 	password: z.string().min(8, "Password should be at least 8 characters"),
 });
+
+export type OAuthSchema = z.infer<typeof oAuthScema>;
+export const oAuthScema = z.object({
+	code: z.string().min(1, "Code should be not empty"),
+	state: z.string().min(1, "State should be not empty"),
+});

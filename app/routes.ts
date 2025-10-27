@@ -18,7 +18,10 @@ export default [
 
 	...prefix("auth", [
 		route("/logout", "routes/auth/logout.tsx"),
-		...prefix(":provider", [index("routes/auth/$provider.tsx")]),
+		...prefix(":provider", [
+			index("routes/auth/$provider/index.tsx"),
+			route("/callback", "routes/auth/$provider/callback.tsx"),
+		]),
 	]),
 	route("/email-verification", "routes/email-verification.tsx"),
 

@@ -14,6 +14,7 @@ export interface RequestProps {
 	withAuth?: boolean;
 	contentType?: ContentTypeProps;
 	request?: Request | null;
+	params?: Record<string, string>;
 }
 
 export const RequestMethod = {
@@ -52,23 +53,35 @@ export class HTTP {
 		method = RequestMethod.GET,
 		contentType = ContentType.JSON,
 		request = null,
+		params = {},
 	}: RequestProps & {
 		url: string;
 		method: RequestMethodType;
 	}): Promise<Response> {
 		if (request) await this.processRequest(request);
-		const apiUrl = (baseAPI || this.baseAPI) + url;
+		let apiUrl = (baseAPI || this.baseAPI) + url;
 
 		const headers: HeadersInit = {};
-		if (withAuth && this.authorization)
+		if (withAuth && this.authorization) {
 			headers.Authorization = `Bearer ${this.authorization}`;
-		if (contentType !== ContentType.FORMDATA)
+		}
+		if (contentType !== ContentType.FORMDATA) {
 			headers["Content-Type"] = contentType;
+		}
+
+		if (params) {
+			const searchParams = new URLSearchParams();
+			Object.entries(params).forEach(([key, value]) => {
+				searchParams.append(key, value);
+			});
+			apiUrl += `?${searchParams.toString()}`;
+		}
 
 		const requestInit: RequestInit = { method, headers };
-		if (body)
+		if (body) {
 			requestInit.body =
 				contentType === ContentType.FORMDATA ? body : JSON.stringify(body);
+		}
 
 		return await fetch(apiUrl, requestInit);
 	}
