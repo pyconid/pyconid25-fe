@@ -4,19 +4,19 @@ import { Header } from "~/components/layouts/navigation/header";
 import { CallForProposalSection } from "~/components/sections/call-for-proposal/call-for-proposal";
 
 export function meta() {
-  return [
-    { title: "Pycon 2025" },
-    { name: "Call for proposal", content: "Call for proposal page" },
-  ];
+	return [
+		{ title: "Pycon 2025" },
+		{ name: "Call for proposal", content: "Call for proposal page" },
+	];
 }
 
 export default function Login() {
-  return (
-    <main>
-      <Header />
-      <CallForProposalSection />
-      <Footer />
-      <FooterMobile path="/call-for-sponsor" />
-    </main>
-  );
+	return (
+		<main>
+			<Header />
+			<CallForProposalSection />
+			<Footer />
+			<FooterMobile path="/call-for-sponsor" />
+		</main>
+	);
 }

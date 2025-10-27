@@ -59,7 +59,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="flex justify-between border rounded-xl bg-[#224083] h-[270px] px-20 pt-10 pb-7 gap-7 items-start  ">
+        <div className="flex flex-col md:flex-row md:justify-between border rounded-xl bg-[#224083] min-h md:h-70 px-20 pt-10 pb-7 gap-7 md:items-start m-2">
           <div className="flex flex-col gap-y-4">
             <img
               src="/images/logo-light.webp"
@@ -82,7 +82,7 @@ export const Footer = () => {
             <p className="font-display font-bold text-white text-2xl">
               Contact Us
             </p>
-            <div className="flex flex-col gap-y-4 ">
+            <div className="flex flex-col gap-y-4">
               <div className="flex gap-x-2">
                 <Mail className="text-white" />
                 <p className="text-white">
@@ -101,8 +101,7 @@ export const Footer = () => {
             <ul className="flex flex-col gap-y-2">
               {OTHER.map((item) => (
                 <li key={item} className="font-sans text-white">
-                  <a href="https://" target="_blank" rel="noopener noreferer">
-                    {" "}
+                  <a href="https://" target="_blank" rel="noreferrer noopener">
                     {item}
                   </a>
                 </li>
@@ -115,13 +114,47 @@ export const Footer = () => {
             <ul className="flex flex-col gap-y-2">
               {ABOUT.map((item) => (
                 <li key={item} className="font-sans text-white">
-                  <a href="https://" target="_blank" rel="noopener noreferer">
-                    {" "}
+                  <a href="https://" target="_blank" rel="noreferrer noopener">
                     {item}
                   </a>
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center gap-y-2 md:gap-y-0 justify-between mt-5 border rounded-xl bg-[#162D61] min-h md:h-15 pl-5 m-2">
+          <div className="flex items-center justify-center">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src="/svg/ig.svg" alt="IG" />
+            </a>
+
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src="/svg/github.svg" alt="Github" />
+            </a>
+
+            <a href="https://x.com" target="_blank" rel="noreferrer noopener">
+              <img src="/svg/x.svg" alt="X formerly known as Twitter" />
+            </a>
+
+            <a
+              href="mailto:pycon@python.or.id"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img src="/svg/mail.svg" alt="Email" />
+            </a>
+          </div>
+          <div className="font-sans text-sm md:text-xl text-white mr-4">
+            © PyCon ID 2025. All rights reserved.
           </div>
         </div>
       </div>
