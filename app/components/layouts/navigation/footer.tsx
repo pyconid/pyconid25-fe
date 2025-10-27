@@ -60,13 +60,13 @@ export const Footer = () => {
         </div>
 
         <div className="flex flex-col md:flex-row md:justify-between border rounded-xl bg-[#224083] min-h md:h-70 px-20 pt-10 pb-7 gap-7 md:items-start m-2">
-          <div className="flex flex-col gap-y-4">
+          <div className="flex flex-col gap-y-10">
             <img
               src="/images/logo-light.webp"
               alt="logo light pycon"
               className="w-40"
             />
-            <div className="flex flex-col items-center gap-y-2">
+            <div className="flex flex-col items-center">
               <div className="font-sans text-white font-light">
                 Organized by:
               </div>
@@ -86,10 +86,10 @@ export const Footer = () => {
               <div className="flex gap-x-2">
                 <Mail className="text-white" />
                 <p className="text-white">
-                  <a href="mailto:pycon@python.or.id">pycon@python.or.id</a>
+                  <a href="mailto:pycon@python.or.id" className="hover:underline">pycon@python.or.id</a>
                 </p>
               </div>
-              <p className="text-white">
+              <p className="text-white mr-5">
                 PyCon ID 2025 is organized by volunteers, so it may take more
                 time for us to reply to inquiries. Thank you for your patience.
               </p>
@@ -101,7 +101,7 @@ export const Footer = () => {
             <ul className="flex flex-col gap-y-2">
               {OTHER.map((item) => (
                 <li key={item} className="font-sans text-white">
-                  <a href="https://" target="_blank" rel="noreferrer noopener">
+                  <a href="https://" target="_blank" rel="noreferrer noopener" className="hover:underline">
                     {item}
                   </a>
                 </li>
@@ -113,8 +113,8 @@ export const Footer = () => {
             <p className="font-display font-bold text-white text-2xl">About</p>
             <ul className="flex flex-col gap-y-2">
               {ABOUT.map((item) => (
-                <li key={item} className="font-sans text-white">
-                  <a href="https://" target="_blank" rel="noreferrer noopener">
+                <li key={item} className="font-sans text-white ">
+                  <a href="https://" target="_blank" rel="noreferrer noopener" className="hover:underline">
                     {item}
                   </a>
                 </li>
@@ -123,7 +123,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-y-2 md:gap-y-0 justify-between mt-5 border rounded-xl bg-[#162D61] min-h md:h-15 pl-5 m-2">
+        <div className="flex flex-col md:flex-row items-center gap-y-2 md:gap-y-0 justify-between mt-5 border rounded-xl bg-[#162D61] min-h md:h-15 p-5 m-2">
           <div className="flex items-center justify-center">
             <a
               href="https://instagram.com"
