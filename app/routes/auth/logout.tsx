@@ -18,7 +18,7 @@ export const action = async ({
 	request,
 }: ActionFunctionArgs): Promise<Response> => {
 	try {
-		await signOut();
+		await signOut(request);
 	} catch (error) {
 		console.error("error", error);
 	}

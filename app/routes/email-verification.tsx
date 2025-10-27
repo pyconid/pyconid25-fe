@@ -1,12 +1,9 @@
 import { LoaderCircle } from "lucide-react";
 import { useEffect } from "react";
-import {
-	type LoaderFunctionArgs,
-	useLoaderData,
-	useNavigate,
-} from "react-router";
+import { type LoaderFunctionArgs, useNavigate } from "react-router";
 import { toast } from "sonner";
 import { verifyEmail } from "~/api/endpoint/.server/auth";
+import type { Route } from "./+types/email-verification";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const url = new URL(request.url);
@@ -37,22 +34,24 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	return { title, message, type };
 };
 
-export default function EmailVerificationPage() {
-	const data = useLoaderData<typeof loader>();
-
+export default function EmailVerificationPage({
+	loaderData,
+}: Route.ComponentProps) {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (data.message) {
-			toast[data.type as "error" | "success"](data.title, {
-				description: data.message,
-			});
+		setTimeout(() => {
+			if (loaderData.message) {
+				toast[loaderData.type as "error" | "success"](loaderData.title, {
+					description: loaderData.message,
+				});
 
-			setTimeout(() => {
-				navigate("/");
-			}, 1000);
-		}
-	}, [data, navigate]);
+				setTimeout(() => {
+					navigate("/");
+				}, 2000);
+			}
+		}, 500);
+	}, [loaderData, navigate]);
 
 	return (
 		<main>

@@ -1,4 +1,5 @@
 import type {
+	OAuthSchema,
 	SignInSchema,
 	SignUpSchema,
 	VerifyEmailSchema,
@@ -19,6 +20,14 @@ export const emailSignin = async ({ body }: { body: SignInSchema }) => {
 	return await http.post("/auth/email/signin/", { body, withAuth: false });
 };
 
-export const signOut = async () => {
-	return await http.post("/auth/logout/");
+export const signOut = async (request: Request) => {
+	return await http.post("/auth/logout/", { request });
+};
+
+export const githubSignin = async () => {
+	return await http.post("/auth/github/signin/", { withAuth: false });
+};
+
+export const verifyGithub = async ({ params }: { params: OAuthSchema }) => {
+	return await http.post("/auth/github/verified/", { params, withAuth: false });
 };

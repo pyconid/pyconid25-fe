@@ -1,3 +1,5 @@
+import { redirect } from "react-router";
+
 export const StrategyOptions = {
 	SIGNUP_FORM: "signup-form",
 	SIGNIN_FORM: "signin-form",
@@ -33,5 +35,31 @@ export class Strategy {
 	 */
 	authenticate(params: { request: Request }) {
 		return this.verify(params);
+	}
+}
+
+export class GithubStrategy extends Strategy {
+	constructor({
+		verify,
+		authorize,
+	}: { verify: Strategy["verify"]; authorize: () => Promise<string> }) {
+		super(StrategyOptions.GITHUB, verify);
+
+		this.authorize = authorize;
+	}
+
+	private authorize: () => Promise<string>;
+
+	async authenticate({ request }: { request: Request }) {
+		const url = new URL(request.url);
+		const code = url.searchParams.get("code");
+		const state = url.searchParams.get("state");
+
+		if (!code && !state) {
+			const redirectUri = await this.authorize();
+			return redirect(redirectUri.toString());
+		}
+
+		return this.verify({ request });
 	}
 }
