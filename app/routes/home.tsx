@@ -1,5 +1,7 @@
+import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { HeroSection } from "~/components/sections/home/hero";
+import { ScheduleSection } from "~/components/sections/home/schedule";
 // import { ScheduleSection } from "~/components/sections/home/schedule";
 import { SpeakersSection } from "~/components/sections/home/speakers";
 import { SponsorSection } from "~/components/sections/home/sponsor";
@@ -16,9 +18,11 @@ export default function Home() {
 		<main>
 			<Header />
 			<HeroSection />
+			<ScheduleSection />
 			{/* <ScheduleSection /> */}
 			<SpeakersSection />
 			<SponsorSection />
+			<Footer />
 		</main>
 	);
 }

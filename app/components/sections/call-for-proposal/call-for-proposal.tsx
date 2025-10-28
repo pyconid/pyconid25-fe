@@ -1,13 +1,10 @@
 import { Calendar, MapPinned } from "lucide-react";
 import type { FC } from "react";
-import { Footer } from "~/components/layouts/navigation/footer";
-import { Header } from "~/components/layouts/navigation/header";
 
 export const CallForProposalSection: FC = () => (
 	<section className="min-h-screen relative  isolate">
 		<div className="absolute inset-0 -z-10 bg-[url('/images/bg-call-for.png')] bg-center bg-cover bg-repeat"></div>
 		<div className="absolute inset-0 -z-0 bg-black/40"></div>
-		<Header />
 		<div className="z-10 relative">
 			<div className="pt-[23vh]">
 				<div className="flex flex-col items-center justify-center">
@@ -127,6 +124,5 @@ export const CallForProposalSection: FC = () => (
 				</div>
 			</div>
 		</div>
-		<Footer path="/call-for-proposal" />
 	</section>
 );
