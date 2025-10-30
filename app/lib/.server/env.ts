@@ -17,7 +17,7 @@ const envSchema = z.object({
 		.enum(["development", "staging", "production"])
 		.optional()
 		.default("development"),
-	BASE_API: z.url().optional().default("http://localhost:3000"),
+	VITE_BASE_API: z.url().optional().default("http://localhost:3000"),
 	SESSION_SECRET: z.string().min(1),
 	SESSION_PUBLIC_SECRET: z.string().min(1),
 });

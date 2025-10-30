@@ -1,7 +1,5 @@
-import { useRootLoaderData } from "~/root";
 import { HTTP } from ".";
 
 export const httpClient = (() => {
-	const loader = useRootLoaderData();
-	return new HTTP(loader?.env?.baseAPI || "");
+	return new HTTP(import.meta.env.VITE_BASE_API ?? "");
 })();

@@ -4,7 +4,7 @@ import { HTTP } from ".";
 
 export class HTTPServer extends HTTP {
 	constructor() {
-		super(String(parsedEnv.BASE_API));
+		super(String(parsedEnv.VITE_BASE_API));
 	}
 
 	protected override async processRequest(request: Request) {
