@@ -51,14 +51,19 @@ export const Header = () => {
 							</button> */}
 
 							{credentials ? (
-								<Form action="/auth/logout" method="post">
-									<button
-										type="submit"
-										className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
-									>
-										Logout
-									</button>
-								</Form>
+								<div className="flex flex-col gap-2">
+									<NavLink to="/auth/user-profile" className="mr-4">
+										My Profile
+									</NavLink>
+									<Form action="/auth/logout" method="post">
+										<button
+											type="submit"
+											className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+										>
+											Logout
+										</button>
+									</Form>
+								</div>
 							) : (
 								<Link to="/login">
 									<button
@@ -83,14 +88,22 @@ export const Header = () => {
 					</button> */}
 
 					{credentials ? (
-						<Form action="/auth/logout" method="post">
-							<button
-								type="submit"
+						<div className="flex gap-4">
+							<NavLink
+								to="/auth/user-profile"
 								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
 							>
-								Logout
-							</button>
-						</Form>
+								My Profile
+							</NavLink>
+							<Form action="/auth/logout" method="post">
+								<button
+									type="submit"
+									className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+								>
+									Logout
+								</button>
+							</Form>
+						</div>
 					) : (
 						<Link to="/login">
 							<button
