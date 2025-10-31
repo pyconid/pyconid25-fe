@@ -2,7 +2,7 @@ import { SpeakerCard } from "~/components/shared/card/speaker";
 
 export const SpeakersSection = () => {
 	return (
-		<section className="py-36 bg-[#F1F1F1] relative">
+		<section className="py-36 bg-[#F1F1F1] relative ">
 			{/* wing decoretion */}
 			<div className="absolute top-8 right-0">
 				<img

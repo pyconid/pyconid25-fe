@@ -1,6 +1,3 @@
-import { SiInstagram, SiX } from "@icons-pack/react-simple-icons";
-import { MailIcon } from "lucide-react";
-
 export interface OurTeamCardProps {
   title: string;
   time: string;
@@ -20,7 +17,7 @@ export const OurTeamCard = () => {
             alt="PyconID 2025"
             className="h-6 md:h-10 mx-auto mt-5"
           />
-          <div className="bg-black w-60 h-60 rounded-full"></div>
+          <div className="bg-black w-30 h-30 md:w-60 md:h-60 rounded-full"></div>
 
           <div className="text-center">
             <h1 className="text-xl md:text-3xl font-bold">JOHN DOE</h1>
