@@ -17,20 +17,6 @@ export const OurTeamSection = () => {
 	return (
 		<section className="pt-36 bg-[#F1F1F1] relative">
 			{/* wing decoration */}
-			<div className="absolute top-8 left-0 ">
-				<img
-					src="/svg/wing-decoration-blue.svg"
-					alt=""
-					className="w-10 -scale-y-100 md:w-16 lg:w-auto"
-				/>
-			</div>
-			<div className="absolute hidden bottom-8 right-0 md:block">
-				<img
-					src="/svg/wing-decoration-orange.svg"
-					alt=""
-					className="w-10 md:w-16 lg:w-auto"
-				/>
-			</div>
 			<div className="mb-8 relative w-max mx-auto z-10">
 				{/* square decoration */}
 				<div className="absolute -left-32 -top-10 hidden md:block">
