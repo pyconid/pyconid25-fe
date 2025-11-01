@@ -31,7 +31,7 @@ export const SpeakerCard = ({
 				/>
 			)}
 
-			<div className="absolute inset-0 bg-[url('/images/speaker-decoration.webp')] bg-[100%_auto] bg-no-repeat z-0" />
+			<div className="absolute inset-0 bg-[url('/images/speaker-decoration-trans.webp')] bg-[100%_auto] bg-no-repeat z-0" />
 
 			<div className="relative flex flex-col justify-between h-full">
 				<img
