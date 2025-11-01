@@ -27,7 +27,7 @@ export const SpeakerCard = ({
 				<img
 					src={image}
 					alt={name}
-					className="absolute left-1/2 top-[110px] md:top-[140px] -translate-x-1/2 w-40 md:w-44 rounded-full object-cover z-0"
+					className="absolute left-1/2 top-[100px] md:top-[130px] -translate-x-1/2 w-48 md:w-52 rounded-full object-cover z-0"
 				/>
 			)}
 
