@@ -52,8 +52,8 @@ export const SpeakersSection = () => {
 
 				<div className="scrollbar overflow-x-auto relative pb-4 px-5 2xl:px-0">
 					<div className="flex gap-x-5 md:gap-x-8 lg:gap-x-12 min-w-max">
-						{speakers.map((speaker, idx) => (
-							<SpeakerCard key={idx} {...speaker} />
+						{speakers.map((speaker) => (
+							<SpeakerCard key={speaker.name} {...speaker} />
 						))}
 					</div>
 				</div>

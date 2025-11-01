@@ -11,7 +11,6 @@ interface SpeakerCardProps {
 	image?: string;
 }
 
-
 export const SpeakerCard = ({
 	name,
 	description,
@@ -24,15 +23,14 @@ export const SpeakerCard = ({
 
 	return (
 		<div className="aspect-24/37 w-72 md:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
-			
 			{image && (
 				<img
-				src={image}
-				alt={name}
-				className="absolute left-1/2 top-[100px] md:top-[130px] -translate-x-1/2 w-28 h-28 md:w-36 md:h-36 rounded-full object-cover z-0"
+					src={image}
+					alt={name}
+					className="absolute left-1/2 top-[100px] md:top-[130px] -translate-x-1/2 w-28 h-28 md:w-36 md:h-36 rounded-full object-cover z-0"
 				/>
 			)}
-			
+
 			<div className="absolute inset-0 bg-[url('/images/speaker-decoration.webp')] bg-[100%_auto] bg-no-repeat z-0" />
 
 			<div className="relative flex flex-col justify-between h-full">
@@ -48,38 +46,38 @@ export const SpeakerCard = ({
 						{description}
 					</p>
 					{hasSocialLinks && (
-					<div className="flex items-center justify-center gap-x-2.5">
-						{instagram && (
-							<a
-								href={instagram}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-[#22408340] p-3 rounded-full"
-							>
-								<Instagram className="size-4 md:size-5" />
-							</a>
-						)}
-						{twitter && (
-							<a
-								href={twitter}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-[#22408340] p-3 rounded-full"
-							>
-								<Twitter className="size-4 md:size-5" />
-							</a>
-						)}
-						{email && (
-							<a
-								href={email}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="bg-[#22408340] p-3 rounded-full"
-							>
-								<MailIcon className="size-4 md:size-5" />
-							</a>
-						)}
-					</div>
+						<div className="flex items-center justify-center gap-x-2.5">
+							{instagram && (
+								<a
+									href={instagram}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="bg-[#22408340] p-3 rounded-full"
+								>
+									<Instagram className="size-4 md:size-5" />
+								</a>
+							)}
+							{twitter && (
+								<a
+									href={twitter}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="bg-[#22408340] p-3 rounded-full"
+								>
+									<Twitter className="size-4 md:size-5" />
+								</a>
+							)}
+							{email && (
+								<a
+									href={email}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="bg-[#22408340] p-3 rounded-full"
+								>
+									<MailIcon className="size-4 md:size-5" />
+								</a>
+							)}
+						</div>
 					)}
 				</div>
 			</div>
