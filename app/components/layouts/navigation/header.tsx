@@ -52,7 +52,7 @@ export const Header = () => {
 
 							{credentials ? (
 								<div className="flex flex-col gap-2">
-									<NavLink to="/auth/user-profile" className="mr-4">
+									<NavLink to="/auth/dashboard" className="mr-4">
 										My Profile
 									</NavLink>
 									<Form action="/auth/logout" method="post">
@@ -90,7 +90,7 @@ export const Header = () => {
 					{credentials ? (
 						<div className="flex gap-4">
 							<NavLink
-								to="/auth/user-profile"
+								to="/auth/dashboard"
 								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
 							>
 								My Profile
