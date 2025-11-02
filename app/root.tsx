@@ -1,14 +1,25 @@
 import {
 	isRouteErrorResponse,
 	Links,
+	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	useLoaderData,
+	useRouteLoaderData,
 } from "react-router";
+import { toast } from "sonner";
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { Toaster } from "./components/shared/sonner";
+import { parsedEnv } from "./lib/.server/env";
+import { cn } from "./lib/utils";
+import { authenticator } from "./services/auth/$.server";
+import { getMessageSession } from "./services/sessions/message.server";
 
 export const links: Route.LinksFunction = () => [
 	{ rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,6 +34,27 @@ export const links: Route.LinksFunction = () => [
 	},
 ];
 
+export const loader = async ({ request }: LoaderFunctionArgs) => {
+	const env = { baseAPI: String(parsedEnv.VITE_BASE_API) };
+	const messageSession = await getMessageSession(request.headers.get("Cookie"));
+	const credentials = await authenticator.isAuthenticated(request);
+
+	const toastCookie = await messageSession.get("toast");
+	const toastData = {
+		title: toastCookie?.title,
+		message: toastCookie?.message,
+		type: toastCookie?.type,
+	};
+
+	return { env, credentials, toast: toastData };
+};
+
+export function useRootLoaderData() {
+	return useRouteLoaderData("root") as Awaited<ReturnType<typeof loader>>;
+}
+
+const queryClient = new QueryClient();
+
 export function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
@@ -33,15 +65,45 @@ export function Layout({ children }: { children: React.ReactNode }) {
 				<Links />
 			</head>
 			<body>
-				{children}
+				<QueryClientProvider client={queryClient}>
+					{children}
+				</QueryClientProvider>
 				<ScrollRestoration />
 				<Scripts />
+				<Toaster
+					position="top-right"
+					toastOptions={{
+						className: cn("!bg-white !border-2"),
+						classNames: {
+							error: cn("border-red-500"),
+							success: cn("!border-green-500"),
+						},
+					}}
+				/>
 			</body>
 		</html>
 	);
 }
 
 export default function App() {
+	const data = useLoaderData<typeof loader>();
+
+	useEffect(() => {
+		if (data.toast.message) {
+			if (data.toast.type === "error") {
+				toast.error(data.toast.title, {
+					description: data.toast.message,
+				});
+
+				return;
+			}
+
+			toast.success(data.toast.title, {
+				description: data.toast.message,
+			});
+		}
+	}, [data]);
+
 	return <Outlet />;
 }
 
