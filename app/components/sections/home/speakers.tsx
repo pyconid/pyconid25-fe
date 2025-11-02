@@ -1,6 +1,22 @@
 import { SpeakerCard } from "~/components/shared/card/speaker";
 
 export const SpeakersSection = () => {
+	const speakers = [
+		{
+			name: "Onno W. Purbo",
+			description: "Rektor Institut Teknologi Tangerang Selatan",
+			twitter: "https://x.com/onnowpurbo",
+			image: "/images/keynote-speakers/Onno.webp",
+		},
+		{
+			name: "Listiarso Wastuargo",
+			description: "CROTO at Metatech",
+			instagram: "https://www.instagram.com/lwastuargo/",
+			twitter: "https://x.com/lwastuargo",
+			image: "/images/keynote-speakers/Gogo.webp",
+		},
+	];
+
 	return (
 		<section className="py-36 bg-[#F1F1F1] relative ">
 			{/* wing decoretion */}
@@ -34,10 +50,10 @@ export const SpeakersSection = () => {
 					</h1>
 				</div>
 
-				<div className="scrollbar overflow-x-auto relative pb-4 px-5 2xl:px-0">
-					<div className="flex gap-x-5 md:gap-x-8 lg:gap-x-12 min-w-max">
-						{Array.from({ length: 8 }).map((_, idx) => (
-							<SpeakerCard key={`${idx + 1}`} />
+				<div className="relative pb-4 px-5 2xl:px-0">
+					<div className="flex justify-center gap-x-5 md:gap-x-8 lg:gap-x-12 min-w-max">
+						{speakers.map((speaker) => (
+							<SpeakerCard key={speaker.name} {...speaker} />
 						))}
 					</div>
 				</div>
