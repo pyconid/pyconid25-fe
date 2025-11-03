@@ -18,6 +18,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	try {
 		const res = await verifyEmail({ token });
 		const data = await res.json();
+		console.log("response verify email", data);
 
 		if (res.ok) {
 			title = "Success!";

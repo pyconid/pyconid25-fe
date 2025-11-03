@@ -27,6 +27,7 @@ export const DashboardSection = ({
 
 		return location || "-";
 	};
+
 	return (
 		<main className="p-4">
 			<div className="border-2 rounded-lg border-[#224083] bg-white">
@@ -36,7 +37,7 @@ export const DashboardSection = ({
 						{(userProfile.first_name?.charAt(0).toUpperCase() || "") +
 							(userProfile.last_name?.charAt(0).toUpperCase() || "")}
 					</div>
-					<div className="flex flex-col gap-1 justify-items-start items-start">
+					<div className="flex flex-col gap-1 justify-items-start items-center md:items-start">
 						<h2 className="text-lg text-[#224083] font-bold">
 							{userProfile.first_name ?? ""} {userProfile.last_name ?? ""}
 						</h2>
@@ -52,7 +53,7 @@ export const DashboardSection = ({
 							Edit Profile
 						</NavLink>
 						<NavLink
-							to="/auth/ticket"
+							to="/auth/payment"
 							className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
 						>
 							My Ticket
