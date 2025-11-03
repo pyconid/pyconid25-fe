@@ -4,10 +4,10 @@ import type { FC } from "react";
 export const CallForProposalSection: FC = () => (
 	<section className="bg-[#F1F1F1]">
 		<div className="z-10 relative container m-auto">
-			<div className="pt-[12vh]">
+			<div className="pt-[12vh] sm:pt-[23vh]">
 				<div className="flex flex-col items-center justify-center">
 					<div className="text-blue-900 px-8 py-4 font-display text-md lg:text-3xl pt-2 pr-4 pb-2 pl-4 font-extrabold">
-					Call for Proposal
+						Call for Proposal
 					</div>
 					<div className="font-display text-center text-[40px] lg:text-5xl mt-[0.4vh] font-bold font-weight-700 p-2">
 						<p>
@@ -59,7 +59,7 @@ export const CallForProposalSection: FC = () => (
 						className="cursor-pointer bg-blue-900 hover:bg-blue/50 text-white px-8 py-4 rounded-xl font-display text-lg lg:text-2xl pt-2 pr-4 pb-2 pl-4 mt-[3vh] font-bold"
 						type="button"
 					>
-					Submission Closed
+						Submission Closed
 					</button>
 
 					<p className="lg:hidden mt-[1vh]">
