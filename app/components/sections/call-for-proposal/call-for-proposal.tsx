@@ -2,7 +2,7 @@ import { Calendar, MapPinned } from "lucide-react";
 import type { FC } from "react";
 
 export const CallForProposalSection: FC = () => (
-	<section className="min-h-screen relative  isolate">
+	<section className="min-h-screen relative isolate">
 		<div className="absolute inset-0 -z-10 bg-[url('/images/bg-call-for.png')] bg-center bg-cover bg-repeat"></div>
 		<div className="absolute inset-0 -z-0 bg-black/40"></div>
 		<div className="z-10 relative">
