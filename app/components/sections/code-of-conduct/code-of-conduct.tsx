@@ -135,7 +135,7 @@ export const CodeOfConductSection: FC = () => (
 				<h2 className="font-display font-extrabold text-4xl">License</h2>
 				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
 					<p>
-						his Code of Conduct is based on the PyCon US 2015 CoC, and is
+						This Code of Conduct is based on the PyCon US 2015 CoC, and is
 						licensed under a Creative Commons Attribution 3.0 Unported License.
 					</p>
 				</div>
