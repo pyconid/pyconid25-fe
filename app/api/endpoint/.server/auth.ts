@@ -11,8 +11,9 @@ export const emailSignup = async ({ body }: { body: SignUpSchema }) => {
 };
 
 export const verifyEmail = async ({ token }: VerifyEmailSchema) => {
-	return await http.get(`/auth/email/verified/?token=${token}`, {
+	return await http.get(`/auth/email/verified/`, {
 		withAuth: false,
+		params: { token },
 	});
 };
 
