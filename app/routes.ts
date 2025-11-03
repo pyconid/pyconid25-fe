@@ -10,6 +10,8 @@ export default [
 	index("routes/home.tsx"),
 	route("/call-for-proposal", "routes/call-for-proposal.tsx"),
 	route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
+	route("/code-of-conduct", "routes/code-of-conduct.tsx")
+	,
 	route("/internal-error", "routes/internal-error.tsx"),
 	route("/ticket", "routes/ticket.tsx"),
 	layout("routes/layouts/auth.tsx", [
