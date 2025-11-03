@@ -16,7 +16,6 @@ export default function Login() {
 			<Header />
 			<CallForSponsorSection />
 			<Footer />
-			<FooterMobile path="/call-for-sponsor" />
 		</main>
 	);
 }
