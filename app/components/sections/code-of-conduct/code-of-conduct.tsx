@@ -2,12 +2,12 @@ import type { FC } from "react";
 
 export const CodeOfConductSection: FC = () => (
 	<section className="pt-[15vh] bg-[#F1F1F1] ">
-		<div className="container mx-auto p-4">
+		<div className="container mx-auto px-4 sm:px-30">
 			<div>
 				<h1 className="font-display font-extrabold text-4xl">
 					Code of Conduct
 				</h1>
-				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
+				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 sm:text-justify">
 					<p>
 						A code of conduct is a set of rules outlining the norms, rules, and
 						responsibilities of, and or proper practices for an individual. By
@@ -20,7 +20,7 @@ export const CodeOfConductSection: FC = () => (
 				<h2 className="font-display font-extrabold text-4xl">
 					The Short Version
 				</h2>
-				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
+				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 sm:text-justify">
 					<p>
 						PyCon ID is a community conference intended for collaboration in the
 						developer community.
@@ -43,7 +43,7 @@ export const CodeOfConductSection: FC = () => (
 			<br />
 			<div>
 				<h2 className="font-display font-extrabold text-4xl">Long Version</h2>
-				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
+				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 sm:text-justify">
 					<p>
 						Harassment includes offensive verbal comments related to gender,
 						gender identity and expression, sexual orientation, disability,
@@ -109,7 +109,7 @@ export const CodeOfConductSection: FC = () => (
 				<h2 className="font-display font-extrabold text-4xl">
 					Reporting an Incident
 				</h2>
-				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
+				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 sm:text-justify">
 					<p>
 						If you believe that someone is violating the code of conduct or have
 						any other concerns, please contact a member of the event staff
@@ -133,7 +133,7 @@ export const CodeOfConductSection: FC = () => (
 			<br />
 			<div>
 				<h2 className="font-display font-extrabold text-4xl">License</h2>
-				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 text-justify">
+				<div className="font-sans p-6 text-2xl flex flex-col gap-4 leading-10 sm:text-justify">
 					<p>
 						This Code of Conduct is based on the PyCon US 2015 CoC, and is
 						licensed under a Creative Commons Attribution 3.0 Unported License.
