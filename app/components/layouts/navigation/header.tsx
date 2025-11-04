@@ -50,7 +50,7 @@ export const Header = () => {
 								Ticket Available Soon
 							</button> */}
 
-							{credentials ? (
+							{/* {credentials ? (
 								<div className="flex flex-col gap-2">
 									<NavLink to="/auth/dashboard" className="mr-4">
 										My Profile
@@ -73,7 +73,7 @@ export const Header = () => {
 										Login
 									</button>
 								</Link>
-							)}
+							)} */}
 						</li>
 					</ul>
 				</div>
@@ -87,7 +87,7 @@ export const Header = () => {
 						Ticket Available Soon
 					</button> */}
 
-					{credentials ? (
+					{/* {credentials ? (
 						<div className="flex gap-4">
 							<NavLink
 								to="/auth/dashboard"
@@ -113,7 +113,7 @@ export const Header = () => {
 								Login
 							</button>
 						</Link>
-					)}
+					)} */}
 				</div>
 
 				<button

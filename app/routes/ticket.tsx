@@ -9,8 +9,8 @@ import type { Route } from "./+types/ticket";
 
 export function meta() {
 	return [
-		{ title: "Pycon 2025" },
-		{ name: "Ticket page", content: "Ticket page" },
+		{ title: "PyCon ID 2025 Ticket" },
+		{ name: "PyCon ID 2025 Ticket Page", content: "Ticket page" },
 	];
 }
 

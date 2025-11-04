@@ -13,7 +13,7 @@ export const HeroSection: FC = () => {
 					</div>
 					<div className="text-primary font-bold mb-12">
 						<h1 className="text-8xl mb-2">Dec 13th-14th, 2025</h1>
-						<p className="text-6xl">Jakarta, Indonesia</p>
+						<p className="text-6xl">Trilogi University, Jakarta</p>
 					</div>
 					{/* <button
 						type="button"

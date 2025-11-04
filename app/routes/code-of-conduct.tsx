@@ -1,11 +1,14 @@
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
-import { CodeOfConductSection } from "~/components/sections//code-of-conduct/code-of-conduct";
+import { CodeOfConductSection } from "~/components/sections/code-of-conduct/code-of-conduct";
 
 export function meta() {
 	return [
-		{ title: "Pycon 2025" },
-		{ name: "Call for proposal", content: "Call for proposal page" },
+		{ title: "PyCon ID 2025 Code of Conduct" },
+		{
+			name: "PyCon ID 2025 Code of Conduct",
+			content: "Code of Conduct page",
+		},
 	];
 }
 
