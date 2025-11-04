@@ -5,7 +5,7 @@ import { CallForProposalSection } from "~/components/sections/call-for-proposal/
 export function meta() {
 	return [
 		{ title: "PyCon ID 2025 Proposal" },
-		{ name: "PyCon ID 2025 Call for Proposal", content: "Call for proposal page" },
+		{ name: "Call for Proposal", content: "Call for Proposal page" },
 	];
 }
 

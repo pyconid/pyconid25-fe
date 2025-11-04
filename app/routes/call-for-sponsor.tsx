@@ -6,7 +6,10 @@ import { SponsorSection } from "~/components/sections/home/sponsor";
 export function meta() {
 	return [
 		{ title: "PyCon ID 2025 Sponsorship" },
-		{ name: "Call for Sponsor", content: "Call for proposal page" },
+		{
+			name: "Call for Sponsor",
+			content: "Call for Sponsor page",
+		},
 	];
 }
 

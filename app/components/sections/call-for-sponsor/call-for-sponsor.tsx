@@ -52,8 +52,11 @@ export const CallForSponsorSection: FC = () => (
 								className="w-full lg:hidden"
 							/>
 						</div>
-						
-						<a href="https://pycon.id/sponsor-us" target="_blank" rel="noreferrer">
+						<a
+							href="https://pycon.id/sponsor-us"
+							target="_blank"
+							rel="noreferrer"
+						>
 							<button
 								className="cursor-pointer bg-blue-900 hover:bg-blue-900/50 backdrop-blur-lg text-white px-8 py-4 rounded-xl font-display text-lg lg:text-2xl pt-2 pr-4 pb-2 pl-4 mt-[3vh] font-bold outline-white/50 outline-offset-1 shadow-white/20"
 								type="button"
@@ -67,10 +70,11 @@ export const CallForSponsorSection: FC = () => (
 									Engage with the Python Community
 								</p>
 								<p className="font-sans font-normal text-black my-5">
-									Connect directly with developers, professionals, 
-									and decision-makers who use Python in diverse industries. 
-									Sponsoring PyCon ID 2025 gives your company the chance to 
-									showcase your brand, share your expertise, and engage with a vibrant tech community.
+									Connect directly with developers, professionals, and
+									decision-makers who use Python in diverse industries.
+									Sponsoring PyCon ID 2025 gives your company the chance to
+									showcase your brand, share your expertise, and engage with a
+									vibrant tech community.
 								</p>
 							</div>
 							<div className="border border-[#E8D41C]  rounded-lg backdrop-blur-xl p-2">
@@ -78,11 +82,11 @@ export const CallForSponsorSection: FC = () => (
 									Amplify Your Brand Visibility
 								</p>
 								<p className="font-sans font-normal text-black my-5">
-									As a sponsor, your brand will be highlighted before, 
-									during, and after the conference—across our website, 
-									social media, and event materials. With hundreds of attendees 
-									from Indonesia and beyond, PyCon ID 2025 offers powerful exposure 
-									to a wide and engaged audience.
+									As a sponsor, your brand will be highlighted before, during,
+									and after the conference—across our website, social media, and
+									event materials. With hundreds of attendees from Indonesia and
+									beyond, PyCon ID 2025 offers powerful exposure to a wide and
+									engaged audience.
 								</p>
 							</div>
 							<div className="border border-[#F37F20]  rounded-lg backdrop-blur-xl p-2">
@@ -90,10 +94,11 @@ export const CallForSponsorSection: FC = () => (
 									Support Open Source & Innovation
 								</p>
 								<p className="font-sans font-normal text-black my-5">
-									By sponsoring, you help sustain Python and its ecosystem in Indonesia. 
-									Your contribution supports knowledge sharing, community growth, 
-									and opportunities for students and professionals to learn, collaborate, 
-									and build the future of technology together.
+									By sponsoring, you help sustain Python and its ecosystem in
+									Indonesia. Your contribution supports knowledge sharing,
+									community growth, and opportunities for students and
+									professionals to learn, collaborate, and build the future of
+									technology together.
 								</p>
 							</div>
 						</div>
