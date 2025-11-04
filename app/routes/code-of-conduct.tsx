@@ -1,6 +1,6 @@
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
-import { CodeOfConductSection } from "~/components/sections//code-of-conduct/code-of-conduct";
+import { CodeOfConductSection } from "~/components/sections/code-of-conduct/code-of-conduct";
 
 export function meta() {
 	return [
