@@ -6,8 +6,8 @@ export const handle: AuthLayoutHanleProps = { title: "Register" };
 
 export function meta() {
 	return [
-		{ title: "Pycon 2025" },
-		{ name: "Register page", content: "Register page" },
+		{ title: "PyCon ID 2025 Register" },
+		{ name: "PyCon ID 2025 Register Page", content: "Register page" },
 	];
 }
 
