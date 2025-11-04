@@ -1,104 +1,55 @@
-import type { FC } from "react";
-
-type SponsorItemProps = {
-	name: string;
-	image: string;
-	rank?: "diamond" | "platinum" | "gold" | "silver" | "bronze" | "special";
-};
-const SponsorItem: FC<SponsorItemProps> = ({ image, name, rank }) => {
-	return (
-		<div className="bg-[#D9D9D9] p-7 rounded-lg relative overflow-hidden w-full aspect-26/15 flex items-center justify-center">
-			<img src={image} alt={name} className="object-cover" />
-			{rank && (
-				<p className="absolute top-0 right-0 bg-secondary px-3.5 py-0.5 rounded-l-md text-xs font-bold">
-					{rank}
-				</p>
-			)}
-		</div>
-	);
-};
-
 export const SponsorSection = () => {
 	return (
-		<section className="py-28 bg-gradient-to-r from-[#162D61] via-[#224083] to-[#224083]">
+		<section className="pt-36 bg-[#F1F1F1] relative">
 			<div className="container mx-auto text-white px-5 2xl:px-0">
-				<div className="grid md:grid-cols-2">
-					<div className="h-max mb-16 md:mb-0 md:sticky md:top-36">
-						<p className="text-primary font-display font-medium">
+				<div className="flex flex-col items-center">
+					<div className="h-max mb-12 md:mb-12 md:top-12 text-center">
+						<p className="text-primary font-display font-medium text-2xl md:text-3xl mb-4">
 							We appreciate your support!
 						</p>
-						<h1 className="font-display font-bold text-4xl md:text-[2.5rem] lg:text-[3.5rem] leading-tight mb-10">
+						<h1 className="text-blue-900 font-display font-bold text-4xl md:text-[2.5rem] lg:text-[3.5rem] leading-tight mb-10">
 							Help us make this conference truly unforgettable
 						</h1>
-						<button
-							type="button"
-							className="px-8 py-4 rounded-3xl font-bold bg-gradient-to-r from-[#224083] via-[#224083] to-[#2D66E8]"
-						>
-							Sponsorship Proposal
-						</button>
+						<a href="https://pycon.id/sponsor-us" target="_blank" rel="noreferrer">
+							<button
+								type="button"
+								className="cursor-pointer text-2xl px-8 py-4 rounded-3xl font-bold bg-gradient-to-r from-[#224083] via-[#224083] to-[#2D66E8] hover:from-[#2D66E8] hover:to-[#224083] transition-all duration-300"
+							>
+								Sponsorship Proposal
+							</button>
+						</a>
 					</div>
 
-					<div className="bg-[#162D61] p-10 rounded-3xl max-w-2xl justify-self-end space-y-5">
+					<div className="p-5 text-center text-bold text-blue-900 text-2xl max-w-2xl">
 						<div>
-							<h3 className="mb-5 font-display font-bold">Supported by</h3>
-							<div className="grid md:grid-cols-2 gap-5">
-								{Array.from({ length: 2 }).map((_, index) => (
-									<SponsorItem
-										key={`${index + 1}-supported`}
-										name="Google"
-										image="/images/logo-dark.webp"
-									/>
-								))}
-							</div>
-						</div>
-						<div>
-							<h3 className="mb-5 font-display font-bold">Sponsored by</h3>
-							<div className="grid md:grid-cols-2 gap-5">
-								{Array.from({ length: 10 }).map((_, index) => (
-									<SponsorItem
-										key={`${index + 1}-sponsored`}
-										name="Google"
-										image="/images/logo-dark.webp"
-										rank="platinum"
-									/>
-								))}
-							</div>
-						</div>
-						<div>
-							<h3 className="mb-5 font-display font-bold">Partners</h3>
-							<div className="grid md:grid-cols-2 gap-5">
-								{Array.from({ length: 2 }).map((_, index) => (
-									<SponsorItem
-										key={`${index + 1}-partner`}
-										name="Google"
-										image="/images/logo-dark.webp"
-									/>
-								))}
-							</div>
-						</div>
-						<div>
-							<h3 className="mb-5 font-display font-bold">Media Partners</h3>
-							<div className="grid md:grid-cols-2 gap-5">
-								{Array.from({ length: 10 }).map((_, index) => (
-									<SponsorItem
-										key={`${index + 1}-media-partner`}
-										name="Google"
-										image="/images/logo-dark.webp"
-										rank="special"
-									/>
-								))}
-							</div>
-						</div>
-						<div>
-							<h3 className="mb-5 font-display font-bold">Patron</h3>
-							<div className="grid md:grid-cols-2 gap-5">
-								{Array.from({ length: 2 }).map((_, index) => (
-									<SponsorItem
-										key={`${index + 1}-patron`}
-										name="Google"
-										image="/images/logo-dark.webp"
-									/>
-								))}
+							<h3 className="mb-5 font-display font-bold">Our Sponsors</h3>
+							<div className="grid grid-cols-1 gap-5">
+								{/* Ultimate Sponsor Section */}
+								<div className="grid grid-cols-1 w-full items-center justify-center gap-5">
+									<p className="text-xl font-medium">
+										Ultimate Sponsor
+									</p>
+									<a href="https://serpapi.com/" target="_blank" rel="noreferrer">
+										<img
+											src="/images/logo-serpapi.png"
+											alt="SerpApi"
+											className="object-cover max-h-70 mx-auto"
+										/>
+									</a>
+								</div>
+								{/* Silver Sponsor Section */}
+								<div className="grid grid-cols-1 w-full items-center justify-center gap-5">
+									<p className="text-xl font-medium">
+										Silver Sponsor
+									</p>
+									<a href="https://www.navicat.com/en/" target="_blank" rel="noreferrer">
+										<img
+											src="/images/logo-navicat.webp"
+											alt="Navicat"
+											className="object-cover max-h-40 mx-auto"
+										/>
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>
