@@ -1,11 +1,15 @@
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { CallForSponsorSection } from "~/components/sections/call-for-sponsor/call-for-sponsor";
+import { SponsorSection } from "~/components/sections/home/sponsor";
 
 export function meta() {
 	return [
-		{ title: "Pycon 2025" },
-		{ name: "Call for proposal", content: "Call for proposal page" },
+		{ title: "PyCon ID 2025 Sponsorship" },
+		{
+			name: "Call for Sponsor",
+			content: "Call for Sponsor page",
+		},
 	];
 }
 
@@ -14,6 +18,7 @@ export default function Login() {
 		<main>
 			<Header />
 			<CallForSponsorSection />
+			<SponsorSection />
 			<Footer />
 		</main>
 	);
