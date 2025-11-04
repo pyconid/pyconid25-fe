@@ -15,20 +15,6 @@ export const SpeakersSection = () => {
 			twitter: "https://x.com/lwastuargo",
 			image: "/images/keynote-speakers/Gogo.webp",
 		},
-		{
-			name: "Listiarso Wastuargo",
-			description: "CROTO at Metatech",
-			instagram: "https://www.instagram.com/lwastuargo/",
-			twitter: "https://x.com/lwastuargo",
-			image: "/images/keynote-speakers/Gogo.webp",
-		},
-		{
-			name: "Listiarso Wastuargo",
-			description: "CROTO at Metatech",
-			instagram: "https://www.instagram.com/lwastuargo/",
-			twitter: "https://x.com/lwastuargo",
-			image: "/images/keynote-speakers/Gogo.webp",
-		},
 	];
 
 	return (
