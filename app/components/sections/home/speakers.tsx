@@ -18,7 +18,7 @@ export const SpeakersSection = () => {
 	];
 
 	return (
-		<section className="py-36 bg-[#F1F1F1] relative ">
+		<section className="pt-9 sm:pt-36 bg-[#F1F1F1] relative ">
 			{/* wing decoretion */}
 			<div className="absolute top-8 right-0">
 				<img
@@ -51,7 +51,7 @@ export const SpeakersSection = () => {
 				</div>
 
 				<div className="relative pb-4 px-5 2xl:px-0">
-					<div className="flex justify-center gap-x-5 md:gap-x-8 lg:gap-x-12 min-w-max">
+					<div className="grid col-1 sm:flex sm:flex-row justify-center gap-x-5 md:gap-x-8 lg:gap-x-12 gap-y-5">
 						{speakers.map((speaker) => (
 							<SpeakerCard key={speaker.name} {...speaker} />
 						))}
