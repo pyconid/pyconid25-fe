@@ -8,21 +8,28 @@ export const Footer = () => {
 		<section className="pt-10 bg-[#F1F1F1] relative">
 			<div className="container mx-auto">
 				<div className="flex flex-col md:flex-row md:justify-between border rounded-xl bg-[#224083] min-h md:h-70 px-20 pt-10 pb-7 gap-7 md:items-start m-2">
-					<div className="flex flex-col gap-y-10">
+					<div className="flex flex-col gap-y-10 items-center">
 						<img
 							src="/images/logo-light.webp"
-							alt="logo light pycon"
-							className="w-40"
+							alt="PyCon ID 2025 Logo"
+							className="w-50"
 						/>
 						<div className="flex flex-col items-center">
 							<div className="font-sans text-white font-light">
 								Organized by:
 							</div>
-							<img
-								src="/images/logo-python-id.png"
-								alt="logo light pycon"
-								className="w-40"
-							/>
+							<div className="flex flex-row gap-x-5 mt-2">
+								<img
+									src="/images/logo-python-id-no-text.png"
+									alt="Python ID"
+									className="h-15"
+								/>
+								<img
+									src="/images/logo-himasi-putih.png"
+									alt="HIMASI Trilogi"
+									className="h-15"
+								/>
+							</div>
 						</div>
 					</div>
 

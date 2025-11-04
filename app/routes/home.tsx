@@ -9,7 +9,7 @@ import { SponsorSection } from "~/components/sections/home/sponsor";
 
 export function meta() {
 	return [
-		{ title: "PyconID 2025" },
+		{ title: "PyCon ID 2025" },
 		{ name: "description", content: "Website for PyconID 2025" },
 	];
 }
