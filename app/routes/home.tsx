@@ -19,11 +19,11 @@ export default function Home() {
 		<main>
 			<Header />
 			<HeroSection />
-			<ScheduleSection />
+			{/* <ScheduleSection /> */}
 			{/* <ScheduleSection /> */}
 			<SpeakersSection />
 			<SponsorSection />
-			<OurTeamSection />
+			{/* <OurTeamSection /> */}
 			<Footer />
 		</main>
 	);
