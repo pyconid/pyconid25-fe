@@ -14,6 +14,7 @@ import {
 	countriesSchema,
 	statesSchema,
 } from "~/api/schema/locations";
+import { Footer } from "~/components/layouts/navigation/footer";
 import { Checkbox } from "./checkbox";
 import { Dropdown } from "./dropdown";
 import { DropdownSearch } from "./dropdownSearch";
@@ -177,7 +178,7 @@ export const UserProfileSection = ({
 	});
 
 	return (
-		<main className="max-w-[1000px] mx-auto">
+		<main className="max-w-[1000px] mx-auto px-4">
 			<h1 className="text-[#224083] text-3xl font-bold text-center">
 				Account Dashboard
 			</h1>
@@ -193,12 +194,11 @@ export const UserProfileSection = ({
 					<h2 className="text-[#224083] text-2xl font-bold">Profile</h2>
 					<div className="w-full h-[2px] bg-[#224083]"></div>
 					<div className="flex flex-col gap-4 pt-6">
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field
 								name="first_name"
 								validators={{
 									onSubmit: ({ value }) => {
-										console.log("validating first name on submit");
 										return value.trim().length === 0
 											? "first name cannot be empty"
 											: undefined;
@@ -248,7 +248,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="email">
 								{(field) => (
 									<Input
@@ -276,7 +276,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field
 								name="job_title"
 								validators={{
@@ -331,7 +331,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="company">
 								{(field) => (
 									<Input
@@ -358,7 +358,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="experience">
 								{(field) => (
 									<Input
@@ -400,7 +400,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="gender">
 								{(field) => (
 									<Dropdown
@@ -435,7 +435,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field
 								name="bio"
 								validators={{
@@ -528,7 +528,7 @@ export const UserProfileSection = ({
 								/>
 							)}
 						</form.Field>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field
 								name="state_id"
 								listeners={{
@@ -662,7 +662,7 @@ export const UserProfileSection = ({
 					<h2 className="text-[#224083] text-2xl font-bold">Social Media</h2>
 					<div className="w-full h-[2px] bg-[#224083]"></div>
 					<div className="flex flex-col gap-4 pt-6">
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="website">
 								{(field) => (
 									<Input
@@ -688,7 +688,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="facebook_username">
 								{(field) => (
 									<Input
@@ -714,7 +714,7 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
-						<div className="flex gap-4">
+						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="twitter_username">
 								{(field) => (
 									<Input
@@ -762,7 +762,16 @@ export const UserProfileSection = ({
 								/>
 							)}
 						</form.Field> */}
-						<form.Field name="coc_acknowledged">
+						<form.Field
+							name="coc_acknowledged"
+							validators={{
+								onSubmit: ({ value }) => {
+									return value !== true
+										? "You must aggree to submit the form"
+										: undefined;
+								},
+							}}
+						>
 							{(field) => (
 								<Checkbox
 									id={field.name}
@@ -770,10 +779,24 @@ export const UserProfileSection = ({
 									label="I acknowledge the Code of Conduct"
 									value={field.state.value}
 									onChange={(value) => field.handleChange(value)}
+									errorMessage={
+										field.state.meta.isValid
+											? undefined
+											: field.state.meta.errors.join(", ")
+									}
 								/>
 							)}
 						</form.Field>
-						<form.Field name="terms_agreed">
+						<form.Field
+							name="terms_agreed"
+							validators={{
+								onSubmit: ({ value }) => {
+									return value !== true
+										? "You must aggree to submit the form"
+										: undefined;
+								},
+							}}
+						>
 							{(field) => (
 								<Checkbox
 									id={field.name}
@@ -781,10 +804,24 @@ export const UserProfileSection = ({
 									label="I agree to the Terms and Conditions"
 									value={field.state.value}
 									onChange={(value) => field.handleChange(value)}
+									errorMessage={
+										field.state.meta.isValid
+											? undefined
+											: field.state.meta.errors.join(", ")
+									}
 								/>
 							)}
 						</form.Field>
-						<form.Field name="privacy_agreed">
+						<form.Field
+							name="privacy_agreed"
+							validators={{
+								onSubmit: ({ value }) => {
+									return value !== true
+										? "You must aggree to submit the form"
+										: undefined;
+								},
+							}}
+						>
 							{(field) => (
 								<Checkbox
 									id={field.name}
@@ -792,6 +829,11 @@ export const UserProfileSection = ({
 									label="I agree to the Privacy Policy"
 									value={field.state.value}
 									onChange={(value) => field.handleChange(value)}
+									errorMessage={
+										field.state.meta.isValid
+											? undefined
+											: field.state.meta.errors.join(", ")
+									}
 								/>
 							)}
 						</form.Field>
@@ -811,9 +853,8 @@ export const UserProfileSection = ({
 						</button>
 					</form.Subscribe>
 				</div>
-				<div className="bg-[#224083] h-[300px] mt-10"></div>
 			</Form>
-			{/* <Footer /> */}
+			<Footer />
 		</main>
 	);
 };

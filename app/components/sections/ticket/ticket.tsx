@@ -1,5 +1,8 @@
-import { useMemo, useState } from "react";
-import type { TicketsResponseType, TicketType } from "~/api/schema/ticket";
+import type { Route } from ".react-router/types/app/routes/+types/ticket";
+import { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
+import type { TicketType } from "~/api/schema/ticket";
+import { Footer } from "~/components/layouts/navigation/footer";
 import { TicketBuyForm } from "~/components/shared/ticket-card/ticket-buy-form";
 import { TicketCard } from "~/components/shared/ticket-card/ticket-card";
 
@@ -11,8 +14,20 @@ const nestArray = <T,>(arr: T[], size: number): T[][] => {
 	return result;
 };
 
-export const Ticket = ({ tickets }: { tickets: TicketsResponseType }) => {
-	const [ticketState] = useState<TicketType[]>(tickets.results);
+export const Ticket = ({
+	componentProps,
+}: {
+	componentProps: Route.ComponentProps;
+}) => {
+	const { ticket } = componentProps.loaderData;
+	const actionData = componentProps.actionData;
+
+	useEffect(() => {
+		if (actionData?.clientError) {
+			toast.error(actionData.clientError);
+		}
+	}, [actionData]);
+	const [ticketState] = useState<TicketType[]>(ticket.results);
 	const [selectedTicket, setSelectedTicket] = useState<TicketType | null>(null);
 	const nestedTickets = useMemo(() => nestArray(ticketState, 2), [ticketState]);
 
@@ -46,6 +61,7 @@ export const Ticket = ({ tickets }: { tickets: TicketsResponseType }) => {
 				))}
 			</div>
 			<TicketBuyForm selectedTicket={selectedTicket} />
+			<Footer />
 		</main>
 	);
 };

@@ -1,6 +1,6 @@
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
-import { CallForSponsorSection } from "~/components/sections/call-for-sponsor/call-for-sponsor";
+import { CodeOfConductSection } from "~/components/sections//code-of-conduct/code-of-conduct";
 
 export function meta() {
 	return [
@@ -9,11 +9,11 @@ export function meta() {
 	];
 }
 
-export default function Login() {
+export default function CodeOfConduct() {
 	return (
 		<main>
 			<Header />
-			<CallForSponsorSection />
+			<CodeOfConductSection />
 			<Footer />
 		</main>
 	);

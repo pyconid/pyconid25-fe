@@ -23,9 +23,6 @@ export const updateUserProfile = async ({
 	request: Request;
 	formData: FormData;
 }) => {
-	for (const [key, value] of formData.entries()) {
-		console.log(`${key}:`, value);
-	}
 	return await http.put("/user-profile/", {
 		request,
 		body: formData,
