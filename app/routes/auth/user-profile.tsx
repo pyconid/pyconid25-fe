@@ -1,4 +1,5 @@
 import { redirect } from "react-router";
+import { z } from "zod";
 import {
 	getUserProfile,
 	industries as industriesApi,
@@ -45,6 +46,16 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 	return { industries, jobs, participantTypes, userProfile };
 };
 
+const clientErrorDetailSchema = z.object({
+	field: z.string(),
+	message: z.string(),
+});
+
+const clientErrorSchema = z.object({
+	errors: z.array(clientErrorDetailSchema),
+	message: z.string(),
+});
+
 export const action = async ({ request }: Route.ActionArgs) => {
 	const credentials = await authenticator.isAuthenticated(request);
 	if (!credentials) {
@@ -72,21 +83,46 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		console.log({ validationErrors: results.error });
 		return {
 			success: false,
+			clientError: null,
 			errors: null,
 		};
 	}
 	const res = await updateUserProfile({ request, formData });
 	if (!res.ok) {
+		if (res.status === 400) {
+			const json = await res.json();
+			console.log({ status: res.status, message: await res.text() });
+			return {
+				success: false,
+				clientError: clientErrorSchema.parse({
+					errors: [],
+					message: json.message,
+				}),
+				errors: null,
+			};
+		} else if (res.status === 422) {
+			const json = await res.json();
+			const clientError = clientErrorSchema.parse(json);
+			console.log({ status: res.status, message: clientError });
+			clientError.message = "Invalid data, please check the form fields.";
+			return {
+				success: false,
+				clientError,
+				errors: null,
+			};
+		}
 		const json = await res.json();
 		console.log({ status: res.status, json: JSON.stringify(json, null, 2) });
 		return {
 			success: false,
+			clientError: null,
 			errors: json,
 		};
 	}
 
 	return {
 		success: true,
+		clientError: null,
 		errors: null,
 	};
 };

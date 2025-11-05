@@ -1,4 +1,5 @@
 import type { Route } from ".react-router/types/app/routes/auth/+types/payment";
+import { Link } from "react-router";
 
 export const PaymentSection = ({
 	componentProps,
@@ -8,6 +9,12 @@ export const PaymentSection = ({
 	const { payment } = componentProps.loaderData;
 	return (
 		<main>
+			<Link
+				to="/auth/dashboard"
+				className="text-blue-600 underline mb-4 inline-block"
+			>
+				&larr; Back to Dashboard
+			</Link>
 			<h1 className="text-3xl font-bold text-[#224083]">
 				My Ticket Transaction
 			</h1>
