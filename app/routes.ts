@@ -15,6 +15,7 @@ export default [
 	route("/privacy-policy", "routes/privacy-policy.tsx"),
 	route("/internal-error", "routes/internal-error.tsx"),
 	route("/ticket", "routes/ticket.tsx"),
+	route("/sponsor-us", "routes/sponsor-us.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
 		route("/register", "routes/register.tsx"),
