@@ -12,6 +12,9 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 		return redirect("/login");
 	}
 	const dataUserProfile = await getUserProfile({ request });
+	if (dataUserProfile.status === 401) {
+		return redirect("/login");
+	}
 	const jsonUserProfile = await dataUserProfile.json();
 	const userProfile = getUserProfileSchema.parse(jsonUserProfile);
 
