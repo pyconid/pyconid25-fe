@@ -22,12 +22,12 @@ export const SpeakerCard = ({
 	const hasSocialLinks = instagram || twitter || email;
 
 	return (
-		<div className="aspect-24/37 w-72 md:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
+		<div className="aspect-24/37 w-72 lg:w-96 bg-white rounded-4xl p-5 pt-8 border border-black/15 shadow-lg relative overflow-hidden">
 			{image && (
 				<img
 					src={image}
 					alt={name}
-					className="absolute left-1/2 top-[72px] md:top-[96px] -translate-x-1/2 w-46 md:w-62 rounded-full object-cover z-0"
+					className="absolute left-1/2 top-[72px] lg:top-[96px] -translate-x-1/2 w-46 lg:w-62 rounded-full object-cover z-0"
 				/>
 			)}
 
@@ -37,12 +37,12 @@ export const SpeakerCard = ({
 				<img
 					src="/images/logo-light.webp"
 					alt="PyconID 2025"
-					className="h-6 md:h-10 mx-auto"
+					className="h-6 lg:h-10 mx-auto"
 				/>
 
 				<div className="text-center">
-					<h1 className="text-xl md:text-3xl font-bold">{name}</h1>
-					<p className="font-light text-xs mb-3 md:text-base md:mb-5 line-clamp-2">
+					<h1 className="text-xl lg:text-3xl font-bold">{name}</h1>
+					<p className="font-light text-xs mb-3 lg:text-base lg:mb-5 line-clamp-2">
 						{description}
 					</p>
 					{hasSocialLinks && (
@@ -54,7 +54,7 @@ export const SpeakerCard = ({
 									rel="noopener noreferrer"
 									className="bg-[#22408340] p-3 rounded-full"
 								>
-									<Instagram className="size-4 md:size-5" />
+									<Instagram className="size-4 lg:size-5" />
 								</a>
 							)}
 							{twitter && (
@@ -64,7 +64,7 @@ export const SpeakerCard = ({
 									rel="noopener noreferrer"
 									className="bg-[#22408340] p-3 rounded-full"
 								>
-									<Twitter className="size-4 md:size-5" />
+									<Twitter className="size-4 lg:size-5" />
 								</a>
 							)}
 							{email && (
@@ -74,7 +74,7 @@ export const SpeakerCard = ({
 									rel="noopener noreferrer"
 									className="bg-[#22408340] p-3 rounded-full"
 								>
-									<MailIcon className="size-4 md:size-5" />
+									<MailIcon className="size-4 lg:size-5" />
 								</a>
 							)}
 						</div>
