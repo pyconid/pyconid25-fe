@@ -1,6 +1,6 @@
-import type { FC } from "react";
+// import type { FC } from "react";
 import {
-	Form,
+	// Form,
 	Link,
 	type LoaderFunctionArgs,
 	Outlet,
@@ -19,25 +19,25 @@ export interface AuthLayoutHanleProps {
 	title: string;
 }
 
-type LoginOAuthProps = {
-	title: string;
-	provider: string;
-	image: string;
-};
+// type LoginOAuthProps = {
+// 	title: string;
+// 	provider: string;
+// 	image: string;
+// };
 
-const LoginOAuth: FC<LoginOAuthProps> = ({ title, provider, image }) => {
-	return (
-		<Form action={`/auth/${provider}`} method="post" className="w-full">
-			<button
-				type="submit"
-				className="flex items-center w-full justify-center gap-x-2 bg-gray-200 rounded-sm p-2.5 cursor-pointer transition-all duration-150 hover:bg-gray-300"
-			>
-				<img alt={title} src={image} className="size-4 sm:size-8" />
-				<div>{title}</div>
-			</button>
-		</Form>
-	);
-};
+// const LoginOAuth: FC<LoginOAuthProps> = ({ title, provider, image }) => {
+// 	return (
+// 		<Form action={`/auth/${provider}`} method="post" className="w-full">
+// 			<button
+// 				type="submit"
+// 				className="flex items-center w-full justify-center gap-x-2 bg-gray-200 rounded-sm p-2.5 cursor-pointer transition-all duration-150 hover:bg-gray-300"
+// 			>
+// 				<img alt={title} src={image} className="size-4 sm:size-8" />
+// 				<div>{title}</div>
+// 			</button>
+// 		</Form>
+// 	);
+// };
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const credentials = await authenticator.isAuthenticated(request);
@@ -96,7 +96,7 @@ export default function AuthLayout() {
 						</div>
 
 						<div className="w-full grid grid-cols-2 gap-4">
-							<LoginOAuth
+							{/* <LoginOAuth
 								title="Continue with Google"
 								image="/svg/google-logo.svg"
 								provider="google"
@@ -105,7 +105,7 @@ export default function AuthLayout() {
 								title="Continue with Github"
 								image="/svg/github-logo.svg"
 								provider="github"
-							/>
+							/> */}
 
 							<p className="col-span-full w-max mx-auto">
 								{pathname === "/login" ? (
