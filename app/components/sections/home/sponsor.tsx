@@ -1,6 +1,6 @@
 export const SponsorSection = () => {
 	return (
-		<section className="pt-36 bg-[#F1F1F1] relative">
+		<section className="pt-18 sm:pt-36 bg-[#F1F1F1] relative">
 			<div className="container mx-auto text-white px-5 2xl:px-0">
 				<div className="flex flex-col items-center">
 					<div className="h-max mb-12 md:mb-12 md:top-12 text-center">

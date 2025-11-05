@@ -4,22 +4,22 @@ export const Footer = () => {
 	return (
 		<section className="pt-10 bg-[#F1F1F1] relative">
 			<div className="container mx-auto">
-				<div className="flex flex-col md:flex-row md:justify-between border rounded-xl bg-[#224083] min-h md:h-70 px-20 pt-10 pb-7 gap-7 md:items-start m-2">
-					<div className="flex flex-col gap-y-10 items-center">
+				<div className="flex flex-col md:flex-row md:justify-between border rounded-xl bg-[#224083] min-h md:h-70 px-10 pt-10 pb-7 gap-7 md:items-start m-2">
+					<div className="flex flex-col gap-y-5 items-start">
 						<img
 							src="/images/logo-light.webp"
 							alt="PyCon ID 2025 Logo"
 							className="w-50"
 						/>
-						<div className="flex flex-col items-center">
-							<div className="font-sans text-white font-light">
+						<div className="flex flex-col gap-y-1">
+							<div className="font-sans text-white font-light text-center">
 								Organized by:
 							</div>
-							<div className="flex flex-row gap-x-5 mt-2">
+							<div className="flex flex-col lg:flex-row lg:items-center lg:justify-center lg:gap-x-5 gap-y-2">
 								<img
 									src="/images/logo-python-id-no-text.png"
 									alt="Python ID"
-									className="h-15"
+									className="h-15 object-contain"
 								/>
 								<img
 									src="/images/logo-himasi-putih.png"
@@ -46,7 +46,7 @@ export const Footer = () => {
 									</a>
 								</p>
 							</div>
-							<p className="text-white mr-5">
+							<p className="text-white mr-5 text-sm sm:text-md">
 								PyCon ID 2025 is organized by volunteers, so it may take more
 								time for us to reply to inquiries. Thank you for your patience.
 							</p>
