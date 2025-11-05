@@ -1,14 +1,14 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { Form, Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import MENU from "~/lib/menu";
 import { cn } from "~/lib/utils";
-import { useRootLoaderData } from "~/root";
+// import { useRootLoaderData } from "~/root";
 
 export const Header = () => {
 	const [expand, setExpand] = useState(false);
 
-	const { credentials } = useRootLoaderData();
+	// const { credentials } = useRootLoaderData();
 
 	return (
 		<header className="pt-8 fixed inset-x-0 top-0 z-50 mx-6 overflow-x-clip 2xl:mx-0">

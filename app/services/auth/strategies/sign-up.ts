@@ -34,6 +34,12 @@ export const signUpFormStrategy = new Strategy(
 			const body = { email, username, password };
 			const response = await emailSignup({ body });
 
+			if (response.status === 400) {
+				const data = await response.json();
+				console.info(`data email ${email}:`, data);
+				throw new Error(data.message || "Failed to sign up");
+			}
+
 			if (!response.ok) throw new Error(response.statusText);
 
 			messageSession.flash("toast", {

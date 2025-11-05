@@ -2,7 +2,7 @@ import type { Route } from ".react-router/types/app/routes/auth/+types/user-prof
 import { useForm } from "@tanstack/react-form";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
-import { Form } from "react-router";
+import { Form, Link } from "react-router";
 import { toast } from "sonner";
 import {
 	cities as citiesApi,
@@ -36,8 +36,13 @@ export const UserProfileSection = ({
 	useEffect(() => {
 		if (actionData?.success === true) {
 			toast.success("Profile updated successfully!");
-		} else if (actionData?.success === false) {
-			toast.error("Invalid data, please check the form fields.");
+		} else if (actionData?.success === false && actionData?.clientError) {
+			toast.error(
+				actionData.clientError.message ||
+					"Invalid data, please check the form fields.",
+			);
+		} else if (actionData?.success === false && actionData?.errors) {
+			toast.error("There are problem on the server, please try again later.");
 		}
 	}, [actionData]);
 	const form = useForm({
@@ -179,6 +184,12 @@ export const UserProfileSection = ({
 
 	return (
 		<main className="max-w-[1000px] mx-auto px-4">
+			<Link
+				to="/auth/dashboard"
+				className="text-blue-600 underline mb-4 inline-block"
+			>
+				&larr; Back to Dashboard
+			</Link>
 			<h1 className="text-[#224083] text-3xl font-bold text-center">
 				Account Dashboard
 			</h1>
@@ -263,7 +274,6 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 							<form.Field name="phone">
-								{/* todo validasi phone number +6288888 */}
 								{(field) => (
 									<Input
 										label="Phone"
@@ -272,6 +282,12 @@ export const UserProfileSection = ({
 										placeholder="Enter your mobile number"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "phone")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
