@@ -10,9 +10,9 @@ export const TicketBuyForm = ({
 	const navigation = useNavigation();
 
 	return (
-		<div className="max-w-[1100px] mx-auto pt-14 flex flex-col gap-6 px-4">
-			<Form method="post">
-				<h3 className="text-left">Apply your voucher to get discount</h3>
+		<Form method="post">
+			<div className="max-w-[1100px] mx-auto pt-14 flex flex-col gap-6 px-4">
+				{/* <h3 className="text-left">Apply your voucher to get discount</h3>
 				<div className="w-full flex gap-2">
 					<input
 						type="text"
@@ -25,7 +25,7 @@ export const TicketBuyForm = ({
 					>
 						Apply Voucher
 					</button>
-				</div>
+				</div> */}
 				<div className="flex justify-between text-[#224083] font-bold text-2xl">
 					<p>Grand Total:</p>
 					<p>{formatRupiah(selectedTicket?.price || 0)}</p>
@@ -42,7 +42,7 @@ export const TicketBuyForm = ({
 				>
 					Buy Ticket
 				</button>
-			</Form>
-		</div>
+			</div>
+		</Form>
 	);
 };

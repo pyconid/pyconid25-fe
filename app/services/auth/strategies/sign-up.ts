@@ -18,7 +18,7 @@ export const signUpFormStrategy = new Strategy(
 
 		const form = await request.formData();
 		const email = String(form.get("email"));
-		const username = String(form.get("username"));
+		const username = String(form.get("email")); // Using email as username
 		const password = String(form.get("password"));
 		const confirm_password = String(form.get("confirm_password"));
 
