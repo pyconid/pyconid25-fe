@@ -67,6 +67,21 @@ export const action = async ({ request }: Route.ActionArgs) => {
 			formData.append(key, value);
 		}
 	}
+	if (!formData.has("share_my_email_and_phone_number")) {
+		formData.append("share_my_email_and_phone_number", "false");
+	}
+	if (!formData.has("share_my_job_and_company")) {
+		formData.append("share_my_job_and_company", "false");
+	}
+	if (!formData.has("share_my_location")) {
+		formData.append("share_my_location", "false");
+	}
+	if (!formData.has("share_my_interest")) {
+		formData.append("share_my_interest", "false");
+	}
+	if (!formData.has("share_my_public_social_media")) {
+		formData.append("share_my_public_social_media", "false");
+	}
 	if (!formData.has("coc_acknowledged")) {
 		formData.append("coc_acknowledged", "false");
 	}
@@ -102,8 +117,9 @@ export const action = async ({ request }: Route.ActionArgs) => {
 			};
 		} else if (res.status === 422) {
 			const json = await res.json();
+			console.log({ status: res.status, message: JSON.stringify(json) });
 			const clientError = clientErrorSchema.parse(json);
-			console.log({ status: res.status, message: clientError });
+			console.log({ status: res.status, message: JSON.stringify(clientError) });
 			clientError.message = "Invalid data, please check the form fields.";
 			return {
 				success: false,

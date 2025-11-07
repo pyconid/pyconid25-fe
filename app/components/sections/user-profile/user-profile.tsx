@@ -60,6 +60,7 @@ export const UserProfileSection = ({
 			date_of_birth: userProfile.date_of_birth || "",
 			phone: userProfile.phone || "",
 			bio: userProfile.bio || "",
+			interest: userProfile.interest?.join(",") || "",
 			country_id: userProfile.country?.id?.toString() || "",
 			state_id: userProfile.state?.id?.toString() || "",
 			city_id: userProfile.city?.id?.toString() || "",
@@ -70,10 +71,18 @@ export const UserProfileSection = ({
 			linkedin_username: userProfile.linkedin_username || "",
 			twitter_username: userProfile.twitter_username || "",
 			instagram_username: userProfile.instagram_username || "",
+			looking_for: userProfile.looking_for || "",
 			// participant_type: userProfile.participant_type || "",
 			coc_acknowledged: userProfile.coc_acknowledged || false,
 			terms_agreed: userProfile.terms_agreed || false,
 			privacy_agreed: userProfile.privacy_agreed || false,
+			share_my_email_and_phone_number:
+				userProfile.share_my_email_and_phone_number || false,
+			share_my_job_and_company: userProfile.share_my_job_and_company || false,
+			share_my_location: userProfile.share_my_location || false,
+			share_my_interest: userProfile.share_my_interest || false,
+			share_my_public_social_media:
+				userProfile.share_my_public_social_media || false,
 		},
 		onSubmit: (values) => {
 			console.log("Form Submitted:", values);
@@ -279,7 +288,7 @@ export const UserProfileSection = ({
 										label="Phone"
 										id={field.name}
 										name={field.name}
-										placeholder="Enter your mobile number"
+										placeholder="+6281234567890"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
 										errorMessage={
@@ -292,6 +301,17 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
+						<form.Field name="share_my_email_and_phone_number">
+							{(field) => (
+								<Checkbox
+									id={field.name}
+									name={field.name}
+									label="Share my email and phone number"
+									value={field.state.value}
+									onChange={(value) => field.handleChange(value)}
+								/>
+							)}
+						</form.Field>
 						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field
 								name="job_title"
@@ -374,6 +394,17 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
+						<form.Field name="share_my_job_and_company">
+							{(field) => (
+								<Checkbox
+									id={field.name}
+									name={field.name}
+									label="Share my job and company"
+									value={field.state.value}
+									onChange={(value) => field.handleChange(value)}
+								/>
+							)}
+						</form.Field>
 						<div className="flex flex-col md:flex-row gap-4">
 							<form.Field name="experience">
 								{(field) => (
@@ -391,6 +422,12 @@ export const UserProfileSection = ({
 											)
 										}
 										value={field.state.value.toString()}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "experience")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -479,6 +516,67 @@ export const UserProfileSection = ({
 								)}
 							</form.Field>
 						</div>
+						<div className="flex flex-col md:flex-row gap-4">
+							<form.Field name="interest">
+								{(field) => (
+									<Input
+										label="Skill/Field of Interest"
+										id={field.name}
+										name={field.name}
+										placeholder="Data Science, Web Development, AI"
+										type="text"
+										onChange={(e) => field.handleChange(e.target.value)}
+										value={field.state.value}
+									/>
+								)}
+							</form.Field>
+							<form.Field name="looking_for">
+								{(field) => (
+									<Dropdown
+										label="Job Interest"
+										id={field.name}
+										name={field.name}
+										placeholder="Choose job interest"
+										dropdownItems={[
+											{
+												label: "Open Opportunities",
+												value: "Open Opportunities",
+											},
+											{
+												label: "Close Opportunities",
+												value: "Close Opportunities",
+											},
+											// bug on Backend
+											// {
+											// 	label: "Looking for Talent",
+											// 	value: "Looking for Talent",
+											// },
+											{
+												label: "Networking",
+												value: "Networking",
+											},
+											{
+												label: "Hiring",
+												value: "Hiring",
+											},
+										]}
+										onChange={(value) => field.handleChange(value)}
+										value={field.state.value}
+									/>
+								)}
+							</form.Field>
+						</div>
+						<form.Field name="share_my_interest">
+							{(field) => (
+								<Checkbox
+									id={field.name}
+									name={field.name}
+									label="Share my Interest"
+									value={field.state.value}
+									onChange={(value) => field.handleChange(value)}
+								/>
+							)}
+						</form.Field>
 					</div>
 				</div>
 				{/* Address */}
@@ -671,6 +769,17 @@ export const UserProfileSection = ({
 								/>
 							)}
 						</form.Field>
+						<form.Field name="share_my_location">
+							{(field) => (
+								<Checkbox
+									id={field.name}
+									name={field.name}
+									label="Share my location"
+									value={field.state.value}
+									onChange={(value) => field.handleChange(value)}
+								/>
+							)}
+						</form.Field>
 					</div>
 				</div>
 				{/* Social Media */}
@@ -688,6 +797,12 @@ export const UserProfileSection = ({
 										placeholder="Enter your website URL"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "website")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -700,6 +815,12 @@ export const UserProfileSection = ({
 										placeholder="Github username"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "github_username")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -714,6 +835,12 @@ export const UserProfileSection = ({
 										placeholder="Facebook username"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "facebook_username")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -726,6 +853,12 @@ export const UserProfileSection = ({
 										placeholder="LinkedIn username"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "linkedin_username")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -740,6 +873,12 @@ export const UserProfileSection = ({
 										placeholder="Twitter username"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "twitter_username")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
@@ -752,10 +891,27 @@ export const UserProfileSection = ({
 										placeholder="Instagram username"
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
+										errorMessage={
+											actionData?.clientError?.errors
+												.filter((item) => item.field === "instagram_username")
+												.map((item) => item.message)
+												.join(", ") || undefined
+										}
 									/>
 								)}
 							</form.Field>
 						</div>
+						<form.Field name="share_my_public_social_media">
+							{(field) => (
+								<Checkbox
+									id={field.name}
+									name={field.name}
+									label="Share my Public Social Media"
+									value={field.state.value}
+									onChange={(value) => field.handleChange(value)}
+								/>
+							)}
+						</form.Field>
 					</div>
 				</div>
 				{/* Participant */}

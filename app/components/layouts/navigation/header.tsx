@@ -1,14 +1,14 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { NavLink } from "react-router";
+import { Form, NavLink } from "react-router";
 import MENU from "~/lib/menu";
 import { cn } from "~/lib/utils";
-// import { useRootLoaderData } from "~/root";
+import { useRootLoaderData } from "~/root";
 
 export const Header = () => {
 	const [expand, setExpand] = useState(false);
 
-	// const { credentials } = useRootLoaderData();
+	const { credentials } = useRootLoaderData();
 
 	return (
 		<header className="pt-8 fixed inset-x-0 top-0 z-50 mx-6 overflow-x-clip 2xl:mx-0">
@@ -50,7 +50,7 @@ export const Header = () => {
 								Ticket Available Soon
 							</button> */}
 
-							{/* {credentials ? (
+							{credentials ? (
 								<div className="flex flex-col gap-2">
 									<NavLink to="/auth/dashboard" className="mr-4">
 										My Profile
@@ -65,15 +65,17 @@ export const Header = () => {
 									</Form>
 								</div>
 							) : (
-								<Link to="/login">
-									<button
-										type="button"
-										className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
-									>
-										Login
-									</button>
-								</Link>
-							)} */}
+								// <Link to="/login">
+								// 	<button
+								// 		type="button"
+								// 		className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+								// 	>
+								// 		Login
+								// 	</button>
+								// </Link>
+								// biome-ignore lint/complexity/noUselessFragments: make it easier to uncomment later
+								<></>
+							)}
 						</li>
 					</ul>
 				</div>
@@ -87,7 +89,7 @@ export const Header = () => {
 						Ticket Available Soon
 					</button> */}
 
-					{/* {credentials ? (
+					{credentials ? (
 						<div className="flex gap-4">
 							<NavLink
 								to="/auth/dashboard"
@@ -105,15 +107,17 @@ export const Header = () => {
 							</Form>
 						</div>
 					) : (
-						<Link to="/login">
-							<button
-								type="button"
-								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
-							>
-								Login
-							</button>
-						</Link>
-					)} */}
+						// <Link to="/login">
+						// 	<button
+						// 		type="button"
+						// 		className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+						// 	>
+						// 		Login
+						// 	</button>
+						// </Link>
+						// biome-ignore lint/complexity/noUselessFragments: make it easier to uncomment later
+						<></>
+					)}
 				</div>
 
 				<button
