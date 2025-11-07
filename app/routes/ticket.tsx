@@ -1,6 +1,7 @@
 import { redirect } from "react-router";
 import { createPayment } from "~/api/endpoint/.server/payment";
 import { ticket as ticketApi } from "~/api/endpoint/.server/ticket";
+import { createPaymentSuccessSchema } from "~/api/schema/payment";
 import { TicketsResponseSchema } from "~/api/schema/ticket";
 import { Main as MainLayout } from "~/components/layouts/app/main";
 import { Ticket } from "~/components/sections/ticket/ticket";
@@ -63,7 +64,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		};
 	}
 
-	return redirect("/auth/payment");
+	const data = createPaymentSuccessSchema.parse(await res.json());
+	return redirect(data.payment_link);
 };
 
 export default function TicketPage(componentProps: Route.ComponentProps) {

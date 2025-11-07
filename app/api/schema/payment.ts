@@ -33,3 +33,16 @@ export const createPaymentSchema = z.object({
 });
 
 export type CreatePaymentSchema = z.infer<typeof createPaymentSchema>;
+
+export const createPaymentSuccessSchema = z.object({
+	id: z.string(),
+	payment_link: z.string(),
+	created_at: z.string(), // ISO date string
+	amount: z.number(),
+	description: z.string(),
+	ticket: paymentTicketSchema,
+});
+
+export type CreatePaymentSuccessSchema = z.infer<
+	typeof createPaymentSuccessSchema
+>;

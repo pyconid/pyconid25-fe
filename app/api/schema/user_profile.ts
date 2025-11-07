@@ -81,6 +81,11 @@ export const getUserProfileSchema = z.object({
 	linkedin_username: z.string().nullable(),
 	twitter_username: z.string().nullable(),
 	instagram_username: z.string().nullable(),
+	share_my_email_and_phone_number: z.boolean().nullable(),
+	share_my_job_and_company: z.boolean().nullable(),
+	share_my_location: z.boolean().nullable(),
+	share_my_interest: z.boolean().nullable(),
+	share_my_public_social_media: z.boolean().nullable(),
 });
 
 export type GetUserProfileSchema = z.infer<typeof getUserProfileSchema>;
@@ -109,7 +114,7 @@ export const updateUserProfileSchema = z.object({
 	city_id: z.string(),
 	zip_code: z.string().nullable().optional(),
 	address: z.string().nullable().optional(),
-	interest: z.array(z.string()).nullable().optional(),
+	interest: z.string().nullable().optional(),
 	looking_for: z.string().nullable().optional(),
 	expertise: z.array(z.string()).nullable().optional(),
 	website: z.string().nullable().optional(),
@@ -118,4 +123,9 @@ export const updateUserProfileSchema = z.object({
 	linkedin_username: z.string().nullable().optional(),
 	twitter_username: z.string().nullable().optional(),
 	instagram_username: z.string().nullable().optional(),
+	share_my_email_and_phone_number: z.string().nullable().optional(), // boolean as string "true" / "false"
+	share_my_job_and_company: z.string().nullable().optional(), // boolean as string "true" / "false",
+	share_my_location: z.string().nullable().optional(), // boolean as string "true" / "false",
+	share_my_interest: z.string().nullable().optional(), // boolean as string "true" / "false",
+	share_my_public_social_media: z.string().nullable().optional(), // boolean as string "true" / "false",
 });

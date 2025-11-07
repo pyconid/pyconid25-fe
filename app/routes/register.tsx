@@ -34,18 +34,6 @@ export default function Register() {
 						className="border border-black/15 rounded-sm bg-neutral-100 w-full  h-12 text-neutral-500 pl-4 text-2xl"
 					/>
 				</div>
-				<div className="flex flex-col w-full">
-					<label htmlFor="username" className="text-sm font-bold mb-1">
-						Username
-					</label>
-					<input
-						id="username"
-						name="username"
-						placeholder="Enter username"
-						type="text"
-						className="border border-black/15 rounded-sm bg-neutral-100 w-full  h-12 text-neutral-500 pl-4 text-2xl"
-					/>
-				</div>
 				<div className="flex flex-col">
 					<label htmlFor="password" className="text-sm font-bold mb-1">
 						Password
