@@ -2,9 +2,7 @@
 import { redirect } from "react-router";
 
 export function loader() {
-	return redirect(
-		"/ticket",
-	);
+	return redirect("/ticket");
 }
 
 export default function CocRedirect() {
