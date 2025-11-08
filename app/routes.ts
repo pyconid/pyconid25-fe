@@ -14,7 +14,10 @@ export default [
 	route("/terms-of-service", "routes/terms-of-service.tsx"),
 	route("/privacy-policy", "routes/privacy-policy.tsx"),
 	route("/internal-error", "routes/internal-error.tsx"),
+	route("/everybody-pays", "routes/everybody-pays.tsx"),
 	route("/ticket", "routes/ticket.tsx"),
+	route("/tickets", "routes/tickets.tsx"),
+	route("/tiket", "routes/tiket.tsx"),
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
