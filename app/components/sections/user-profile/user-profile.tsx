@@ -72,7 +72,7 @@ export const UserProfileSection = ({
 			twitter_username: userProfile.twitter_username || "",
 			instagram_username: userProfile.instagram_username || "",
 			looking_for: userProfile.looking_for || "",
-			// participant_type: userProfile.participant_type || "",
+			participant_type: userProfile.participant_type || "",
 			coc_acknowledged: userProfile.coc_acknowledged || false,
 			terms_agreed: userProfile.terms_agreed || false,
 			privacy_agreed: userProfile.privacy_agreed || false,
@@ -921,19 +921,19 @@ export const UserProfileSection = ({
 					</h2>
 					<div className="w-full h-[2px] bg-[#224083]"></div>
 					<div className="flex flex-col gap-4 pt-6">
-						{/* <form.Field name="participant_type">
+						<form.Field name="participant_type">
 							{(field) => (
-								<Dropdown
+								<Input
 									label="Participant Type"
 									id={field.name}
 									name={field.name}
 									placeholder=""
 									value={field.state.value}
-									dropdownItems={participantTypes.results}
-									onChange={(value) => field.handleChange(value)}
+									onChange={(value) => field.handleChange(value.target.value)}
+									readonly={true}
 								/>
 							)}
-						</form.Field> */}
+						</form.Field>
 						<form.Field
 							name="coc_acknowledged"
 							validators={{
