@@ -1,6 +1,6 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useState } from "react";
-import { Form, NavLink } from "react-router";
+import { Form, Link, NavLink } from "react-router";
 import MENU from "~/lib/menu";
 import { cn } from "~/lib/utils";
 import { useRootLoaderData } from "~/root";
@@ -65,16 +65,14 @@ export const Header = () => {
 									</Form>
 								</div>
 							) : (
-								// <Link to="/login">
-								// 	<button
-								// 		type="button"
-								// 		className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
-								// 	>
-								// 		Login
-								// 	</button>
-								// </Link>
-								// biome-ignore lint/complexity/noUselessFragments: make it easier to uncomment later
-								<></>
+								<Link to="/login">
+									<button
+										type="button"
+										className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+									>
+										Login
+									</button>
+								</Link>
 							)}
 						</li>
 					</ul>
@@ -107,16 +105,14 @@ export const Header = () => {
 							</Form>
 						</div>
 					) : (
-						// <Link to="/login">
-						// 	<button
-						// 		type="button"
-						// 		className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
-						// 	>
-						// 		Login
-						// 	</button>
-						// </Link>
-						// biome-ignore lint/complexity/noUselessFragments: make it easier to uncomment later
-						<></>
+						<Link to="/login">
+							<button
+								type="button"
+								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+							>
+								Login
+							</button>
+						</Link>
 					)}
 				</div>
 
