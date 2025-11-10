@@ -493,8 +493,9 @@ export const UserProfileSection = ({
 								name="bio"
 								validators={{
 									onSubmit: ({ value }) => {
-										return value.trim().length < 10
-											? "bio cannot be empty and has to be at least 10 characters"
+										return value.trim().length < 10 ||
+											value.trim().length > 1000
+											? "bio cannot be empty and has to be at least 10 characters and maximum 1000 characters"
 											: undefined;
 									},
 								}}
