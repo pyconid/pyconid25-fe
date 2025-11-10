@@ -119,7 +119,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 			const json = await res.json();
 			console.log({ status: res.status, message: JSON.stringify(json) });
 			const clientError = clientErrorSchema.parse(json);
-			console.log({ status: res.status, message: JSON.stringify(clientError) });
+			// console.log({ status: res.status, message: JSON.stringify(clientError) });
 			clientError.message = "Invalid data, please check the form fields.";
 			return {
 				success: false,
