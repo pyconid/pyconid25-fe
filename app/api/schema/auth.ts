@@ -37,3 +37,28 @@ export const oAuthScema = z.object({
 	code: z.string().min(1, "Code should be not empty"),
 	state: z.string().min(1, "State should be not empty"),
 });
+
+export type ForgotPasswordSchema = z.infer<typeof forgotPasswordSchema>;
+export const forgotPasswordSchema = z.object({
+	email: z.string().min(1, "Email should be not empty"),
+});
+
+export type ResetPasswordSchema = z.infer<typeof resetPasswordSchema>;
+export const resetPasswordSchema = z.object({
+	token: z.string(),
+	new_password: z.string().min(8, "Password should be at least 8 characters"),
+});
+
+export type ResetPasswordWithConfirmPasswordSchema = z.infer<
+	typeof resetPasswordWithConfirmPasswordSchema
+>;
+export const resetPasswordWithConfirmPasswordSchema = resetPasswordSchema
+	.extend({
+		confirm_password: z
+			.string()
+			.min(8, "Password should be at least 8 characters"),
+	})
+	.refine((data) => data.new_password === data.confirm_password, {
+		message: "Passwords do not match",
+		path: ["confirm_password"],
+	});
