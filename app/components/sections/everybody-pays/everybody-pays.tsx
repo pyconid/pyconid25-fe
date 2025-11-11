@@ -48,12 +48,12 @@ export const EverybodyPaysSection: FC = () => (
 								possible by sponsorship and other corporate ticket buyers to
 								make the price more accessible for people with stricter budgets.
 							</li>
-							<li>
+							{/* <li>
 								We bring in (airfare, accommodations) both foreign and local
 								speakers to share their knowledge and experience to our
 								participants. This makes PyCon PH a global experience despite
 								being a local one!
-							</li>
+							</li> */}
 							<li>
 								The venue, food, videographer, marketing collateral, etc. cost a
 								lot of money. Without sponsors and corporate ticket buyers, we
