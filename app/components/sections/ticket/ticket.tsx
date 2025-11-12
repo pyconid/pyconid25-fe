@@ -61,7 +61,6 @@ export const Ticket = ({
 				))}
 			</div>
 			<TicketBuyForm selectedTicket={selectedTicket} />
-			<Footer />
 		</main>
 	);
 };
