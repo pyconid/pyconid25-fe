@@ -1,0 +1,132 @@
+import {
+	type ActionFunctionArgs,
+	Form,
+	redirect,
+	useNavigation,
+} from "react-router";
+import z from "zod";
+import { resetPassword } from "~/api/endpoint/.server/auth";
+import { resetPasswordWithConfirmPasswordSchema } from "~/api/schema/auth";
+import {
+	commitMessageSession,
+	getMessageSession,
+} from "~/services/sessions/message.server";
+
+export function meta() {
+	return [
+		{ title: "PyCon ID 2025 Reset Password" },
+		{
+			name: "PyCon ID 2025 Reset Password Page",
+			content: "Reset Password page",
+		},
+	];
+}
+
+export const action = async ({ request }: ActionFunctionArgs) => {
+	const referer = request.headers.get("referer");
+	const messageSession = await getMessageSession(request.headers.get("Cookie"));
+
+	const url = new URL(request.url);
+	const token = url.searchParams.get("token");
+
+	if (!token) {
+		messageSession.flash("toast", {
+			title: "Oops!",
+			message: "No token found!",
+			type: "error",
+		});
+
+		return redirect("/login", {
+			headers: {
+				"Set-Cookie": await commitMessageSession(messageSession),
+			},
+		});
+	}
+
+	const formData = await request.formData();
+	const new_password = String(formData.get("new_password"));
+	const confirm_password = String(formData.get("confirm_password"));
+	const payload = { token, new_password, confirm_password };
+
+	try {
+		const validatedForm =
+			resetPasswordWithConfirmPasswordSchema.safeParse(payload);
+		if (!validatedForm.success) {
+			const error = z.prettifyError(validatedForm.error);
+			throw new Error(error);
+		}
+
+		const body = { token, new_password };
+		const response = await resetPassword({ body });
+		const data: { message?: string } = await response.json();
+		if (!response.ok) throw new Error(data?.message || response.statusText);
+
+		messageSession.flash("toast", {
+			title: "Success!",
+			message: data?.message || "Password reset successfully!",
+			type: "success",
+		});
+
+		return redirect("/login", {
+			headers: {
+				"Set-Cookie": await commitMessageSession(messageSession),
+			},
+		});
+	} catch (error) {
+		console.error("error", error);
+		messageSession.flash("toast", {
+			title: "Oops!",
+			message: (error as Error)?.message,
+			type: "error",
+		});
+
+		return redirect(referer ?? "/login", {
+			headers: {
+				"Set-Cookie": await commitMessageSession(messageSession),
+			},
+		});
+	}
+};
+
+export default function ResetPasswordPage() {
+	const navigation = useNavigation();
+	const isSubmitting = navigation.state === "submitting";
+
+	return (
+		<main className="w-full">
+			<Form method="POST" className="space-y-3 w-full">
+				<div className="flex flex-col">
+					<label htmlFor="new_password" className="text-sm font-bold mb-1">
+						Password
+					</label>
+					<input
+						id="new_password"
+						name="new_password"
+						placeholder="Enter password"
+						type="password"
+						className="border border-black/15 rounded-sm bg-neutral-100 w-full h-12 text-neutral-500 pl-4 text-2xl"
+					/>
+				</div>
+				<div className="flex flex-col">
+					<label htmlFor="confirm_password" className="text-sm font-bold mb-1">
+						Confirm Password
+					</label>
+					<input
+						id="confirm_password"
+						name="confirm_password"
+						placeholder="Enter confirm password"
+						type="password"
+						className="border border-black/15 rounded-sm bg-neutral-100 w-full h-12 text-neutral-500 pl-4 text-2xl"
+					/>
+				</div>
+				<button
+					type="submit"
+					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80 disabled:bg-secondary/50 disabled:cursor-not-allowed"
+					disabled={isSubmitting}
+				>
+					{isSubmitting ? "Loading..." : "Reset Password"}
+				</button>
+			</Form>
+		</main>
+	);
+}

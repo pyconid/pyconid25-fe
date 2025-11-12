@@ -58,6 +58,8 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 	return null;
 };
 
+const pathnames = ["/login", "/register"];
+
 export default function AuthLayout() {
 	const matches = useMatches();
 	const handle: AuthLayoutHanleProps = useMergeHanlde({
@@ -89,56 +91,63 @@ export default function AuthLayout() {
 
 						<Outlet />
 
-						<div className="flex items-center w-full h-7 my-8">
-							<div className="flex-grow border-t border-neutral-300"></div>
-							<span className="px-4 text-neutral-300">or</span>
-							<div className="flex-grow border-t border-neutral-300"></div>
-						</div>
+						{pathnames.includes(pathname) && (
+							<>
+								<div className="flex items-center w-full h-7 my-8">
+									<div className="flex-grow border-t border-neutral-300"></div>
+									<span className="px-4 text-neutral-300">or</span>
+									<div className="flex-grow border-t border-neutral-300"></div>
+								</div>
 
-						<div className="w-full grid grid-cols-2 gap-4">
-							{/* <LoginOAuth
-								title="Continue with Google"
-								image="/svg/google-logo.svg"
-								provider="google"
-							/>
-							<LoginOAuth
-								title="Continue with Github"
-								image="/svg/github-logo.svg"
-								provider="github"
-							/> */}
+								<div className="w-full grid grid-cols-2 gap-4">
+									{/* <LoginOAuth
+											title="Continue with Google"
+											image="/svg/google-logo.svg"
+											provider="google"
+										/>
+										<LoginOAuth
+											title="Continue with Github"
+											image="/svg/github-logo.svg"
+											provider="github"
+										/> */}
 
-							<p className="col-span-full w-max mx-auto">
-								{pathname === "/login" ? (
-									<>
-										Belum memiliki akun?{" "}
-										<Link to="/register" className="underline text-secondary">
-											Register
-										</Link>
-									</>
-								) : (
-									<>
-										Sudah memiliki akun?{" "}
-										<Link to="/login" className="underline text-secondary">
-											Login
-										</Link>
-									</>
-								)}
-							</p>
-						</div>
+									<p className="col-span-full w-max mx-auto">
+										{pathname === "/login" ? (
+											<>
+												Belum memiliki akun?{" "}
+												<Link
+													to="/register"
+													className="underline text-secondary"
+												>
+													Register
+												</Link>
+											</>
+										) : (
+											<>
+												Sudah memiliki akun?{" "}
+												<Link to="/login" className="underline text-secondary">
+													Login
+												</Link>
+											</>
+										)}
+									</p>
+								</div>
 
-						<div className="text-sm mt-12 text-center font-medium">
-							<p className="text-center">
-								By creating this account you agree to our
-							</p>
-							<a
-								href="https://pycon.id/code-of-conduct"
-								target="_blank"
-								rel="noreferrer noopener"
-								className="underline text-secondary"
-							>
-								Code of Conduct
-							</a>
-						</div>
+								<div className="text-sm mt-12 text-center font-medium">
+									<p className="text-center">
+										By creating this account you agree to our
+									</p>
+									<a
+										href="https://pycon.id/code-of-conduct"
+										target="_blank"
+										rel="noreferrer noopener"
+										className="underline text-secondary"
+									>
+										Code of Conduct
+									</a>
+								</div>
+							</>
+						)}
 					</div>
 
 					<div className="absolute right-0 top-0 bg-primary text-background px-12 py-2 rounded-bl-3xl font-display text-2xl font-bold rounded-tl-md">

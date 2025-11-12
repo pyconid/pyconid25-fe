@@ -1,5 +1,7 @@
 import type {
+	ForgotPasswordSchema,
 	OAuthSchema,
+	ResetPasswordSchema,
 	SignInSchema,
 	SignUpSchema,
 	VerifyEmailSchema,
@@ -31,4 +33,26 @@ export const githubSignin = async () => {
 
 export const verifyGithub = async ({ params }: { params: OAuthSchema }) => {
 	return await http.post("/auth/github/verified/", { params, withAuth: false });
+};
+
+export const forgotPassword = async ({
+	body,
+}: {
+	body: ForgotPasswordSchema;
+}) => {
+	return await http.post("/auth/email/forgot-password/", {
+		body,
+		withAuth: false,
+	});
+};
+
+export const resetPassword = async ({
+	body,
+}: {
+	body: ResetPasswordSchema;
+}) => {
+	return await http.post("/auth/email/reset-password/", {
+		body,
+		withAuth: false,
+	});
 };
