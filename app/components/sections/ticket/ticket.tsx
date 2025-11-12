@@ -2,7 +2,6 @@ import type { Route } from ".react-router/types/app/routes/+types/ticket";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import type { TicketType } from "~/api/schema/ticket";
-import { Footer } from "~/components/layouts/navigation/footer";
 import { TicketBuyForm } from "~/components/shared/ticket-card/ticket-buy-form";
 import { TicketCard } from "~/components/shared/ticket-card/ticket-card";
 
