@@ -1,4 +1,4 @@
-import { Form, useNavigation } from "react-router";
+import { Form, Link, useNavigation } from "react-router";
 import { StrategyOptions } from "~/services/auth/strategy";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
@@ -53,6 +53,13 @@ export default function Login() {
 				>
 					{isSubmitting ? "Loading..." : "Login to Your Account"}
 				</button>
+
+				<p className="text-end">
+					Lupa password?{" "}
+					<Link to="/forgot-password" className="underline text-secondary">
+						Reset Password
+					</Link>
+				</p>
 			</Form>
 		</main>
 	);
