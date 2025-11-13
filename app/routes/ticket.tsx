@@ -4,6 +4,7 @@ import { ticket as ticketApi } from "~/api/endpoint/.server/ticket";
 import { createPaymentSuccessSchema } from "~/api/schema/payment";
 import { TicketsResponseSchema } from "~/api/schema/ticket";
 import { Main as MainLayout } from "~/components/layouts/app/main";
+import { Footer } from "~/components/layouts/navigation/footer";
 import { Ticket } from "~/components/sections/ticket/ticket";
 import { authenticator } from "~/services/auth/$.server";
 import type { Route } from "./+types/ticket";
@@ -72,6 +73,7 @@ export default function TicketPage(componentProps: Route.ComponentProps) {
 	return (
 		<MainLayout className="bg-[#F1F1F1]">
 			<Ticket componentProps={componentProps} />
+			<Footer />
 		</MainLayout>
 	);
 }
