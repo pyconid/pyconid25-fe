@@ -31,6 +31,7 @@ export default [
 		route("/dashboard", "routes/auth/dashboard.tsx"),
 		route("/user-profile", "routes/auth/user-profile.tsx"),
 		route("/payment", "routes/auth/payment.tsx"),
+		route("/payment/:paymentId", "routes/auth/payment/$paymentId.tsx"),
 		...prefix(":provider", [
 			index("routes/auth/$provider/index.tsx"),
 			route("/callback", "routes/auth/$provider/callback.tsx"),
