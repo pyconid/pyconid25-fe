@@ -30,6 +30,7 @@ export const paymentResponseSchema = z.object({
 
 export const createPaymentSchema = z.object({
 	ticket_id: z.string(),
+	voucher_code: z.string().nullable().optional().default(null),
 });
 
 export type CreatePaymentSchema = z.infer<typeof createPaymentSchema>;
@@ -46,3 +47,9 @@ export const createPaymentSuccessSchema = z.object({
 export type CreatePaymentSuccessSchema = z.infer<
 	typeof createPaymentSuccessSchema
 >;
+
+export const getPaymentVoucherValidateSchema = z.object({
+	code: z.string(),
+	value: z.number(),
+	type: z.string().nullable(),
+});
