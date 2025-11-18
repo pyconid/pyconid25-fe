@@ -36,6 +36,16 @@ export default [
 			route("/callback", "routes/auth/$provider/callback.tsx"),
 		]),
 	]),
+	...prefix("cms", [
+		layout("routes/layouts/cms.tsx", [
+			route("/", "routes/cms/home.tsx"),
+			route("/voucher", "routes/cms/voucher.tsx"),
+			route("/voucher/create", "routes/cms/voucher-create.tsx"),
+			route("/voucher/:id/edit", "routes/cms/voucher-edit.tsx"),
+			route("/speaker", "routes/cms/speaker.tsx"),
+			// route("/schedule", "routes/cms/schedule.tsx"),
+		]),
+	]),
 	route("/email-verification", "routes/email-verification.tsx"),
 
 	// route("/500", "routes/not-foucnd.tsx"),

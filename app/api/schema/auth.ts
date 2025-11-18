@@ -62,3 +62,11 @@ export const resetPasswordWithConfirmPasswordSchema = resetPasswordSchema
 		message: "Passwords do not match",
 		path: ["confirm_password"],
 	});
+
+export const meSchema = z.object({
+	id: z.string(),
+	username: z.string(),
+	participant_type: z.string().nullable(),
+});
+
+export type MeSchema = z.infer<typeof meSchema>;
