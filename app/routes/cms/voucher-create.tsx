@@ -26,6 +26,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	const value = formData.get("value");
 	const quota = formData.get("quota");
 	const rawType = formData.get("type");
+	const rawEmails = formData.get("email_whitelist");
 	const is_active = !!formData.get("is_active");
 
 	let type: ParticipantType | null = null;
@@ -38,12 +39,30 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		}
 	}
 
+	let email_whitelist: { emails: string[] } | null = null;
+
+	if (typeof rawEmails === "string") {
+		const emails = rawEmails
+			.split(",")
+			.map((e) => e.trim())
+			.filter((e) => e.length > 0);
+
+		if (emails.length > 0) {
+			email_whitelist = { emails };
+		} else {
+			email_whitelist = null;
+		}
+	} else {
+		email_whitelist = null;
+	}
+
+
 	const json = {
 		code: typeof code === "string" ? code : "",
 		value: value ? Number(value) : null,
 		quota: quota ? Number(quota) : 0,
 		type,
-		email_whitelist: null,
+		email_whitelist,
 		is_active: is_active,
 	};
 
@@ -154,6 +173,18 @@ export default function VoucherCreatePage(
 					errorMessage={
 						actionData?.clientError?.errors
 							.filter((item) => item.field === "type")
+							.map((item) => item.message)
+							.join(", ") || undefined
+					}
+				/>
+				<Input
+					id="email_whitelist"
+					name="email_whitelist"
+					label="Allowed emails (comma separated)"
+					placeholder="example1@mail.com, example2@mail.com"
+					errorMessage={
+						actionData?.clientError?.errors
+							.filter((item) => item.field === "email_whitelist")
 							.map((item) => item.message)
 							.join(", ") || undefined
 					}
