@@ -56,7 +56,6 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		email_whitelist = null;
 	}
 
-
 	const json = {
 		code: typeof code === "string" ? code : "",
 		value: value ? Number(value) : null,

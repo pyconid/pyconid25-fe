@@ -209,9 +209,7 @@ export default function VoucherCreatePage(
 					name="email_whitelist"
 					label="Allowed emails (comma separated)"
 					placeholder="example1@mail.com, example2@mail.com"
-					defaultValue={
-						voucher.email_whitelist?.emails?.join(", ") ?? ""
-					}
+					defaultValue={voucher.email_whitelist?.emails?.join(", ") ?? ""}
 					errorMessage={
 						actionData?.clientError?.errors
 							.filter((item) => item.field === "email_whitelist")
