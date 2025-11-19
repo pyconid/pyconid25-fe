@@ -9,6 +9,7 @@ import {
 export default [
 	index("routes/home.tsx"),
 	route("/call-for-proposal", "routes/call-for-proposal.tsx"),
+	route("/cfp", "routes/cfp.tsx"),
 	route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
 	route("/code-of-conduct", "routes/code-of-conduct.tsx"),
 	route("/terms-of-service", "routes/terms-of-service.tsx"),
