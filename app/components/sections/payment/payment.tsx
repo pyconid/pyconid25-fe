@@ -38,14 +38,18 @@ export const PaymentSection = ({
 								<td className="p-2">{txn.ticket ? txn.ticket.name : "-"}</td>
 								<td className="p-2">{txn.status}</td>
 								<td className="p-2">
-									<a
-										href={txn.payment_link}
-										className="text-blue-600 underline"
-										target="_blank"
-										rel="noopener noreferrer"
-									>
-										{txn.payment_link}
-									</a>
+									{txn.payment_link !== null ? (
+										<a
+											href={txn.payment_link}
+											className="text-blue-600 underline"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											{txn.payment_link}
+										</a>
+									) : (
+										"no payment link"
+									)}
 								</td>
 							</tr>
 						))}
