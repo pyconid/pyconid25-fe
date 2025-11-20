@@ -89,6 +89,9 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		}
 
 		const data = createPaymentSuccessSchema.parse(await res.json());
+		if (!data.payment_link) {
+			return redirect("/auth/payment");
+		}
 		return redirect(data.payment_link);
 	} else if (intent === "apply-voucher") {
 		const voucher_code = formData.get("voucher_code");
