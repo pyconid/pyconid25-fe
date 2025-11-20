@@ -6,7 +6,20 @@ import { clientErrorSchema } from "~/api/schema/shared";
 import { VoucherResultSchema } from "~/api/schema/voucher";
 import { Checkbox } from "~/components/sections/cms-voucher/checkbox";
 import { Input } from "~/components/sections/cms-voucher/input";
+import { Select } from "~/components/sections/cms-voucher/select";
 import type { Route } from "./+types/voucher-edit";
+
+const PARTICIPANT_TYPES = [
+	"Keynote Speaker",
+	"Speaker",
+	"Organizer",
+	"Volunteer",
+	"Sponsor",
+	"Community",
+	"Patron",
+] as const;
+
+type ParticipantType = (typeof PARTICIPANT_TYPES)[number];
 
 export const loader = async ({ params, request }: Route.LoaderArgs) => {
 	const { id } = params;
@@ -34,14 +47,45 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	const code = formData.get("code");
 	const value = formData.get("value");
 	const quota = formData.get("quota");
-	const type = formData.get("type");
+	const rawType = formData.get("type");
+	const rawEmails = formData.get("email_whitelist");
 	const is_active = !!formData.get("is_active");
+
+	let type: ParticipantType | null = null;
+
+	if (typeof rawType === "string" && rawType.trim() !== "") {
+		if ((PARTICIPANT_TYPES as readonly string[]).includes(rawType)) {
+			type = rawType as ParticipantType;
+		} else {
+			// Optional: if someone tampers with the form we could:
+			// - keep it null, or
+			// - throw, or
+			// - map to an error
+			type = null;
+		}
+	}
+
+	let email_whitelist: { emails: string[] } | null = null;
+
+	if (typeof rawEmails === "string") {
+		const emails = rawEmails
+			.split(",")
+			.map((e) => e.trim())
+			.filter((e) => e.length > 0);
+
+		if (emails.length > 0) {
+			email_whitelist = { emails };
+		} else {
+			email_whitelist = null;
+		}
+	}
+
 	const json = {
 		code: typeof code === "string" ? code : "",
 		value: value ? Number(value) : null,
 		quota: quota ? Number(quota) : 0,
-		type: typeof type === "string" ? type : null,
-		email_whitelist: null,
+		type,
+		email_whitelist,
 		is_active: is_active,
 	};
 	console.log(id);
@@ -138,18 +182,40 @@ export default function VoucherCreatePage(
 					}
 					defaultValue={voucher.quota?.toString()}
 				/>
-				<Input
+				<Select
 					id="type"
 					name="type"
 					label="participant type"
-					placeholder="type"
+					placeholder="Select participant type"
+					defaultValue={voucher.type ?? null}
+					options={[
+						{ value: "Keynote Speaker", label: "Keynote Speaker" },
+						{ value: "Speaker", label: "Speaker" },
+						{ value: "Organizer", label: "Organizer" },
+						{ value: "Volunteer", label: "Volunteer" },
+						{ value: "Sponsor", label: "Sponsor" },
+						{ value: "Community", label: "Community" },
+						{ value: "Patron", label: "Patron" },
+					]}
 					errorMessage={
 						actionData?.clientError?.errors
 							.filter((item) => item.field === "type")
 							.map((item) => item.message)
 							.join(", ") || undefined
 					}
-					defaultValue={voucher.type || ""}
+				/>
+				<Input
+					id="email_whitelist"
+					name="email_whitelist"
+					label="Allowed emails (comma separated)"
+					placeholder="example1@mail.com, example2@mail.com"
+					defaultValue={voucher.email_whitelist?.emails?.join(", ") ?? ""}
+					errorMessage={
+						actionData?.clientError?.errors
+							.filter((item) => item.field === "email_whitelist")
+							.map((item) => item.message)
+							.join(", ") || undefined
+					}
 				/>
 				<Checkbox
 					id="is_active"

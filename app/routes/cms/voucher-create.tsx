@@ -5,26 +5,69 @@ import { createVoucher } from "~/api/endpoint/.server/voucher";
 import { clientErrorSchema } from "~/api/schema/shared";
 import { Checkbox } from "~/components/sections/cms-voucher/checkbox";
 import { Input } from "~/components/sections/cms-voucher/input";
+import { Select } from "~/components/sections/cms-voucher/select";
 import type { Route } from "./+types/voucher-create";
+
+const PARTICIPANT_TYPES = [
+	"Keynote Speaker",
+	"Speaker",
+	"Organizer",
+	"Volunteer",
+	"Sponsor",
+	"Community",
+	"Patron",
+] as const;
+
+type ParticipantType = (typeof PARTICIPANT_TYPES)[number];
 
 export const action = async ({ request }: Route.ActionArgs) => {
 	const formData = await request.formData();
 	const code = formData.get("code");
 	const value = formData.get("value");
 	const quota = formData.get("quota");
-	const type = formData.get("type");
+	const rawType = formData.get("type");
+	const rawEmails = formData.get("email_whitelist");
 	const is_active = !!formData.get("is_active");
+
+	let type: ParticipantType | null = null;
+
+	if (typeof rawType === "string" && rawType.trim() !== "") {
+		if ((PARTICIPANT_TYPES as readonly string[]).includes(rawType)) {
+			type = rawType as ParticipantType;
+		} else {
+			type = null;
+		}
+	}
+
+	let email_whitelist: { emails: string[] } | null = null;
+
+	if (typeof rawEmails === "string") {
+		const emails = rawEmails
+			.split(",")
+			.map((e) => e.trim())
+			.filter((e) => e.length > 0);
+
+		if (emails.length > 0) {
+			email_whitelist = { emails };
+		} else {
+			email_whitelist = null;
+		}
+	} else {
+		email_whitelist = null;
+	}
+
 	const json = {
 		code: typeof code === "string" ? code : "",
 		value: value ? Number(value) : null,
 		quota: quota ? Number(quota) : 0,
-		type: typeof type === "string" ? type : null,
-		email_whitelist: null,
+		type,
+		email_whitelist,
 		is_active: is_active,
 	};
 
 	console.log(json);
 	const res = await createVoucher({ request, json });
+
 	if (res.status === 422) {
 		const json = await res.json();
 		console.error("Validation error:", json);
@@ -111,14 +154,36 @@ export default function VoucherCreatePage(
 							.join(", ") || undefined
 					}
 				/>
-				<Input
+				<Select
 					id="type"
 					name="type"
 					label="participant type"
-					placeholder="type"
+					placeholder="Select participant type"
+					defaultValue={null}
+					options={[
+						{ value: "Keynote Speaker", label: "Keynote Speaker" },
+						{ value: "Speaker", label: "Speaker" },
+						{ value: "Organizer", label: "Organizer" },
+						{ value: "Volunteer", label: "Volunteer" },
+						{ value: "Sponsor", label: "Sponsor" },
+						{ value: "Community", label: "Community" },
+						{ value: "Patron", label: "Patron" },
+					]}
 					errorMessage={
 						actionData?.clientError?.errors
 							.filter((item) => item.field === "type")
+							.map((item) => item.message)
+							.join(", ") || undefined
+					}
+				/>
+				<Input
+					id="email_whitelist"
+					name="email_whitelist"
+					label="Allowed emails (comma separated)"
+					placeholder="example1@mail.com, example2@mail.com"
+					errorMessage={
+						actionData?.clientError?.errors
+							.filter((item) => item.field === "email_whitelist")
 							.map((item) => item.message)
 							.join(", ") || undefined
 					}
