@@ -7,7 +7,7 @@ export const DashboardSection = ({
 }: {
 	componentProps: Route.ComponentProps;
 }) => {
-	const { userProfile } = componentProps.loaderData;
+	const { userProfile, me } = componentProps.loaderData;
 
 	const formatLocation = () => {
 		const city = userProfile.city?.name || "";
@@ -58,6 +58,14 @@ export const DashboardSection = ({
 						>
 							My Ticket
 						</NavLink>
+						{me.participant_type === "Management" && (
+							<NavLink
+								to="/cms"
+								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+							>
+								CMS Dashboard
+							</NavLink>
+						)}
 					</div>
 				</div>
 				{/* Profile */}

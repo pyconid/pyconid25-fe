@@ -56,3 +56,7 @@ export const resetPassword = async ({
 		withAuth: false,
 	});
 };
+
+export const getMe = async ({ request }: { request: Request }) => {
+	return await http.get("/auth/me/", { request });
+};
