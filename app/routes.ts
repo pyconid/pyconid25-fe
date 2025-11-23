@@ -9,6 +9,7 @@ import {
 export default [
 	index("routes/home.tsx"),
 	route("/call-for-proposal", "routes/call-for-proposal.tsx"),
+	route("/cfp", "routes/cfp.tsx"),
 	route("/call-for-sponsor", "routes/call-for-sponsor.tsx"),
 	route("/code-of-conduct", "routes/code-of-conduct.tsx"),
 	route("/terms-of-service", "routes/terms-of-service.tsx"),
@@ -37,7 +38,20 @@ export default [
 			route("/callback", "routes/auth/$provider/callback.tsx"),
 		]),
 	]),
+	...prefix("cms", [
+		layout("routes/layouts/cms.tsx", [
+			route("/", "routes/cms/home.tsx"),
+			route("/voucher", "routes/cms/voucher.tsx"),
+			route("/voucher/create", "routes/cms/voucher-create.tsx"),
+			route("/voucher/:id/edit", "routes/cms/voucher-edit.tsx"),
+			route("/speaker", "routes/cms/speaker.tsx"),
+			route("/speaker/create", "routes/cms/speaker-create.tsx"),
+			route("/speaker/:id/edit", "routes/cms/speaker-edit.tsx"),
+			// route("/schedule", "routes/cms/schedule.tsx"),
+		]),
+	]),
 	route("/email-verification", "routes/email-verification.tsx"),
+	route("/api/token", "routes/api/token.tsx"),
 
 	// route("/500", "routes/not-foucnd.tsx"),
 	route("/*", "routes/not-found.tsx"),

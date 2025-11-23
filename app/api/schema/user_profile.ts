@@ -129,3 +129,19 @@ export const updateUserProfileSchema = z.object({
 	share_my_interest: z.string().nullable().optional(), // boolean as string "true" / "false",
 	share_my_public_social_media: z.string().nullable().optional(), // boolean as string "true" / "false",
 });
+
+export const getUserProfileSearchSchema = z.object({
+	results: z.array(
+		z.object({
+			id: z.string(),
+			username: z.string().nullable(),
+			first_name: z.string().nullable(),
+			last_name: z.string().nullable(),
+			email: z.string().nullable(),
+		}),
+	),
+});
+
+export type GetUserProfileSearchSchema = z.infer<
+	typeof getUserProfileSearchSchema
+>;

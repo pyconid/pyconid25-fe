@@ -14,3 +14,18 @@ export const createPayment = async ({
 }) => {
 	return await http.post("/payment/", { body, request });
 };
+
+export const getPaymentVoucherValidate = async ({
+	code,
+	request,
+}: {
+	code: string;
+	request: Request;
+}) => {
+	return await http.get("/payment/voucher/validate", {
+		params: {
+			code,
+		},
+		request,
+	});
+};

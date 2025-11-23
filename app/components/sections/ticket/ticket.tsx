@@ -22,8 +22,9 @@ export const Ticket = ({
 	const actionData = componentProps.actionData;
 
 	useEffect(() => {
-		if (actionData?.clientError) {
-			toast.error(actionData.clientError);
+		const buy_ticket = actionData?.buy_ticket;
+		if (buy_ticket?.clientError) {
+			toast.error(buy_ticket.clientError);
 		}
 	}, [actionData]);
 	const [ticketState] = useState<TicketType[]>(ticket.results);
@@ -59,7 +60,11 @@ export const Ticket = ({
 					</div>
 				))}
 			</div>
-			<TicketBuyForm selectedTicket={selectedTicket} />
+			<TicketBuyForm
+				selectedTicket={selectedTicket}
+				reducePrice={actionData?.apply_voucher?.success?.value}
+				isValidVoucher={!!actionData?.apply_voucher?.success}
+			/>
 		</main>
 	);
 };
