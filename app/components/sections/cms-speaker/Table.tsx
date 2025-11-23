@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Form, Link } from "react-router";
 import type { ResultSpeakerType } from "~/api/schema/speaker";
 
 export const Table = ({ data }: { data: ResultSpeakerType }) => {
@@ -34,10 +34,21 @@ export const Table = ({ data }: { data: ResultSpeakerType }) => {
 							{/* Actions such as Edit/Delete can be placed here */}
 							<Link
 								to={`/cms/speaker/${speaker.id}/edit`}
-								className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600"
+								className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600 hover:cursor-pointer"
 							>
 								Edit
 							</Link>
+							<Form method="post" className="inline">
+								<input type="hidden" name="id" value={speaker.id} />
+								<button
+									type="submit"
+									name="intent"
+									value="delete"
+									className="bg-red-500 text-white rounded-lg px-4 py-2 hover:bg-red-600 ml-2 hover:cursor-pointer"
+								>
+									Delete
+								</button>
+							</Form>
 						</td>
 					</tr>
 				))}

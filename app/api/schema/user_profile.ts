@@ -133,6 +133,8 @@ export const updateUserProfileSchema = z.object({
 export const getUserProfileSearchSchema = z.object({
 	results: z.array(
 		z.object({
+			id: z.string(),
+			username: z.string().nullable(),
 			first_name: z.string().nullable(),
 			last_name: z.string().nullable(),
 			email: z.string().nullable(),

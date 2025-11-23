@@ -4,16 +4,41 @@ import { Form, Link, redirect, useNavigation } from "react-router";
 import { toast } from "sonner";
 import { getSpeakerType } from "~/api/endpoint/.client/speaker_type";
 import { getUserProfileSearch } from "~/api/endpoint/.client/user_profile";
-import { postSpeaker } from "~/api/endpoint/.server/speaker";
+import {
+	getSpeakerById,
+	updateSpeakerById,
+} from "~/api/endpoint/.server/speaker";
 import { clientErrorSchema } from "~/api/schema/shared";
+import { getSpeakerByIdSchema } from "~/api/schema/speaker";
 import { getSpeakerTypeSchema } from "~/api/schema/speaker_type";
 import { getUserProfileSearchSchema } from "~/api/schema/user_profile";
 import { DropdownSearch } from "~/components/sections/cms-speaker/dropdownSearch";
 import { Select } from "~/components/sections/cms-speaker/select";
-import type { Route } from "./+types/speaker-create";
+import type { Route } from "./+types/speaker-edit";
+
+export const loader = async ({ params, request }: Route.LoaderArgs) => {
+	const { id } = params;
+	if (!id) {
+		return redirect("/cms/speaker");
+	}
+	const res = await getSpeakerById({ request, id });
+	if (res.status === 404) {
+		return redirect("/cms/speaker");
+	}
+	if (!res.ok) {
+		console.error("Failed to get speaker:", res.statusText);
+		throw new Response("something wrong with server", { status: 500 });
+	}
+	const jsonDetailSpeaker = await res.json();
+
+	return {
+		speaker: getSpeakerByIdSchema.parse(jsonDetailSpeaker),
+	};
+};
 
 export const action = async ({ request }: Route.ActionArgs) => {
 	const formData = await request.formData();
+	const id = formData.get("id") as string;
 	const user_id = formData.get("user_id") as string;
 	const speaker_type_id = formData.get("speaker_type_id") as string | null;
 
@@ -22,7 +47,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 		speaker_type_id,
 	};
 
-	const res = await postSpeaker({ request, body: json });
+	const res = await updateSpeakerById({ request, id, body: json });
 
 	if (res.status === 422) {
 		const json = await res.json();
@@ -43,6 +68,10 @@ export const action = async ({ request }: Route.ActionArgs) => {
 			clientError,
 			serverError: null,
 		};
+	} else if (res.status === 404) {
+		const json = await res.json();
+		console.error("Not found error:", json);
+		throw new Response("Not found", { status: 404 });
 	}
 
 	if (!res.ok) {
@@ -56,9 +85,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	return redirect("/cms/speaker");
 };
 
-export default function SpeakerCreatePage(
-	componentProps: Route.ComponentProps,
-) {
+export default function SpeakerEditPage(componentProps: Route.ComponentProps) {
+	const { speaker } = componentProps.loaderData;
 	const actionData = componentProps.actionData;
 	const navigation = useNavigation();
 
@@ -72,8 +100,18 @@ export default function SpeakerCreatePage(
 			value: string;
 		} | null;
 	}>({
-		user: null,
-		speaker_type: null,
+		user: speaker.user
+			? {
+					label: `${speaker.user.first_name ?? ""} ${speaker.user.last_name ?? ""} (${speaker.user.email ?? ""})`,
+					value: speaker.user.id,
+				}
+			: null,
+		speaker_type: speaker.speaker_type
+			? {
+					label: speaker.speaker_type.name,
+					value: speaker.speaker_type.id,
+				}
+			: null,
 	});
 
 	// query and mutation
@@ -112,8 +150,9 @@ export default function SpeakerCreatePage(
 
 	return (
 		<div className="max-w-[500px] border border-gray-500 rounded-lg p-4">
-			<h1 className="text-2xl font-bold mb-4">Create Speaker</h1>
+			<h1 className="text-2xl font-bold mb-4">Update Speaker</h1>
 			<Form method="post" className="flex flex-col gap-2">
+				<input type="hidden" name="id" value={speaker.id} />
 				<DropdownSearch
 					id="user_id"
 					label="user"
@@ -145,7 +184,7 @@ export default function SpeakerCreatePage(
 					name="speaker_type_id"
 					label="speaker type"
 					placeholder="Select speaker type"
-					defaultValue={null}
+					defaultValue={speaker.speaker_type?.id || null}
 					options={
 						speakerTypeQuery.data?.results.map((item) => ({
 							label: item.name,
@@ -171,7 +210,7 @@ export default function SpeakerCreatePage(
 						className="bg-blue-500 text-white rounded-lg px-4 py-2 hover:bg-blue-600"
 						disabled={navigation.state === "submitting"}
 					>
-						Create
+						Update
 					</button>
 				</div>
 			</Form>

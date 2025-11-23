@@ -21,7 +21,7 @@ export const Pagination = ({
 			{pages.map((page) => (
 				<Link
 					key={page}
-					to={`/cms/speaker?page=${page}&page_size=${page_size}${search ? `&search=${search}` : ""}`}
+					to={`/cms/speaker?page=${page}&page_size=${page_size}${search && search !== "" ? `&search=${search}` : ""}`}
 					className={`px-3 py-1 rounded ${
 						page === currentPage
 							? "bg-blue-500 text-white"

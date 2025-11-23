@@ -45,6 +45,7 @@ export default [
 			route("/voucher/:id/edit", "routes/cms/voucher-edit.tsx"),
 			route("/speaker", "routes/cms/speaker.tsx"),
 			route("/speaker/create", "routes/cms/speaker-create.tsx"),
+			route("/speaker/:id/edit", "routes/cms/speaker-edit.tsx"),
 			// route("/schedule", "routes/cms/schedule.tsx"),
 		]),
 	]),
