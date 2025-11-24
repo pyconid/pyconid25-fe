@@ -40,10 +40,12 @@ export class HTTP {
 		this.authorization = "";
 	}
 
-	private readonly baseAPI: string;
+	protected baseAPI: string;
 	protected authorization: string;
 
 	protected async processRequest(_request: Request) {}
+
+	protected async setAuthorization() {}
 
 	private async client({
 		baseAPI = "",
@@ -58,8 +60,15 @@ export class HTTP {
 		url: string;
 		method: RequestMethodType;
 	}): Promise<Response> {
-		if (request) await this.processRequest(request);
+		if (baseAPI) {
+			this.baseAPI = baseAPI;
+		}
 		let apiUrl = (baseAPI || this.baseAPI) + url;
+		if (request) {
+			await this.processRequest(request);
+		} else {
+			await this.setAuthorization();
+		}
 
 		const headers: HeadersInit = {};
 		if (withAuth && this.authorization) {
