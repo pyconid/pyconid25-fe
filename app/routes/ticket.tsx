@@ -22,67 +22,15 @@ export function meta() {
 	];
 }
 
-const fallbackTicketResponse = TicketsResponseSchema.parse({
-	results: [
-		{
-			id: "standard",
-			name: "Standard Pass",
-			price: 750_000,
-			user_participant_type: "general",
-			is_sold_out: false,
-			description: "Full access to PyCon ID 2025 conference day sessions.",
-		},
-		{
-			id: "early-bird",
-			name: "Early Bird",
-			price: 650_000,
-			user_participant_type: "general",
-			is_sold_out: false,
-			description: "Discounted pass limited to early registrants.",
-		},
-		{
-			id: "workshop",
-			name: "Workshop Add-on",
-			price: 250_000,
-			user_participant_type: "addon",
-			is_sold_out: false,
-			description: "Hands-on workshop sessions with mentors.",
-		},
-		{
-			id: "student",
-			name: "Student Pass",
-			price: 400_000,
-			user_participant_type: "student",
-			is_sold_out: false,
-			description: "Special pricing for active students (ID required).",
-		},
-		{
-			id: "student gacor",
-			name: "Student Pass",
-			price: 400_000,
-			user_participant_type: "student",
-			is_sold_out: false,
-			description: "Special pricing for active students (ID required).",
-		},
-	],
-});
-
 export const loader = async () => {
-	try {
-		const ticketData = await ticketApi();
-		if (!ticketData.ok) {
-			throw new Error(`Ticket API responded with ${ticketData.status}`);
-		}
-		const ticketJson = TicketsResponseSchema.parse(await ticketData.json());
-		return {
-			ticket: ticketJson,
-		};
-	} catch (error) {
-		console.error("ticket loader falling back to dummy data:", error);
-		return {
-			ticket: fallbackTicketResponse,
-		};
+	const ticketData = await ticketApi();
+	if (!ticketData.ok) {
+		throw new Response("Failed to fetch tickets", { status: 500 });
 	}
+	const ticketJson = TicketsResponseSchema.parse(await ticketData.json());
+	return {
+		ticket: ticketJson,
+	};
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
