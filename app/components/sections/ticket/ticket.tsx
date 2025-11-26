@@ -40,11 +40,11 @@ export const Ticket = ({
 			<h1 className="text-[#224083] text-3xl font-bold pb-10">
 				Buy PyCon ID 2025 Ticket
 			</h1>
-			<div className="max-w-[1100px] mx-auto flex flex-col items-center gap-4">
+			<div className="flex flex-wrap justify-center content-start gap-4">
 				{nestedTickets.map((ticketRow) => (
 					<div
 						key={ticketRow[0].id}
-						className="flex flex-col lg:flex-row gap-4 justify-center"
+						className="w-full flex flex-col lg:flex-row gap-4 justify-center"
 					>
 						{ticketRow.map((ticket) => (
 							<TicketCard
