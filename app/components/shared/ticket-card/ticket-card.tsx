@@ -33,17 +33,26 @@ export const TicketCard = ({
 				onClick(id);
 			}}
 		>
-			<div>{isSelected ? <TicketBgBlue /> : <TicketBgGray />}</div>
-			<div className="absolute top-0 py-6 px-10 flex flex-col gap-4">
-				<h2 className="text-center text-[#F27F20] text-2xl font-bold">
+			<div className="lg:w-[533px] lg:h-[388px] lg:px-6 md:w-full w-full px-4">
+				{isSelected ? <TicketBgBlue /> : <TicketBgGray />}
+			</div>
+			<div className="absolute inset-0 flex flex-col items-center p-4 md:p-8 lg:p-10">
+				<h2 className="text-center text-[#F27F20] text-xl md:text-2xl font-bold mb-2">
 					{name}
 				</h2>
-				<h3 className="text-center text-[#224083] text-3xl font-bold">
+
+				<h3 className="text-center text-[#224083] text-2xl md:text-3xl font-bold mb-4">
 					{formatRupiah(price)}
 				</h3>
-				<p className="text-left" style={{ whiteSpace: "pre-line" }}>
-					{description}
-				</p>
+
+				<div className="w-full text-left px-6 md:px-10">
+					<p
+						className="text-[11px] md:text-base text-gray-800 leading-relaxed"
+						style={{ whiteSpace: "pre-line" }}
+					>
+						{description}
+					</p>
+				</div>
 			</div>
 		</div>
 	);
