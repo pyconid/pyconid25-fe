@@ -75,7 +75,7 @@ export const HeroSection: FC = () => {
 						</h1>
 						<div className="text-primary font-bold">
 							<p className="text-2xl">Dec 13th-14th, 2025</p>
-							<p>Jakarta, Indonesia</p>
+							<p>Trilogi University, Jakarta</p>
 						</div>
 					</div>
 				</div>

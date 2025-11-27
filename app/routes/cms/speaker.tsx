@@ -16,6 +16,8 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 		page: Number(searchParams.get("page") || "1"),
 		page_size: Number(searchParams.get("page_size") || "5"),
 		search: searchParams.get("search") || undefined,
+		order_dir: "desc", // Default to descending order
+		all: true,
 	});
 	if (listSpeakerRes.status !== 200) {
 		console.error(
