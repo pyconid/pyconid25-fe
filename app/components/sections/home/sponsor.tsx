@@ -26,7 +26,9 @@ export const SponsorSection = () => {
 
 					<div className="p-5 text-center text-bold text-blue-900 text-2xl max-w-2xl">
 						<div>
-							<h3 className="mb-5 font-display font-bold">Our Sponsors</h3>
+							<h2 className="mb-5 font-display font-bold text-4xl">
+								Our Sponsors
+							</h2>
 							<div className="grid grid-cols-1 gap-5">
 								{/* Ultimate Sponsor Section */}
 								<div className="grid grid-cols-1 w-full items-center justify-center gap-5">
@@ -54,7 +56,7 @@ export const SponsorSection = () => {
 										<img
 											src="/images/logo-navicat.webp"
 											alt="Navicat"
-											className="object-cover max-h-40 mx-auto"
+											className="object-cover max-h-50 mx-auto"
 										/>
 									</a>
 								</div>
