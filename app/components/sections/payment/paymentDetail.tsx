@@ -1,19 +1,24 @@
+import type { Route } from ".react-router/types/app/routes/auth/payment/+types/$paymentId"
 import { ETicketCard } from "~/components/shared/ticket-card/e-ticket-card";
 
-export function PaymentDetail(){
+export function PaymentDetailSection({
+	componentProps,
+}: {
+	componentProps: Route.ComponentProps;
+}) {
   
-  return (
-    <section className="bg-[#F1F1F1]">
-      <div className="flex container justify-center m-auto pt-[6vh] sm:pt-[23vh]">
-        <div className="flex flex-col items-center justify-center gap-y-4">
-          <div className="font-display text-4xl text-[#224083] font-bold">
-            PyCon ID 2025 E-Ticket
-          </div>
-          <ETicketCard />
-        </div>
-       
-      </div>
-      
-    </section>
-  )
+  const { user, ticket} = componentProps.loaderData.payment;
+
+	return (
+		<section className="bg-[#F1F1F1]">
+			<div className="flex container justify-center m-auto pt-[6vh] sm:pt-[23vh]">
+				<div className="flex flex-col items-center justify-center gap-y-4">
+					<div className="font-display text-4xl text-[#224083] font-bold">
+						PyCon ID 2025 E-Ticket
+					</div>
+					<ETicketCard user={user} participantType={ticket?.participant_type} tShirtSize={"L"} />
+				</div>
+			</div>
+		</section>
+	);
 }

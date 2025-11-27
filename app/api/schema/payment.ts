@@ -9,6 +9,7 @@ export const paymentUserSchema = z.object({
 export const paymentTicketSchema = z.object({
 	id: z.string(),
 	name: z.string(),
+	participant_type: z.string()
 });
 
 export const PaymentResultSchema = z.object({
