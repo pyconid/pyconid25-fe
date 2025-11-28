@@ -63,7 +63,7 @@ export const ETicketCard = ({ user, participantType }: Props) => {
 					</div>
 				</div>
 				<div>
-					<div className="flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg">
+					<div className="flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg mt-6 md:mt-0">
 						<img src="/svg/ticket.svg" alt="ticket icon" className="w-5 h-5" />
 						<p>Event Details</p>
 					</div>
