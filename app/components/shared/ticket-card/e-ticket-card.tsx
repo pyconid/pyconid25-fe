@@ -66,7 +66,9 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 					</div>
 				</div>
 				<div>
-					<div className={`flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg ${user.t_shirt_size?"mt-6 md:mt-0":"mt-11 md:mt-0"}`}>
+					<div
+						className={`flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg ${user.t_shirt_size ? "mt-6 md:mt-0" : "mt-11 md:mt-0"}`}
+					>
 						<img src="/svg/ticket.svg" alt="ticket icon" className="w-5 h-5" />
 						<p>Event Details</p>
 					</div>
