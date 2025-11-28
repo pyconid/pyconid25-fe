@@ -6,7 +6,7 @@ export function PaymentDetailSection({
 }: {
 	componentProps: Route.ComponentProps;
 }) {
-	const { user, ticket } = componentProps.loaderData.payment;
+	const { user, ticket, id } = componentProps.loaderData.payment;
 
 	return (
 		<section className="bg-[#F1F1F1]">
@@ -15,7 +15,7 @@ export function PaymentDetailSection({
 					<div className="font-display text-4xl text-[#224083] font-bold text-center">
 						PyCon ID 2025 E-Ticket
 					</div>
-					<ETicketCard user={user} participantType={ticket?.participant_type} />
+					<ETicketCard user={user} paymentId={id} participantType={ticket?.participant_type} />
 				</div>
 			</div>
 		</section>
