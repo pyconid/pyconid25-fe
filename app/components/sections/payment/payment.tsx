@@ -1,4 +1,5 @@
 import type { Route } from ".react-router/types/app/routes/auth/+types/payment";
+import { Eye } from "lucide-react";
 import { Link } from "react-router";
 
 export const PaymentSection = ({
@@ -46,6 +47,20 @@ export const PaymentSection = ({
 											rel="noopener noreferrer"
 										>
 											{txn.payment_link}
+										</a>
+									) : (
+										"no payment link"
+									)}
+								</td>
+								<td className="p-2">
+									{txn.status === "paid" ? (
+										<a
+											href={`/auth/payment/${txn.id}`}
+											className="text-blue-600 underline"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Eye className="w-5 h-5" />
 										</a>
 									) : (
 										"no payment link"

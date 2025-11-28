@@ -4,12 +4,13 @@ export const paymentUserSchema = z.object({
 	id: z.string(),
 	first_name: z.string(),
 	last_name: z.string(),
+	t_shirt_size: z.string().optional(),
 });
 
 export const paymentTicketSchema = z.object({
 	id: z.string(),
 	name: z.string(),
-	participant_type: z.string()
+	participant_type: z.string(),
 });
 
 export const PaymentResultSchema = z.object({
