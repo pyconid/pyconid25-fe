@@ -1,6 +1,8 @@
 import type { Route } from ".react-router/types/app/routes/auth/+types/dashboard";
 import { NavLink } from "react-router";
 import { Footer } from "~/components/layouts/navigation/footer";
+import { parseProfileImage } from "~/lib/utils";
+import { useRootLoaderData } from "~/root";
 
 export const DashboardSection = ({
 	componentProps,
@@ -8,6 +10,7 @@ export const DashboardSection = ({
 	componentProps: Route.ComponentProps;
 }) => {
 	const { userProfile, me } = componentProps.loaderData;
+	const rootData = useRootLoaderData();
 
 	const formatLocation = () => {
 		const city = userProfile.city?.name || "";
@@ -33,9 +36,17 @@ export const DashboardSection = ({
 			<div className="border-2 rounded-lg border-[#224083] bg-white">
 				{/* User */}
 				<div className="flex flex-col items-center md:flex-row p-8 gap-5 border-b-2 border-[#224083]">
-					<div className="w-32 h-32 rounded-full object-cover border-4 border-[#224083] grid place-items-center text-2xl bg-gray-600 text-white font-bold">
-						{(userProfile.first_name?.charAt(0).toUpperCase() || "") +
-							(userProfile.last_name?.charAt(0).toUpperCase() || "")}
+					<div className="w-32 h-32 rounded-full object-cover border-4 border-[#224083] grid place-items-center text-2xl bg-gray-600 text-white font-bold overflow-hidden">
+						{userProfile?.profile_picture ? (
+							<img
+								src={parseProfileImage({ token: rootData.credentials?.token })}
+								className="size-full object-cover"
+								alt=""
+							/>
+						) : (
+							(userProfile.first_name?.charAt(0).toUpperCase() || "") +
+							(userProfile.last_name?.charAt(0).toUpperCase() || "")
+						)}
 					</div>
 					<div className="flex flex-col gap-1 justify-items-start items-center md:items-start">
 						<h2 className="text-lg text-[#224083] font-bold">

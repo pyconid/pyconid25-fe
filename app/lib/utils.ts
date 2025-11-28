@@ -12,3 +12,9 @@ export const formatRupiah = (amount: number) => {
 		minimumFractionDigits: 0,
 	}).format(amount);
 };
+
+export const parseProfileImage = ({ token }: { token?: string }) => {
+	if (!token) return "";
+	const url = import.meta.env.VITE_BASE_API;
+	return `${url}/user-profile/${token}/profile-picture`;
+};
