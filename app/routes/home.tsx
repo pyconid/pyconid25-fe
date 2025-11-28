@@ -1,5 +1,6 @@
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
+import { CommunitySection } from "~/components/sections/home/community";
 import { HeroSection } from "~/components/sections/home/hero";
 // import { OurTeamSection } from "~/components/sections/home/our-team";
 // import { ScheduleSection } from "~/components/sections/home/schedule";
@@ -23,6 +24,7 @@ export default function Home() {
 			{/* <ScheduleSection /> */}
 			<SpeakersSection />
 			<SponsorSection />
+			<CommunitySection />
 			{/* <OurTeamSection /> */}
 			<Footer />
 		</main>
