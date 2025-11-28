@@ -15,7 +15,11 @@ export function PaymentDetailSection({
 					<div className="font-display text-4xl text-[#224083] font-bold text-center">
 						PyCon ID 2025 E-Ticket
 					</div>
-					<ETicketCard user={user} paymentId={id} participantType={ticket?.participant_type} />
+					<ETicketCard
+						user={user}
+						paymentId={id}
+						participantType={ticket?.participant_type}
+					/>
 				</div>
 			</div>
 		</section>

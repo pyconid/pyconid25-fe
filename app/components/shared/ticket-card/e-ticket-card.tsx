@@ -9,7 +9,7 @@ type Props = {
 		t_shirt_size?: string;
 	};
 	participantType?: string;
-  paymentId: string;
+	paymentId: string;
 };
 
 export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
@@ -34,7 +34,7 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 				</div>
 				<div className="flex flex-col md:flex-row gap-y-2 md:gap-x-5 items-center md:justify-center">
 					<QRCodeSVG value={paymentId} className="w-40 h-40" />
-          <div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-md font-normal mt-8 md:mt-0">
+					<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-md font-normal mt-8 md:mt-0">
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
 							<p className="">
 								User Id<span className="hidden md:inline">:</span>
@@ -55,14 +55,14 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 							</p>
 							<p className="font-semibold">{participantType}</p>
 						</div>
-						{
-						 user.t_shirt_size && <div className="flex flex-col md:flex-row gap-y-1 md:gap-x-3">
+						{user.t_shirt_size && (
+							<div className="flex flex-col md:flex-row gap-y-1 md:gap-x-3">
 								<p>
 									T-shirt Size<span className="hidden md:inline">:</span>
 								</p>
 								<p className="font-semibold">{user.t_shirt_size}</p>
 							</div>
-						}
+						)}
 					</div>
 				</div>
 				<div>
