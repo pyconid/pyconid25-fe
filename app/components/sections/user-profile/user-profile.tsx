@@ -15,6 +15,8 @@ import {
 	statesSchema,
 } from "~/api/schema/locations";
 import { Footer } from "~/components/layouts/navigation/footer";
+import { parseProfileImage } from "~/lib/utils";
+import { useRootLoaderData } from "~/root";
 import { Checkbox } from "./checkbox";
 import { Dropdown } from "./dropdown";
 import { DropdownSearch } from "./dropdownSearch";
@@ -32,6 +34,8 @@ export const UserProfileSection = ({
 }) => {
 	const { industries, jobs, userProfile } = componentProps.loaderData;
 	const actionData = componentProps.actionData;
+
+	const rootData = useRootLoaderData();
 
 	useEffect(() => {
 		if (actionData?.success === true) {
@@ -204,6 +208,12 @@ export const UserProfileSection = ({
 		}
 	};
 
+	useEffect(() => {
+		if (userProfile?.profile_picture) {
+			setPreviewImg(parseProfileImage({ token: rootData.credentials?.token }));
+		}
+	}, [userProfile, rootData?.credentials]);
+
 	return (
 		<main className="max-w-[1000px] mx-auto px-4">
 			<Link
@@ -215,7 +225,11 @@ export const UserProfileSection = ({
 			<h1 className="text-[#224083] text-3xl font-bold text-center">
 				Account Dashboard
 			</h1>
-			<Form method="post" onSubmit={() => form.handleSubmit()}>
+			<Form
+				method="post"
+				encType="multipart/form-data"
+				onSubmit={() => form.handleSubmit()}
+			>
 				<div className="flex justify-center my-6">
 					<label htmlFor="profile_picture">
 						<input
