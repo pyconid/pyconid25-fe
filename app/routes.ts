@@ -20,6 +20,7 @@ export default [
 	route("/tickets", "routes/tickets.tsx"),
 	route("/tiket", "routes/tiket.tsx"),
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
+	route("/schedules", "routes/schedules.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
 		route("/register", "routes/register.tsx"),
@@ -44,13 +45,10 @@ export default [
 			route("/voucher/create", "routes/cms/voucher-create.tsx"),
 			route("/voucher/:id/edit", "routes/cms/voucher-edit.tsx"),
 			route("/speaker", "routes/cms/speaker.tsx"),
-			route("/speaker/create", "routes/cms/speaker-create.tsx"),
-			route("/speaker/:id/edit", "routes/cms/speaker-edit.tsx"),
 			// route("/schedule", "routes/cms/schedule.tsx"),
 		]),
 	]),
 	route("/email-verification", "routes/email-verification.tsx"),
-	route("/api/token", "routes/api/token.tsx"),
 
 	// route("/500", "routes/not-foucnd.tsx"),
 	route("/*", "routes/not-found.tsx"),
