@@ -1,9 +1,13 @@
 import { useMemo } from "react";
 import { Form, Link, Outlet, redirect, useLocation } from "react-router";
 import { twMerge } from "tailwind-merge";
-import { getMe } from "~/api/endpoint/.server/auth";
+import { getMe, signOut } from "~/api/endpoint/.server/auth";
 import { meSchema } from "~/api/schema/auth";
 import { authenticator } from "~/services/auth/$.server";
+import {
+	commitMessageSession,
+	getMessageSession,
+} from "~/services/sessions/message.server";
 import type { Route } from "./+types/cms";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
@@ -13,10 +17,21 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 	}
 	const res = await getMe({ request });
 	if (res.status === 401) {
-		authenticator.logout(request, {
-			redirectTo: "/",
+		await signOut(request);
+		const sessionMessage = await getMessageSession(
+			request.headers.get("Cookie"),
+		);
+		sessionMessage.flash("toast", {
+			message: "Token expired, please login again.",
+			variant: "default",
+			title: "Logout success!",
 		});
-		return redirect("/login");
+		return await authenticator.logout(request, {
+			redirectTo: "/",
+			headers: {
+				"Set-Cookie": await commitMessageSession(sessionMessage),
+			},
+		});
 	}
 	if (res.status !== 200) {
 		console.error("Failed to fetch user data", res.status, await res.text());
