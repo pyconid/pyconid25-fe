@@ -15,6 +15,8 @@ import {
 	statesSchema,
 } from "~/api/schema/locations";
 import { Footer } from "~/components/layouts/navigation/footer";
+import { parseProfileImage } from "~/lib/utils";
+import { useRootLoaderData } from "~/root";
 import { Checkbox } from "./checkbox";
 import { Dropdown } from "./dropdown";
 import { DropdownSearch } from "./dropdownSearch";
@@ -32,6 +34,8 @@ export const UserProfileSection = ({
 }) => {
 	const { industries, jobs, userProfile } = componentProps.loaderData;
 	const actionData = componentProps.actionData;
+
+	const rootData = useRootLoaderData();
 
 	useEffect(() => {
 		if (actionData?.success === true) {
@@ -191,6 +195,25 @@ export const UserProfileSection = ({
 		},
 	});
 
+	const [previewImg, setPreviewImg] = useState<string | null>(null);
+
+	const onImageChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
+		const images = evt.target?.files ?? [];
+		if (images.length > 0) {
+			const fr = new FileReader();
+			fr.onload = () => {
+				setPreviewImg(fr.result?.toString() ?? null);
+			};
+			fr.readAsDataURL(images[0]);
+		}
+	};
+
+	useEffect(() => {
+		if (userProfile?.profile_picture) {
+			setPreviewImg(parseProfileImage({ token: rootData.credentials?.token }));
+		}
+	}, [userProfile, rootData?.credentials]);
+
 	return (
 		<main className="max-w-[1000px] mx-auto px-4">
 			<Link
@@ -202,13 +225,35 @@ export const UserProfileSection = ({
 			<h1 className="text-[#224083] text-3xl font-bold text-center">
 				Account Dashboard
 			</h1>
-			<div className="flex justify-center my-6">
-				<div className="w-32 h-32 rounded-full object-cover border-4 border-[#224083] grid place-items-center text-2xl bg-gray-600 text-white font-bold">
-					{(userProfile.first_name?.charAt(0).toUpperCase() || "") +
-						(userProfile.last_name?.charAt(0).toUpperCase() || "")}
+			<Form
+				method="post"
+				encType="multipart/form-data"
+				onSubmit={() => form.handleSubmit()}
+			>
+				<div className="flex justify-center my-6">
+					<label htmlFor="profile_picture">
+						<input
+							type="file"
+							id="profile_picture"
+							name="profile_picture"
+							hidden
+							onChange={onImageChange}
+							accept="image/*"
+						/>
+						<div className="w-32 h-32 rounded-full object-cover border-4 border-[#224083] grid place-items-center text-2xl bg-gray-600 text-white font-bold overflow-hidden">
+							{previewImg ? (
+								<img
+									src={previewImg}
+									className="size-full object-cover"
+									alt=""
+								/>
+							) : (
+								(userProfile.first_name?.charAt(0).toUpperCase() || "") +
+								(userProfile.last_name?.charAt(0).toUpperCase() || "")
+							)}
+						</div>
+					</label>
 				</div>
-			</div>
-			<Form method="post" onSubmit={() => form.handleSubmit()}>
 				{/* Profile */}
 				<div className="py-4">
 					<h2 className="text-[#224083] text-2xl font-bold">Profile</h2>
