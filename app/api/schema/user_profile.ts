@@ -91,7 +91,7 @@ export const getUserProfileSchema = z.object({
 export type GetUserProfileSchema = z.infer<typeof getUserProfileSchema>;
 
 export const updateUserProfileSchema = z.object({
-	profile_picture: z.string().nullable().optional(),
+	profile_picture: z.instanceof(File).optional(),
 	first_name: z.string(),
 	last_name: z.string(),
 	job_category: z.string(),

@@ -20,7 +20,10 @@ export const TicketBuyForm = ({
 	}, [selectedTicket, reducePrice]);
 
 	return (
-		<div className="max-w-[1100px] mx-auto pt-14 flex flex-col gap-6 px-4">
+		<div
+			className="max-w-[1100px] mx-auto pt-14 flex flex-col gap-6 px-4"
+			id="ticket-buy-form"
+		>
 			<h3 className="text-left">Apply your voucher to get discount</h3>
 			<Form
 				method="POST"

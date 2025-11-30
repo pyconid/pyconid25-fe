@@ -20,6 +20,7 @@ export default [
 	route("/tickets", "routes/tickets.tsx"),
 	route("/tiket", "routes/tiket.tsx"),
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
+	route("/schedules", "routes/schedules.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
 		route("/register", "routes/register.tsx"),
@@ -28,10 +29,12 @@ export default [
 	]),
 
 	...prefix("auth", [
-		route("/logout", "routes/auth/logout.tsx"),
-		route("/dashboard", "routes/auth/dashboard.tsx"),
-		route("/user-profile", "routes/auth/user-profile.tsx"),
-		route("/payment", "routes/auth/payment.tsx"),
+		layout("routes/layouts/protected.tsx", [
+			route("/logout", "routes/auth/logout.tsx"),
+			route("/dashboard", "routes/auth/dashboard.tsx"),
+			route("/user-profile", "routes/auth/user-profile.tsx"),
+			route("/payment", "routes/auth/payment.tsx"),
+		]),
 		...prefix(":provider", [
 			index("routes/auth/$provider/index.tsx"),
 			route("/callback", "routes/auth/$provider/callback.tsx"),
