@@ -31,7 +31,7 @@ export const SessionCard = ({ onClick }: SessionCardProps) => {
 						</div>
 						<p className="text-sm">Livia Torff</p>
 					</div>
-					<span className="font-bold px-4 py-2 bg-[#F37F2040] rounded-lg text-[10px]">
+					<span className="font-bold px-4 py-2 bg-[#F37F2040] rounded-lg text-[10px] inline-block md:hidden">
 						Keynote Talk
 					</span>
 				</div>
