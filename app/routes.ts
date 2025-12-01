@@ -29,16 +29,12 @@ export default [
 	]),
 
 	...prefix("auth", [
-		route("/logout", "routes/auth/logout.tsx"),
-		route("/dashboard", "routes/auth/dashboard.tsx"),
-		route("/user-profile", "routes/auth/user-profile.tsx"),
-		route("/payment", "routes/auth/payment.tsx"),
-		route("/payment/:paymentId", "routes/auth/payment/$paymentId.tsx"),
 		layout("routes/layouts/protected.tsx", [
 			route("/logout", "routes/auth/logout.tsx"),
 			route("/dashboard", "routes/auth/dashboard.tsx"),
 			route("/user-profile", "routes/auth/user-profile.tsx"),
 			route("/payment", "routes/auth/payment.tsx"),
+			route("/payment/:paymentId", "routes/auth/payment/$paymentId.tsx"),
 		]),
 		...prefix(":provider", [
 			index("routes/auth/$provider/index.tsx"),

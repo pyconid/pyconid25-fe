@@ -27,6 +27,10 @@ export const loader = async ({ request, params }: Route.LoaderArgs) => {
 	const dataPayment = await getPaymentDetail(paymentId);
 	const jsonPayment = await dataPayment.json();
 	const payment = paymentDetailResponseSchema.parse(jsonPayment);
+	
+	if (payment.status !== "paid"){
+	  return redirect("/auth/payment")
+	}
 
 	return { payment };
 };
