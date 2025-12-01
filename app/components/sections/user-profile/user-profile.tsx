@@ -834,7 +834,18 @@ export const UserProfileSection = ({
 					<div className="w-full h-[2px] bg-[#224083]"></div>
 					<div className="flex flex-col gap-4 pt-6">
 						<div className="flex flex-col md:flex-row gap-4">
-							<form.Field name="website">
+							<form.Field
+								name="website"
+								validators={{
+									onSubmit: ({ value }) => {
+										if (!value) return undefined;
+										const regex = /^https?:\/\//i;
+										return !regex.test(value)
+											? "Website URL must start with http:// or https://"
+											: undefined;
+									},
+								}}
+							>
 								{(field) => (
 									<Input
 										id={field.name}
@@ -844,10 +855,12 @@ export const UserProfileSection = ({
 										onChange={(e) => field.handleChange(e.target.value)}
 										value={field.state.value}
 										errorMessage={
+											field.state.meta.errors?.join(", ") ||
 											actionData?.clientError?.errors
 												.filter((item) => item.field === "website")
 												.map((item) => item.message)
-												.join(", ") || undefined
+												.join(", ") ||
+											undefined
 										}
 									/>
 								)}

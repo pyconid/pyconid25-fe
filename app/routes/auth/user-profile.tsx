@@ -63,7 +63,12 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	}
 	const formData = new FormData();
 	for (const [key, value] of (await request.formData()).entries()) {
-		if (key === "profile_picture" && value && typeof value !== "string") {
+		if (
+			key === "profile_picture" &&
+			value &&
+			typeof value !== "string" &&
+			(value?.size || 0) > 0
+		) {
 			formData.append(key, value);
 		}
 		if (typeof value === "string" && value.trim() !== "") {
