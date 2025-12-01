@@ -33,6 +33,11 @@ export const Ticket = ({
 
 	const onSelectTicket = (id: string) => {
 		setSelectedTicket(ticketState.find((ticket) => ticket.id === id) || null);
+		// Scroll to checkout form
+		const formElement = document.getElementById("ticket-buy-form");
+		if (formElement) {
+			formElement.scrollIntoView({ behavior: "smooth" });
+		}
 	};
 
 	return (
