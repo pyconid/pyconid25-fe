@@ -26,14 +26,17 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 		},
 	];
 
+	// Ensure speakers.results exists and is an array
+	const speakersResults = speakers?.results || [];
+
 	// Group speakers from API by speaker_type
-	const shortTalkSpeakers = speakers.results.filter(
+	const shortTalkSpeakers = speakersResults.filter(
 		(speaker) =>
 			speaker.speaker_type?.name?.toLowerCase().includes("short") ?? false,
 	);
 
 	// Regular talk speakers are those that have a speaker_type but are not keynote or short talk
-	const regularTalkSpeakers = speakers.results.filter((speaker) => {
+	const regularTalkSpeakers = speakersResults.filter((speaker) => {
 		const hasType = !!speaker.speaker_type?.name;
 		const isNotKeynote = !speaker.speaker_type?.name
 			?.toLowerCase()
@@ -46,9 +49,14 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 
 	// Helper function to get full name
 	const getFullName = (speaker: SpeakerData["results"][0]) => {
+		if (!speaker?.user) return "Unknown Speaker";
 		const firstName = speaker.user.first_name || "";
 		const lastName = speaker.user.last_name || "";
-		return `${firstName} ${lastName}`.trim() || speaker.user.username;
+		return (
+			`${firstName} ${lastName}`.trim() ||
+			speaker.user.username ||
+			"Unknown Speaker"
+		);
 	};
 
 	// Map regular and short talk speakers for OurTeamCard
@@ -174,8 +182,8 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 					</h1>
 				</div>
 
-				<div className="flex justify-center pb-4 px-5 2xl:px-0 overflow-x-hidden">
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl justify-items-center">
+				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
 						{mappedRegularTalkSpeakers.length > 0 ? (
 							mappedRegularTalkSpeakers.map((speaker) => {
 								const { id, ...speakerProps } = speaker;
@@ -206,8 +214,8 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 					</h1>
 				</div>
 
-				<div className="flex justify-center pb-4 px-5 2xl:px-0 overflow-x-hidden">
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl justify-items-center">
+				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
+					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
 						{mappedShortTalkSpeakers.length > 0 ? (
 							mappedShortTalkSpeakers.map((speaker) => {
 								const { id, ...speakerProps } = speaker;
@@ -215,7 +223,7 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 							})
 						) : (
 							<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
-								No short talk speakers available
+								No regular talk speakers available
 							</div>
 						)}
 					</div>
