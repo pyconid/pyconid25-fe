@@ -6,9 +6,9 @@ type Props = {
 		id: string;
 		first_name: string;
 		last_name: string;
-		t_shirt_size?: string;
+		t_shirt_size?: string | null;
 	};
-	participantType?: string;
+	participantType?: string | null;
 	paymentId: string;
 };
 
@@ -34,12 +34,12 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 				</div>
 				<div className="flex flex-col md:flex-row gap-y-2 md:gap-x-5 items-center md:justify-center">
 					<QRCodeSVG value={paymentId} className="w-40 h-40" />
-					<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-md font-normal mt-8 md:mt-0">
+					<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-base font-normal mt-8 md:mt-0">
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
 							<p className="">
 								User Id<span className="hidden md:inline">:</span>
 							</p>
-							<p className="font-semibold">{user?.id}</p>
+							<p className="font-semibold">{user.id}</p>
 						</div>
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3 ">
 							<p>
@@ -72,17 +72,17 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 						<img src="/svg/ticket.svg" alt="ticket icon" className="w-5 h-5" />
 						<p>Event Details</p>
 					</div>
-					<div className="flex flex-col gap-y-2 font-sans text-black text-md font-semibold">
+					<div className="flex flex-col gap-y-2 font-sans text-black">
 						<div>
-							<p>Date</p>
+							<p className="text-base font-semibold">Date</p>
 							<p className="font-light text-sm">
 								Saturday - Sunday, December 13th - 14th, 2025
 							</p>
 						</div>
 						<div>
-							<p>Location</p>
+							<p className="text-base font-semibold">Location</p>
+							<p className="font-semibold text-sm">Universitas Trilogi</p>
 							<p className="font-light text-sm">
-								<p>Universitas Trilogi,</p>
 								Jl. TMP. Kalibata No.1, RT.4/RW.04, Duren Tiga, Kec. Pancoran,
 								Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12760
 							</p>

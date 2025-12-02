@@ -66,7 +66,7 @@ export const resetPasswordWithConfirmPasswordSchema = resetPasswordSchema
 export const meSchema = z.object({
 	id: z.string(),
 	username: z.string(),
-	participant_type: z.string().nullable(),
+	participant_type: z.string().nullable().optional(),
 });
 
 export type MeSchema = z.infer<typeof meSchema>;
