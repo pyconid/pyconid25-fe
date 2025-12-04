@@ -9,6 +9,12 @@ export const Table = ({ data }: { data: getScheduleCmsResultResponseType }) => {
 			<thead className="bg-gray-100">
 				<tr>
 					<th className="px-4 py-2 text-left font-semibold text-gray-700">
+						Start
+					</th>
+					<th className="px-4 py-2 text-left font-semibold text-gray-700">
+						End
+					</th>
+					<th className="px-4 py-2 text-left font-semibold text-gray-700">
 						Title
 					</th>
 					<th className="px-4 py-2 text-left font-semibold text-gray-700">
@@ -31,6 +37,30 @@ export const Table = ({ data }: { data: getScheduleCmsResultResponseType }) => {
 			<tbody>
 				{data.map((schedule) => (
 					<tr key={schedule.id} className="border-t">
+						<td className="px-4 py-2">
+							{schedule.start
+								? new Date(schedule.start).toLocaleDateString("id-ID", {
+										weekday: "long",
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+										hour: "2-digit",
+										minute: "2-digit",
+									})
+								: "-"}
+						</td>
+						<td className="px-4 py-2">
+							{schedule.end
+								? new Date(schedule.end).toLocaleDateString("id-ID", {
+										weekday: "long",
+										year: "numeric",
+										month: "long",
+										day: "numeric",
+										hour: "2-digit",
+										minute: "2-digit",
+									})
+								: "-"}
+						</td>
 						<td className="px-4 py-2">{schedule.title}</td>
 						<td className="px-4 py-2">
 							{schedule.speaker?.user.first_name ?? ""}{" "}
