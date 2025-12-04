@@ -27,32 +27,38 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	const messageSession = await getMessageSession(request.headers.get("Cookie"));
 	// Collect all form data and convert to JSON
 	const formData = await request.formData();
+	const getValue = (value: FormDataEntryValue | null) => {
+		const str = typeof value === "string" ? value.trim() : "";
+		return str === "" ? null : value;
+	};
 	const json = {
-		title: formData.get("title"),
-		speaker_id: formData.get("speaker_id"),
-		room_id: formData.get("room_id"),
-		schedule_type_id: formData.get("schedule_type_id"),
-		description: formData.get("description"),
-		presentation_language: formData.get("presentation_language"),
-		slide_language: formData.get("slide_language"),
-		slide_link: formData.get("slide_link"),
+		title: getValue(formData.get("title")),
+		speaker_id: getValue(formData.get("speaker_id")),
+		room_id: getValue(formData.get("room_id")),
+		schedule_type_id: getValue(formData.get("schedule_type_id")),
+		description: getValue(formData.get("description")),
+		presentation_language: getValue(formData.get("presentation_language")),
+		slide_language: getValue(formData.get("slide_language")),
+		slide_link: getValue(formData.get("slide_link")),
 		tags:
 			(formData.get("tags") as string | null)
 				?.split(",")
-				.map((tag) => tag.trim()) || [],
+				.map((tag) => tag.trim())
+				.filter((tag) => tag !== "")
+				.map((tag) => (tag === "" ? null : tag)) || [],
 		start:
-			formData.get("start_date") +
+			getValue(formData.get("start_date")) +
 			" " +
-			formData.get("start_hour") +
+			getValue(formData.get("start_hour")) +
 			":" +
-			formData.get("start_minute") +
+			getValue(formData.get("start_minute")) +
 			":00",
 		end:
-			formData.get("end_date") +
+			getValue(formData.get("end_date")) +
 			" " +
-			formData.get("end_hour") +
+			getValue(formData.get("end_hour")) +
 			":" +
-			formData.get("end_minute") +
+			getValue(formData.get("end_minute")) +
 			":00",
 	};
 
