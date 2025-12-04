@@ -46,7 +46,7 @@ export const Footer = () => {
 									</a>
 								</p>
 							</div>
-							<p className="text-white mr-5 text-sm sm:text-md">
+							<p className="text-white mr-5 text-sm sm:text-base">
 								PyCon ID 2025 is organized by volunteers, so it may take more
 								time for us to reply to inquiries. Thank you for your patience.
 							</p>

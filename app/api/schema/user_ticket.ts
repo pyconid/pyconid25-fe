@@ -1,10 +1,31 @@
 import { z } from "zod";
-import { PaymentResultSchema } from "./payment";
+import { paymentTicketSchema, paymentUserSchema } from "./payment";
 
-export const userTicketSchema = z.object({
-	tiket_id: z.string(),
-	participant_name: z.string(),
+export const paymentVoucherSchema = z.object({
+	value: z.number(),
 	participant_type: z.string(),
 });
 
-export const paymentDetailResponseSchema = PaymentResultSchema;
+export const paymentDetailSchema = z.object({
+	id: z.string(),
+	amount: z.number(),
+	paid_at: z.string(), // ISO date string
+	voucher: paymentVoucherSchema.nullable().optional(),
+});
+
+export const paymentDataSchema = z.object({
+	ticket: paymentTicketSchema,
+	payment: paymentDetailSchema,
+	participant_type: z.string(),
+	user: paymentUserSchema,
+});
+
+export const userTicketResponseSchema = z.object({
+	data: paymentDataSchema,
+	message: z.string(),
+});
+
+export type PaymentVoucher = z.infer<typeof paymentVoucherSchema>;
+export type PaymentDetail = z.infer<typeof paymentDetailSchema>;
+export type PaymentData = z.infer<typeof paymentDataSchema>;
+export type UserTicketResponse = z.infer<typeof userTicketResponseSchema>;

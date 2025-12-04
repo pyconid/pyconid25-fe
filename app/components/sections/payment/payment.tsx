@@ -7,6 +7,9 @@ export const PaymentSection = ({
 	componentProps: Route.ComponentProps;
 }) => {
 	const { payment } = componentProps.loaderData;
+	const capitalize = (str: string) => {
+		return str.charAt(0).toUpperCase() + str.slice(1);
+	};
 	return (
 		<main className="p-3 container m-auto">
 			<Link
@@ -39,16 +42,16 @@ export const PaymentSection = ({
 										{new Date(txn.created_at).toLocaleDateString()}
 									</td>
 									<td className="p-2">{txn.ticket ? txn.ticket.name : "-"}</td>
-									<td className="p-2">{txn.status.toUpperCase()}</td>
+									<td className="p-2">{capitalize(txn.status)}</td>
 									<td className="p-2">
 										{txn.status === "paid" ? (
 											<a
-												href={`/auth/payment/${txn.id}`}
+												href={`/auth/user-ticket`}
 												className="text-blue-600 underline"
 												target="_blank"
 												rel="noopener noreferrer"
 											>
-												Open Ticket
+												See ticket
 											</a>
 										) : txn.payment_link !== null ? (
 											<a

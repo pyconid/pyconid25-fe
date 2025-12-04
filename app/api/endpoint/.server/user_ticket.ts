@@ -1,5 +1,5 @@
 import { http } from "~/lib/http/$.server";
 
-export const getPaymentDetail = async (paymentId: string) => {
-	return await http.get(`/payment/${paymentId}`);
+export const getUserTicket = async ({ request }: { request: Request }) => {
+	return await http.get("/ticket/me", { request });
 };

@@ -1,12 +1,12 @@
-import type { Route } from ".react-router/types/app/routes/auth/payment/+types/$paymentId";
+import type { Route } from ".react-router/types/app/routes/auth/+types/user-ticket";
 import { ETicketCard } from "~/components/shared/ticket-card/e-ticket-card";
 
-export function PaymentDetailSection({
+export function UserTicketSection({
 	componentProps,
 }: {
 	componentProps: Route.ComponentProps;
 }) {
-	const { user, ticket, id } = componentProps.loaderData.payment;
+	const { userTicket } = componentProps.loaderData;
 
 	return (
 		<section className="bg-[#F1F1F1]">
@@ -16,9 +16,9 @@ export function PaymentDetailSection({
 						PyCon ID 2025 E-Ticket
 					</div>
 					<ETicketCard
-						user={user}
-						paymentId={id}
-						participantType={ticket?.participant_type}
+						user={userTicket.data.user}
+						paymentId={userTicket.data.payment.id}
+						participantType={userTicket.data.participant_type}
 					/>
 				</div>
 			</div>
