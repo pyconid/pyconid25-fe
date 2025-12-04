@@ -11,7 +11,7 @@ export const FooterMobile = ({ path }: { path: string }) => {
 						<NavLink
 							to={menu.href}
 							className={cn(
-								"block font-sans text-md text-center ",
+								"block font-sans text-base text-center ",
 								path === menu.href ? "text-[#F9F9F9]" : "text-[#F9F9F9]/50",
 							)}
 						>
