@@ -1,8 +1,9 @@
 import { MailIcon } from "lucide-react";
+import { onAvatarError } from "~/lib/utils";
 import { Instagram } from "../icons/instagram";
 import { Twitter } from "../icons/twitter";
 
-interface SpeakerCardProps {
+export interface SpeakerCardProps {
 	name: string;
 	description: string;
 	instagram?: string;
@@ -28,6 +29,8 @@ export const SpeakerCard = ({
 					src={image}
 					alt={name}
 					className="absolute left-1/2 top-[72px] lg:top-[96px] -translate-x-1/2 w-46 lg:w-62 rounded-full object-cover z-0"
+					loading="lazy"
+					onError={onAvatarError}
 				/>
 			)}
 
