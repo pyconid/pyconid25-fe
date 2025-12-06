@@ -1,79 +1,78 @@
-import type { z } from "zod";
-import type { getSpeakerSchema } from "~/api/schema/speaker";
-import { OurTeamCard as OtherSpeakersCard } from "~/components/shared/card/our-team";
-import { SpeakerCard } from "~/components/shared/card/speaker";
-
-type SpeakerData = z.infer<typeof getSpeakerSchema>;
+import { useMemo } from "react";
+import type { SpeakerPublicType } from "~/api/schema/speaker";
+import {
+	OurTeamCard as OtherSpeakersCard,
+	type OurTeamCardProps,
+} from "~/components/shared/card/our-team";
+import {
+	SpeakerCard,
+	type SpeakerCardProps,
+} from "~/components/shared/card/speaker";
+import { parseSpeakerImage } from "~/lib/utils";
 
 interface SpeakersSectionProps {
-	speakers: SpeakerData;
+	speakers: SpeakerPublicType[];
 }
 
+// Helper function to get full name
+const getFullName = (speaker: SpeakerPublicType) => {
+	if (!speaker?.user) return "Unknown Speaker";
+	const firstName = speaker.user.first_name || "";
+	const lastName = speaker.user.last_name || "";
+	return `${firstName} ${lastName}`.trim() || "Unknown Speaker";
+};
+
 export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
-	const keynoteSpeakers = [
-		{
-			name: "Onno W. Purbo",
-			description: "Rektor Institut Teknologi Tangerang Selatan",
-			twitter: "https://x.com/onnowpurbo",
-			image: "/images/keynote-speakers/Onno.webp",
-		},
-		{
-			name: "Listiarso Wastuargo",
-			description: "CROTO at Metatech",
-			instagram: "https://www.instagram.com/lwastuargo/",
-			twitter: "https://x.com/lwastuargo",
-			image: "/images/keynote-speakers/Gogo.webp",
-		},
-	];
+	const parsedSpeakers = useMemo(() => {
+		const keynote: (SpeakerCardProps & { id: string })[] = [];
+		const short: (OurTeamCardProps & { id: string })[] = [];
+		const regular: (OurTeamCardProps & { id: string })[] = [];
 
-	// Ensure speakers.results exists and is an array
-	const speakersResults = speakers?.results || [];
+		if (!speakers || !speakers.length) return { keynote, short, regular };
 
-	// Group speakers from API by speaker_type
-	const shortTalkSpeakers = speakersResults.filter(
-		(speaker) =>
-			speaker.speaker_type?.name?.toLowerCase().includes("short") ?? false,
-	);
+		speakers.forEach((speaker) => {
+			const speakerType = speaker.speaker_type?.name?.toLowerCase();
+			if (speakerType?.includes("keynote")) {
+				return keynote.push({
+					id: speaker.id,
+					name: getFullName(speaker),
+					description: speaker.user?.job_title || "",
+					twitter:
+						(speaker?.user?.twitter_username &&
+							`https://twitter.com/${speaker?.user?.twitter_username}`) ||
+						undefined,
+					image: parseSpeakerImage({ id: speaker.id }),
+					instagram:
+						(speaker?.user?.instagram_username &&
+							`https://www.instagram.com/${speaker?.user?.instagram_username}`) ||
+						undefined,
+					email: speaker?.user?.email || undefined,
+				});
+			}
 
-	// Regular talk speakers are those that have a speaker_type but are not keynote or short talk
-	const regularTalkSpeakers = speakersResults.filter((speaker) => {
-		const hasType = !!speaker.speaker_type?.name;
-		const isNotKeynote = !speaker.speaker_type?.name
-			?.toLowerCase()
-			.includes("keynote");
-		const isNotShort = !speaker.speaker_type?.name
-			?.toLowerCase()
-			.includes("short");
-		return hasType && isNotKeynote && isNotShort;
-	});
+			const parsedItem: OurTeamCardProps & { id: string } = {
+				id: speaker.id,
+				name: getFullName(speaker),
+				email: speaker?.user?.email || undefined,
+				profile_picture: parseSpeakerImage({ id: speaker.id }),
+				twitter_username:
+					(speaker?.user?.twitter_username &&
+						`https://twitter.com/${speaker?.user?.twitter_username}`) ||
+					undefined,
+				instagram_username:
+					(speaker?.user?.instagram_username &&
+						`https://www.instagram.com/${speaker?.user?.instagram_username}`) ||
+					undefined,
+				jobTitle: speaker.user?.job_title || undefined,
+				affiliation: speaker.user?.company || undefined,
+			};
 
-	// Helper function to get full name
-	const getFullName = (speaker: SpeakerData["results"][0]) => {
-		if (!speaker?.user) return "Unknown Speaker";
-		const firstName = speaker.user.first_name || "";
-		const lastName = speaker.user.last_name || "";
-		return (
-			`${firstName} ${lastName}`.trim() ||
-			speaker.user.username ||
-			"Unknown Speaker"
-		);
-	};
+			if (speakerType?.includes("short")) short.push(parsedItem);
+			else regular.push(parsedItem);
+		});
 
-	// Map regular and short talk speakers for OurTeamCard
-	const mapToSpeakerCard = (speaker: SpeakerData["results"][0]) => ({
-		id: speaker.id,
-		name: getFullName(speaker),
-		jobTitle: "", // API doesn't provide jobTitle in list endpoint
-		affiliation: "", // API doesn't provide affiliation in list endpoint
-		email: speaker.user.email || undefined,
-		profile_picture: undefined, // API doesn't provide profile_picture in list endpoint
-		instagram_username: undefined, // API doesn't provide instagram_username in list endpoint
-		twitter_username: undefined, // API doesn't provide twitter_username in list endpoint
-		github: undefined, // API doesn't provide github in list endpoint
-	});
-
-	const mappedRegularTalkSpeakers = regularTalkSpeakers.map(mapToSpeakerCard);
-	const mappedShortTalkSpeakers = shortTalkSpeakers.map(mapToSpeakerCard);
+		return { keynote, short, regular };
+	}, [speakers, speakers.length]);
 
 	return (
 		<section className="pt-9 sm:pt-36 bg-[#F1F1F1] relative w-full overflow-x-hidden">
@@ -149,8 +148,8 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 
 				<div className="flex justify-center pb-4 px-5 2xl:px-0">
 					<div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
-						{keynoteSpeakers.map((speaker) => (
-							<SpeakerCard key={speaker.name} {...speaker} />
+						{parsedSpeakers.keynote.map((speaker) => (
+							<SpeakerCard key={speaker.id} {...speaker} />
 						))}
 					</div>
 				</div>
@@ -184,11 +183,10 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 
 				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
-						{mappedRegularTalkSpeakers.length > 0 ? (
-							mappedRegularTalkSpeakers.map((speaker) => {
-								const { id, ...speakerProps } = speaker;
-								return <OtherSpeakersCard key={id} {...speakerProps} />;
-							})
+						{parsedSpeakers.regular.length > 0 ? (
+							parsedSpeakers.regular.map((speaker) => (
+								<OtherSpeakersCard key={speaker.id} {...speaker} />
+							))
 						) : (
 							<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
 								No regular talk speakers available
@@ -216,14 +214,13 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 
 				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
 					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
-						{mappedShortTalkSpeakers.length > 0 ? (
-							mappedShortTalkSpeakers.map((speaker) => {
-								const { id, ...speakerProps } = speaker;
-								return <OtherSpeakersCard key={id} {...speakerProps} />;
-							})
+						{parsedSpeakers.short.length > 0 ? (
+							parsedSpeakers.short.map((speaker) => (
+								<OtherSpeakersCard key={speaker.id} {...speaker} />
+							))
 						) : (
 							<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
-								No regular talk speakers available
+								No short talk speakers available
 							</div>
 						)}
 					</div>

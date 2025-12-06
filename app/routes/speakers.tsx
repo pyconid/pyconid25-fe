@@ -1,5 +1,6 @@
-import { getSpeaker } from "~/api/endpoint/.server/speaker";
-import { getSpeakerSchema } from "~/api/schema/speaker";
+import z from "zod";
+import { getSpeakerPublic } from "~/api/endpoint/.server/speaker";
+import { speakerPublicListSchema } from "~/api/schema/speaker";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { SpeakersSection } from "~/components/sections/schedules/speakers";
@@ -13,61 +14,30 @@ export function meta() {
 
 export const loader = async () => {
 	try {
-		const speakersRes = await getSpeaker({
-			all: true,
-			order_dir: "asc",
-		});
+		const resppnse = await getSpeakerPublic();
 
-		if (!speakersRes.ok) {
-			console.error(
-				"Failed to fetch speakers data",
-				speakersRes.status,
-				await speakersRes.text(),
-			);
-			// Return empty data structure instead of throwing error
-			return {
-				speakers: {
-					page: 1,
-					page_size: 0,
-					count: 0,
-					page_count: 0,
-					results: [],
-				},
-			};
+		if (!resppnse.ok) {
+			const errMessage = `${resppnse.status} ${resppnse.statusText} ${await resppnse.text()}`;
+			throw new Error(errMessage);
 		}
 
-		const jsonData = await speakersRes.json();
+		const jsonData = await resppnse.json();
 
-		// Handle empty or invalid response
-		if (!jsonData || !jsonData.results || jsonData.results.length === 0) {
-			return {
-				speakers: {
-					page: jsonData?.page || 1,
-					page_size: jsonData?.page_size || 0,
-					count: jsonData?.count || 0,
-					page_count: jsonData?.page_count || 0,
-					results: [],
-				},
-			};
+		if (!jsonData || !jsonData?.results) {
+			throw new Error("Invalid response from server");
 		}
 
-		const speakers = getSpeakerSchema.parse(jsonData);
+		const parsedResponse = speakerPublicListSchema.safeParse(jsonData);
 
-		return {
-			speakers,
-		};
+		if (!parsedResponse.success) {
+			throw new Error(z.prettifyError(parsedResponse.error));
+		}
+
+		return { speakers: parsedResponse.data?.results || [] };
 	} catch (error) {
-		console.error("Error parsing speakers data:", error);
-		// Return empty data structure on parsing error
-		return {
-			speakers: {
-				page: 1,
-				page_size: 0,
-				count: 0,
-				page_count: 0,
-				results: [],
-			},
-		};
+		console.error("Failed to fetch speakers data: ", error);
+		// Return empty speakers if there's an error
+		return { speakers: [] };
 	}
 };
 
