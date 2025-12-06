@@ -3,7 +3,7 @@ import { paymentTicketSchema, paymentUserSchema } from "./payment";
 
 export const paymentVoucherSchema = z.object({
 	value: z.number(),
-	participant_type: z.string(),
+	participant_type: z.string().nullable().optional(),
 });
 
 export const paymentDetailSchema = z.object({
