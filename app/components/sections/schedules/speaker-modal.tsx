@@ -164,7 +164,7 @@ export const SpeakerModal = ({
 				</div>
 				<div className="flex justify-end">
 					<a
-						href={`/schedules/${scheduleDetail?.id}`}
+						href={`/schedule/${scheduleDetail?.id}`}
 						className="uppercase bg-[#2688D8] text-[#F1F2F3] rounded-lg px-4 md:px-8 py-2 inline-block mt-4 md:text-base text-[10px]"
 					>
 						Watch Now
