@@ -56,13 +56,13 @@ export type ScheduleItemType = z.infer<typeof ScheduleItemSchema>;
 export type ResultScheduleType = z.infer<typeof ResultScheduleSchema>;
 
 export const ScheduleResponseSchema = z.object({
-  	page: z.number(),
-  	page_size: z.number(),
+	page: z.number(),
+	page_size: z.number(),
 	count: z.number(),
 	page_count: z.number(),
-  	results: ResultScheduleSchema,
+	results: ResultScheduleSchema,
 });
-  
+
 export const getScheduleResponse = z.object({
 	page: z.number(),
 	page_size: z.number(),
