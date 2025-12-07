@@ -15,6 +15,13 @@ export const SpeakersSection = () => {
 			twitter: "https://x.com/lwastuargo",
 			image: "/images/keynote-speakers/Gogo.webp",
 		},
+		{
+			name: "Hendri Karisma",
+			description: "VP of Engineering at jejakin.com, Lecturer at STMIK Takzia",
+			instagram: "https://www.instagram.com/karism4_/",
+			twitter: "https://x.com/infoHendri",
+			image: "/images/keynote-speakers/Hendri.webp",
+		},
 	];
 
 	return (
@@ -51,7 +58,7 @@ export const SpeakersSection = () => {
 				</div>
 
 				<div className="flex justify-center pb-4 px-5 2xl:px-0">
-					<div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
+					<div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
 						{speakers.map((speaker) => (
 							<SpeakerCard key={speaker.name} {...speaker} />
 						))}

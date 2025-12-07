@@ -18,3 +18,18 @@ export const parseProfileImage = ({ token }: { token?: string }) => {
 	const url = import.meta.env.VITE_BASE_API;
 	return `${url}/user-profile/${token}/profile-picture`;
 };
+
+export const parseSpeakerImage = ({ id }: { id: string }) => {
+	if (!id) return "";
+	const url = import.meta.env.VITE_BASE_API;
+	return `${url}/speaker/${id}/profile-picture`;
+};
+
+export const onAvatarError = (
+	evt: React.SyntheticEvent<HTMLImageElement, Event>,
+) => {
+	const element = evt.target as HTMLImageElement;
+	element.onerror = () => null;
+	element.src = "/images/default-avatar.webp";
+	element.srcset = "/images/default-avatar.webp";
+};

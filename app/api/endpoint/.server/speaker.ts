@@ -32,6 +32,10 @@ export const getSpeaker = async ({
 	return await http.get("/speaker/", { params });
 };
 
+export const getSpeakerPublic = async () => {
+	return await http.get("/speaker/public");
+};
+
 export const postSpeaker = async ({
 	request,
 	body,
