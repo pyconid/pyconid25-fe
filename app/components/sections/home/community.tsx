@@ -51,7 +51,7 @@ export const CommunitySection = () => {
 										/>
 									</a>
 								</div>
-								<div className="flex items-center justify-center gap-15">
+								<div className="grid grid-cols-2 md:flex items-center justify-center gap-5 md:gap-15">
 									<a
 										href="https://www.instagram.com/pyladies.yk/"
 										target="_blank"
@@ -83,6 +83,17 @@ export const CommunitySection = () => {
 											src="/images/logo-imphnen.webp"
 											alt="IMPHNEN"
 											className="object-cover max-h-30 mx-auto"
+										/>
+									</a>
+									<a
+										href="https://www.instagram.com/indigo.telkom/"
+										target="_blank"
+										rel="noreferrer"
+									>
+										<img
+											src="/images/logo-aiconnect.png"
+											alt="AI Connect"
+											className="object-cover max-h-15 mx-auto"
 										/>
 									</a>
 								</div>

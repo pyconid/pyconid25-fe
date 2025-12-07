@@ -7,7 +7,7 @@ export const CallForSponsorSection: FC = () => (
 			<div className="z-10 relative container m-auto">
 				<div className="pt-[12vh] sm:pt-[23vh]">
 					<div className="flex flex-col items-center justify-center">
-						<div className="text-blue-900 font-extrabold px-8 py-4 font-display text-md lg:text-3xl pt-2 pr-4 pb-2 pl-4">
+						<div className="text-blue-900 font-extrabold px-8 py-4 font-display text-base lg:text-3xl pt-2 pr-4 pb-2 pl-4">
 							Be our Sponsor
 						</div>
 						<div className="font-display text-center text-[40px] lg:text-5xl mt-[0.4vh] font-bold font-weight-700 p-2">
