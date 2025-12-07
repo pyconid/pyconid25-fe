@@ -77,11 +77,21 @@ export const action = async ({ request }: Route.ActionArgs) => {
 	return null;
 };
 
+export function HydrateFallback() {
+	return (
+		<div>
+			<h1 className="text-black text-2xl font-bold">Schedule</h1>
+			<div>Loading...</div>
+		</div>
+	);
+}
+
 export default function CMSSchedulePage(componentProps: Route.ComponentProps) {
 	const { loaderData } = componentProps;
 	return (
 		<div>
-			<div className="w-full flex justify-end gap-2">
+			<h1 className="text-black text-2xl font-bold">Schedule</h1>
+			<div className="w-full flex flex-col sm:flex-row justify-end items-end gap-2">
 				<SearchBar />
 				<Link
 					to={"/cms/schedule/create"}
