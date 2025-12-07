@@ -37,10 +37,16 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 					<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-base font-normal mt-8 md:mt-0">
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
 							<p className="">
+								Payment Id<span className="hidden md:inline">:</span>
+							</p>
+							<p className="font-semibold">{paymentId}</p>
+						</div>
+						{/* <div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
+							<p className="">
 								User Id<span className="hidden md:inline">:</span>
 							</p>
 							<p className="font-semibold">{user.id}</p>
-						</div>
+						</div> */}
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3 ">
 							<p>
 								Participant Name<span className="hidden md:inline">:</span>
