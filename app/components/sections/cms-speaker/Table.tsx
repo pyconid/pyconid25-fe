@@ -3,7 +3,7 @@ import type { ResultSpeakerType } from "~/api/schema/speaker";
 
 export const Table = ({ data }: { data: ResultSpeakerType }) => {
 	return (
-		<table className="min-w-[1000px] w-full border border-gray-200 rounded-lg overflow-hidden">
+		<table className="min-w-[1000px] w-full border border-gray-200 rounded-lg overflow-x-scroll">
 			<thead className="bg-gray-100">
 				<tr>
 					<th className="px-4 py-2 text-left font-semibold text-gray-700">
