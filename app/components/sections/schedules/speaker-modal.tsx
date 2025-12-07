@@ -122,28 +122,30 @@ export const SpeakerModal = ({
 					</button>
 				</div>
 
-				<div className="md:border-b md:border-[#2B2B2B40] md:pb-8 flex items-center gap-4 text-[#2B2B2B]">
-					<div className="h-[157px] md:h-[360px] shrink-0 mx-auto w-[120px] md:w-[270px] bg-gray-300 rounded-2xl overflow-hidden"></div>
+				{scheduleDetail?.speaker && (
+					<div className="md:border-b md:border-[#2B2B2B40] md:pb-8 flex items-center gap-4 text-[#2B2B2B]">
+						<div className="h-[157px] md:h-[360px] shrink-0 mx-auto w-[120px] md:w-[270px] bg-gray-300 rounded-2xl overflow-hidden"></div>
 
-					<div className="w-full">
-						<p className="font-extrabold text-2xl md:text-4xl">{`${first_name} ${last_name}`}</p>
-						<p className="text-[10px] md:text-[20px]">
-							{job_title && company && `${job_title} @ ${company}`}
-						</p>
+						<div className="w-full">
+							<p className="font-extrabold text-2xl md:text-4xl">{`${first_name} ${last_name}`}</p>
+							<p className="text-[10px] md:text-[20px]">
+								{job_title && company && `${job_title} @ ${company}`}
+							</p>
 
-						<div className="mt-2 md:mt-4">
-							<p className="font-bold text-sm md:text-2xl">Bio</p>
-							<p className="text-[10px] md:text-lg text-justify">{bio}</p>
+							<div className="mt-2 md:mt-4">
+								<p className="font-bold text-sm md:text-2xl">Bio</p>
+								<p className="text-[10px] md:text-lg text-justify">{bio}</p>
+							</div>
+
+							{hasSocialData && (
+								<Social
+									socialData={socialData}
+									className="hidden md:inline-block"
+								/>
+							)}
 						</div>
-
-						{hasSocialData && (
-							<Social
-								socialData={socialData}
-								className="hidden md:inline-block"
-							/>
-						)}
 					</div>
-				</div>
+				)}
 
 				{hasSocialData && (
 					<Social

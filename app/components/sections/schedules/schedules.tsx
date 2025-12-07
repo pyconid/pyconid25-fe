@@ -176,15 +176,11 @@ export const SchedulesSection = ({
 									<SessionCard
 										onClick={() => {
 											setOpen(true);
-											const speakerId = session.speaker?.user?.id;
-											if (!speakerId) {
-												setSelectedSchedule(null);
-												return;
-											}
-											const found = listSpeakerDetail.find(
-												(item) => item.speaker?.user?.id === speakerId,
-											);
-											setSelectedSchedule(found ?? null);
+											const found =
+												listSpeakerDetail.find(
+													(item) => item.id === session.id,
+												) ?? null;
+											setSelectedSchedule(found);
 										}}
 										data={session}
 										time={time}
