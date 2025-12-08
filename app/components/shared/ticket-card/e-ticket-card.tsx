@@ -10,9 +10,15 @@ type Props = {
 	};
 	participantType?: string | null;
 	paymentId: string;
+	qrcodeValue?: string;
 };
 
-export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
+export const ETicketCard = ({
+	user,
+	participantType,
+	paymentId,
+	qrcodeValue,
+}: Props) => {
 	return (
 		<div className="relative">
 			<div className="md:w-133 md:h-100 w-80 h-60 ">
@@ -33,7 +39,7 @@ export const ETicketCard = ({ user, participantType, paymentId }: Props) => {
 					<p>Ticket Details</p>
 				</div>
 				<div className="flex flex-col md:flex-row gap-y-2 md:gap-x-5 items-center md:justify-center">
-					<QRCodeSVG value={paymentId} className="w-40 h-40" />
+					<QRCodeSVG value={qrcodeValue || ""} className="w-40 h-40" />
 					<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-base font-normal mt-8 md:mt-0">
 						<div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
 							<p className="">

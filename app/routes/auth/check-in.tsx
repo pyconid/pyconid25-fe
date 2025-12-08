@@ -14,11 +14,6 @@ import { authenticator } from "~/services/auth/$.server";
 import type { Route } from "./+types/check-in";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
-	const credentials = await authenticator.isAuthenticated(request);
-	if (!credentials) {
-		return redirect("/login");
-	}
-
 	const res = await getMe({ request });
 	const jsonRes = meSchema.parse(await res.json());
 	if (
@@ -31,6 +26,8 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 
 	const url = new URL(request.url);
 	const payment_id = url.searchParams.get("payment_id");
+	const origin = url.origin;
+
 	let userTicket = null;
 	if (payment_id) {
 		const resUserTicket = await getTicketCheckIn({ request, payment_id });
@@ -44,7 +41,7 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 			throw new Error("something went wrong on server");
 		}
 	}
-	return { payment_id, userTicket };
+	return { payment_id, userTicket, origin };
 };
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -87,7 +84,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
 };
 
 export default function CheckInPage(componentProps: Route.ComponentProps) {
-	const { payment_id, userTicket } = componentProps.loaderData;
+	const { payment_id, userTicket, origin } = componentProps.loaderData;
 	const navigation = useNavigation();
 	const submit = useSubmit();
 
@@ -127,7 +124,10 @@ export default function CheckInPage(componentProps: Route.ComponentProps) {
 				{userTicket && navigation.state !== "loading" && (
 					<>
 						<div className="flex flex-col md:flex-row gap-y-2 md:gap-x-5 items-center md:justify-center">
-							<QRCodeSVG value={payment_id || ""} className="w-40 h-40" />
+							<QRCodeSVG
+								value={`${origin}/auth/check-in?payment_id=${payment_id}`}
+								className="w-40 h-40"
+							/>
 							<div className="flex flex-col gap-y-2 font-sans text-black text-sm md:text-base font-normal mt-8 md:mt-0">
 								<div className="flex flex-col md:flex-row gap-y-1 md:gap-3">
 									<p className="">

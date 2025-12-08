@@ -6,7 +6,7 @@ export function UserTicketSection({
 }: {
 	componentProps: Route.ComponentProps;
 }) {
-	const { userTicket } = componentProps.loaderData;
+	const { userTicket, origin } = componentProps.loaderData;
 
 	return (
 		<section className="bg-[#F1F1F1]">
@@ -19,6 +19,7 @@ export function UserTicketSection({
 						user={userTicket.data.user}
 						paymentId={userTicket.data.payment.id}
 						participantType={userTicket.data.participant_type}
+						qrcodeValue={`${origin}/auth/check-in?payment_id=${userTicket.data.payment.id}`}
 					/>
 				</div>
 			</div>

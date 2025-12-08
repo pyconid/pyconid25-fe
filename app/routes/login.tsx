@@ -1,5 +1,6 @@
 import { Form, Link, useNavigation } from "react-router";
 import { StrategyOptions } from "~/services/auth/strategy";
+import type { Route } from "./+types/login";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
 export const handle: AuthLayoutHanleProps = { title: "Login" };
@@ -11,14 +12,23 @@ export function meta() {
 	];
 }
 
-export default function Login() {
+export const loader = async ({ request }: Route.LoaderArgs) => {
+	const url = new URL(request.url);
+	const redirectTo = url.searchParams.get("redirectTo");
+	return {
+		redirectTo,
+	};
+};
+
+export default function Login(componentProps: Route.ComponentProps) {
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
+	const { redirectTo } = componentProps.loaderData;
 
 	return (
 		<main className="w-full">
 			<Form
-				action={`/auth/${StrategyOptions.SIGNIN_FORM}`}
+				action={`/auth/${StrategyOptions.SIGNIN_FORM}${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`}
 				method="post"
 				className="space-y-3 w-full"
 			>
