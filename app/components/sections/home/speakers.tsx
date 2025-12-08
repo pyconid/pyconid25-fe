@@ -4,20 +4,23 @@ export const SpeakersSection = () => {
 	const speakers = [
 		{
 			name: "Onno W. Purbo",
-			description: "Rektor Institut Teknologi Tangerang Selatan",
+			description: "Rektor",
+			company: "Institut Teknologi Tangerang Selatan",
 			twitter: "https://x.com/onnowpurbo",
 			image: "/images/keynote-speakers/Onno.webp",
 		},
 		{
 			name: "Listiarso Wastuargo",
-			description: "CROTO at Metatech",
+			description: "CROTO",
+			company: "Metatech",
 			instagram: "https://www.instagram.com/lwastuargo/",
 			twitter: "https://x.com/lwastuargo",
 			image: "/images/keynote-speakers/Gogo.webp",
 		},
 		{
 			name: "Hendri Karisma",
-			description: "VP of Engineering at jejakin.com, Lecturer at STMIK Takzia",
+			description: "VP of Engineering at jejakin.com",
+			company: "Lecturer at STMIK Takzia",
 			instagram: "https://www.instagram.com/karism4_/",
 			twitter: "https://x.com/infoHendri",
 			image: "/images/keynote-speakers/Hendri.webp",
