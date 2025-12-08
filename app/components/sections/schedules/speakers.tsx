@@ -148,7 +148,7 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 				</div>
 
 				<div className="flex justify-center pb-4 px-5 2xl:px-0">
-					<div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
+					<div className="grid grid-cols-1 sm:grid-cols-3 sm:gap-x-4 md:gap-x-6 lg:gap-x-8 gap-y-4">
 						{parsedSpeakers.keynote.map((speaker) => (
 							<SpeakerCard key={speaker.id} {...speaker} />
 						))}

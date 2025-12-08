@@ -1,4 +1,5 @@
 import type { ScheduleByIdResponseType } from "~/api/schema/schedule";
+import { onAvatarError, parseSpeakerImage } from "~/lib/utils";
 
 export interface SpeakerModalProps {
 	isOpen: boolean;
@@ -124,7 +125,14 @@ export const SpeakerModal = ({
 
 				{scheduleDetail?.speaker && (
 					<div className="md:border-b md:border-[#2B2B2B40] md:pb-8 flex items-center gap-4 text-[#2B2B2B]">
-						<div className="h-[157px] md:h-[360px] shrink-0 mx-auto w-[120px] md:w-[270px] bg-gray-300 rounded-2xl overflow-hidden"></div>
+						<div className="h-[157px] md:h-[360px] shrink-0 mx-auto w-[120px] md:w-[270px] bg-gray-300 rounded-2xl overflow-hidden">
+							<img
+								src={parseSpeakerImage({ id: scheduleDetail?.speaker?.id })}
+								alt={`${first_name} ${last_name}`}
+								onError={onAvatarError}
+								className="object-cover size-full"
+							/>
+						</div>
 
 						<div className="w-full">
 							<p className="font-extrabold text-2xl md:text-4xl">{`${first_name} ${last_name}`}</p>

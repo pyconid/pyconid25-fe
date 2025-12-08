@@ -1,4 +1,5 @@
 import type { ScheduleItemType } from "~/api/schema/schedule";
+import { onAvatarError, parseSpeakerImage } from "~/lib/utils";
 
 interface SessionCardProps {
 	onClick: () => void;
@@ -51,10 +52,11 @@ export const SessionCard = ({ onClick, data, time }: SessionCardProps) => {
 					<div className="min-h-8 flex items-center gap-2">
 						{data.speaker && (
 							<>
-								<div className="h-8 w-8 rounded-full">
+								<div className="h-8 w-8 rounded-full overflow-hidden">
 									<img
-										src="https://avatar.iran.liara.run/public/10"
+										src={parseSpeakerImage({ id: data?.speaker?.id })}
 										alt="avatar"
+										onError={onAvatarError}
 									/>
 								</div>
 								<p className="text-sm">{`${data.speaker.user.first_name} ${data.speaker.user.last_name}`}</p>
