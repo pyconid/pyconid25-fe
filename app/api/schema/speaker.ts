@@ -68,6 +68,26 @@ export const getSpeakerByIdSchema = z.object({
 		.nullable(),
 });
 
+export type ResultSpeakerByIdType = z.infer<typeof resultSpeakerProfilePicture>;
+
+export const resultSpeakerProfilePicture = z.object({
+	loc: z.array(z.union([z.string(), z.number().int()])),
+	msg: z.string(),
+	type: z.string(),
+});
+
+export type DetailSpeakerProfilePictureType = z.infer<
+	typeof resultSpeakerProfilePicture
+>;
+
+export const getSpeakerProfilePicture = z.object({
+	detail: z.array(resultSpeakerProfilePicture),
+});
+
+export type ResponseSpeakerProfilePictureType = z.infer<
+	typeof getSpeakerProfilePicture
+>;
+
 export const speakerPublicSchema = z.object({
 	id: z.string(),
 	user: z.object({
