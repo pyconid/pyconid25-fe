@@ -36,6 +36,7 @@ export default [
 			route("/user-profile", "routes/auth/user-profile.tsx"),
 			route("/payment", "routes/auth/payment.tsx"),
 			route("/user-ticket", "routes/auth/user-ticket.tsx"),
+			route("/check-in", "routes/auth/check-in.tsx"),
 		]),
 		...prefix(":provider", [
 			index("routes/auth/$provider/index.tsx"),
