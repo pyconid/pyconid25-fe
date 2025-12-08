@@ -32,7 +32,7 @@ export const HeroSection: FC = () => {
 				<div className="hidden lg:block absolute z-10 w-[320vw] aspect-square bg-gradient-to-b from-[#1A3064] via-secondary to-background -bottom-[311vw] -left-[110vw] rounded-full" />
 
 				<img
-					src="/images/bg-home-hero.webp"
+					src="/images/bg-new-hero.webp"
 					alt=""
 					className="h-full object-cover relative lg:w-full lg:h-auto"
 				/>
