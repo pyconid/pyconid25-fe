@@ -37,6 +37,7 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 					id: speaker.id,
 					name: getFullName(speaker),
 					description: speaker.user?.job_title || "",
+					company: speaker.user?.company || "",
 					twitter:
 						(speaker?.user?.twitter_username &&
 							`https://twitter.com/${speaker?.user?.twitter_username}`) ||
