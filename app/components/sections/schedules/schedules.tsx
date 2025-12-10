@@ -171,22 +171,24 @@ export const SchedulesSection = ({
 							<p className="text-[#224083] font-bold text-2xl">{time}</p>
 						</div>
 						<ul className="col-span-10 grid md:grid-cols-2 gap-8">
-							{items.map((session) => (
-								<li key={session.id}>
-									<SessionCard
-										onClick={() => {
-											setOpen(true);
-											const found =
-												listSpeakerDetail.find(
-													(item) => item.id === session.id,
-												) ?? null;
-											setSelectedSchedule(found);
-										}}
-										data={session}
-										time={time}
-									/>
-								</li>
-							))}
+							{items
+								.sort((s1, s2) => s1.room.name.localeCompare(s2.room.name))
+								.map((session) => (
+									<li key={session.id}>
+										<SessionCard
+											onClick={() => {
+												setOpen(true);
+												const found =
+													listSpeakerDetail.find(
+														(item) => item.id === session.id,
+													) ?? null;
+												setSelectedSchedule(found);
+											}}
+											data={session}
+											time={time}
+										/>
+									</li>
+								))}
 						</ul>
 						<div className="col-span-5"></div>
 					</div>
