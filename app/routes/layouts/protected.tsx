@@ -8,9 +8,12 @@ import {
 import type { Route } from "./+types/protected";
 
 export const loader = async ({ request }: Route.LoaderArgs) => {
+	const url = new URL(request.url);
 	const credentials = await authenticator.isAuthenticated(request);
 	if (!credentials) {
-		return redirect("/");
+		return redirect(
+			`/login?redirectTo=${encodeURIComponent(url.pathname + url.search)}`,
+		);
 	}
 	console.log("Protected layout loader - credentials");
 	const res = await getMe({ request });

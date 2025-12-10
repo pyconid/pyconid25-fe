@@ -51,6 +51,11 @@ export const signInFormStrategy = new Strategy(
 			headers.append("Set-Cookie", await commitAuthSession(authSession));
 			headers.append("Set-Cookie", await commitMessageSession(messageSession));
 
+			const url = new URL(request.url);
+			const redirectTo = url.searchParams.get("redirectTo");
+			if (redirectTo) {
+				return redirect(redirectTo, { headers });
+			}
 			return redirect("/", { headers });
 		} catch (error) {
 			console.error("error", error);

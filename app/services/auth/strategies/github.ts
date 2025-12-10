@@ -52,6 +52,10 @@ export const githubStrategy = new GithubStrategy({
 		headers.append("Set-Cookie", await commitAuthSession(authSession));
 		headers.append("Set-Cookie", await commitMessageSession(messageSession));
 
+		const redirectTo = url.searchParams.get("redirectTo");
+		if (redirectTo) {
+			return redirect(redirectTo, { headers });
+		}
 		return redirect("/", { headers });
 	},
 	async authorize() {

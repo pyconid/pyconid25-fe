@@ -1,5 +1,6 @@
 import { Form, Link, useNavigation } from "react-router";
 import { StrategyOptions } from "~/services/auth/strategy";
+import type { Route } from "./+types/login";
 import type { AuthLayoutHanleProps } from "./layouts/auth";
 
 export const handle: AuthLayoutHanleProps = { title: "Login" };
@@ -11,14 +12,23 @@ export function meta() {
 	];
 }
 
-export default function Login() {
+export const loader = async ({ request }: Route.LoaderArgs) => {
+	const url = new URL(request.url);
+	const redirectTo = url.searchParams.get("redirectTo");
+	return {
+		redirectTo,
+	};
+};
+
+export default function Login(componentProps: Route.ComponentProps) {
 	const navigation = useNavigation();
 	const isSubmitting = navigation.state === "submitting";
+	const { redirectTo } = componentProps.loaderData;
 
 	return (
 		<main className="w-full">
 			<Form
-				action={`/auth/${StrategyOptions.SIGNIN_FORM}`}
+				action={`/auth/${StrategyOptions.SIGNIN_FORM}${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ""}`}
 				method="post"
 				className="space-y-3 w-full"
 			>
@@ -31,7 +41,7 @@ export default function Login() {
 						name="email"
 						placeholder="yourmail@example.com"
 						type="email"
-						className="border border-black/15 rounded-sm bg-neutral-100 w-full  h-12 text-neutral-500 pl-4 text-2xl"
+						className="border border-black/15 rounded-sm bg-neutral-100 w-full  h-12 text-neutral-500 pl-4 lg:text-2xl"
 					/>
 				</div>
 				<div className="flex flex-col">
@@ -43,12 +53,12 @@ export default function Login() {
 						name="password"
 						placeholder="Enter your password"
 						type="password"
-						className="border border-black/15 rounded-sm bg-neutral-100 w-full h-12 text-neutral-500 pl-4 text-2xl"
+						className="border border-black/15 rounded-sm bg-neutral-100 w-full h-12 text-neutral-500 pl-4 lg:text-2xl"
 					/>
 				</div>
 				<button
 					type="submit"
-					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80 disabled:bg-secondary/50 disabled:cursor-not-allowed"
+					className="bg-secondary w-full h-12 font-sans rounded-sm text-white font-semibold lg:text-2xl mt-4 cursor-pointer transition-all duration-150 hover:bg-secondary/80 disabled:bg-secondary/50 disabled:cursor-not-allowed"
 					disabled={isSubmitting}
 				>
 					{isSubmitting ? "Loading..." : "Login to Your Account"}

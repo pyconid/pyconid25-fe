@@ -22,7 +22,9 @@ export default [
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
 	route("/schedules", "routes/schedules.tsx"),
 	route("/schedule/:id", "routes/streaming.tsx"),
+	route("/schedule", "routes/schedule.tsx"),
 	route("/speakers", "routes/speakers.tsx"),
+	route("/speaker", "routes/speaker.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
 		route("/register", "routes/register.tsx"),
@@ -37,6 +39,7 @@ export default [
 			route("/user-profile", "routes/auth/user-profile.tsx"),
 			route("/payment", "routes/auth/payment.tsx"),
 			route("/user-ticket", "routes/auth/user-ticket.tsx"),
+			route("/check-in", "routes/auth/check-in.tsx"),
 		]),
 		...prefix(":provider", [
 			index("routes/auth/$provider/index.tsx"),

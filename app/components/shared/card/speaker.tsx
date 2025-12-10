@@ -1,10 +1,12 @@
 import { MailIcon } from "lucide-react";
+import { onAvatarError } from "~/lib/utils";
 import { Instagram } from "../icons/instagram";
 import { Twitter } from "../icons/twitter";
 
-interface SpeakerCardProps {
+export interface SpeakerCardProps {
 	name: string;
 	description: string;
+	company: string;
 	instagram?: string;
 	twitter?: string;
 	email?: string;
@@ -14,6 +16,7 @@ interface SpeakerCardProps {
 export const SpeakerCard = ({
 	name,
 	description,
+	company,
 	instagram,
 	twitter,
 	email,
@@ -27,7 +30,9 @@ export const SpeakerCard = ({
 				<img
 					src={image}
 					alt={name}
-					className="absolute left-1/2 top-[72px] lg:top-[96px] -translate-x-1/2 w-46 lg:w-62 rounded-full object-cover z-0"
+					className="absolute left-1/2 top-[72px] lg:top-[96px] -translate-x-1/2 w-46 h-46 lg:w-62 lg:h-62 rounded-full object-cover z-0"
+					loading="lazy"
+					onError={onAvatarError}
 				/>
 			)}
 
@@ -44,6 +49,7 @@ export const SpeakerCard = ({
 					<h1 className="text-xl lg:text-3xl font-bold">{name}</h1>
 					<p className="font-light text-xs mb-3 lg:text-base lg:mb-5 line-clamp-2">
 						{description}
+						<br /> <span>{company}</span>
 					</p>
 					{hasSocialLinks && (
 						<div className="flex items-center justify-center gap-x-2.5">

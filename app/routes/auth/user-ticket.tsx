@@ -27,11 +27,14 @@ export const loader = async ({ request }: Route.LoaderArgs) => {
 	const jsonUserTicket = await dataUserTicket.json();
 	const userTicket = userTicketResponseSchema.parse(jsonUserTicket);
 
+	const url = new URL(request.url);
+	const origin = url.origin;
+
 	if (!userTicket.data.payment?.paid_at) {
 		return redirect("/auth/payment");
 	}
 
-	return { userTicket };
+	return { userTicket, origin };
 };
 
 export default function TicketDetail(componentProps: Route.ComponentProps) {

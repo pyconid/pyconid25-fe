@@ -1,3 +1,5 @@
+import { onAvatarError } from "~/lib/utils";
+
 export interface OurTeamCardProps {
 	title?: string;
 	time?: string;
@@ -40,6 +42,8 @@ export const OurTeamCard = ({
 								src={profile_picture?.trim() || "/images/default-avatar.webp"}
 								alt={name}
 								className="w-full h-full rounded-full object-cover z-0"
+								onError={onAvatarError}
+								loading="lazy"
 							/>
 						</div>
 					</div>

@@ -77,6 +77,16 @@ export const DashboardSection = ({
 								CMS Dashboard
 							</NavLink>
 						)}
+						{(me.participant_type === "Volunteer" ||
+							me.participant_type === "Management" ||
+							me.participant_type === "Organizer") && (
+							<NavLink
+								to="/auth/check-in"
+								className="bg-secondary text-background text-sm px-5 py-2.5 font-bold rounded-xl cursor-pointer lg:text-base"
+							>
+								Check In
+							</NavLink>
+						)}
 					</div>
 				</div>
 				{/* Profile */}
