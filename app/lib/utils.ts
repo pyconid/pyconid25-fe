@@ -25,6 +25,12 @@ export const parseSpeakerImage = ({ id }: { id: string }) => {
 	return `${url}/speaker/${id}/profile-picture`;
 };
 
+export const parseOrganizerImage = ({ id }: { id: string }) => {
+	if (!id) return "";
+	const url = import.meta.env.VITE_BASE_API;
+	return `${url}/organizer/${id}/profile-picture`;
+};
+
 export const onAvatarError = (
 	evt: React.SyntheticEvent<HTMLImageElement, Event>,
 ) => {

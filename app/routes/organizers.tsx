@@ -5,6 +5,7 @@ import { organizerPublicListSchema } from "~/api/schema/organizer";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { OrganizersSection } from "~/components/sections/organizers/organizers";
+import type { Route } from "./+types/organizers";
 
 export const loader = async () => {
 	try {
@@ -50,11 +51,11 @@ export const loader = async () => {
 	}
 };
 
-export default function Organizers() {
+export default function Organizers({ loaderData }: Route.ComponentProps) {
 	return (
 		<main>
 			<Header />
-			<OrganizersSection speakers={[]} />
+			<OrganizersSection organizers={loaderData?.organizers || []} />
 			<Footer />
 		</main>
 	);
