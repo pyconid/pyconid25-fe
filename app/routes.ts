@@ -21,6 +21,7 @@ export default [
 	route("/tiket", "routes/tiket.tsx"),
 	route("/sponsor-us", "routes/sponsor-us.tsx"),
 	route("/schedules", "routes/schedules.tsx"),
+	route("/schedule/:id", "routes/streaming.tsx"),
 	route("/schedule", "routes/schedule.tsx"),
 	route("/speakers", "routes/speakers.tsx"),
 	route("/speaker", "routes/speaker.tsx"),
