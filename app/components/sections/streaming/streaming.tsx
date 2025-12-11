@@ -18,15 +18,16 @@ export const StreamingSection = ({
 	return (
 		<section className="bg-[#F1F1F1] p-5">
 			<div className="z-10 relative container m-auto">
-				<div className="pt-[12vh] sm:pt-[23vh]">
+				<div className="pt-[12vh]">
 					<div className="flex flex-col p-2 gap-y-3">
 						<div className="rounded-2xl overflow-hidden">
 							<MuxPlayer
-								playbackId={scheduleStream.playback_id}
+								className="w-full aspect-video bg-black"
+								playbackId={scheduleStream.playback.id}
 								metadata={{
-									video_id: scheduleStream.stream_id,
+									// video_id: scheduleStream.stream_id,
 									video_title: scheduleDetail.title,
-									viewer_user_id: scheduleStream.stream_key,
+									viewer_user_id: scheduleStream.metadata.user_id || undefined,
 								}}
 							/>
 						</div>

@@ -1,12 +1,11 @@
 import { redirect } from "react-router";
 import {
 	getScheduleById,
-	getScheduleStream,
+	// getScheduleStream,
 } from "~/api/endpoint/.server/schedule";
-import {
-	scheduleDetailResponse,
-	scheduleStreamResponseSchema,
-} from "~/api/schema/schedule";
+import { getStreamDetail } from "~/api/endpoint/.server/streaming";
+import { scheduleDetailResponse } from "~/api/schema/schedule";
+import { streamingResponseSchema } from "~/api/schema/streaming";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { StreamingSection } from "~/components/sections/streaming/streaming";
@@ -32,18 +31,22 @@ export const loader = async ({ params, request }: Route.LoaderArgs) => {
 		return redirect("/not-found");
 	}
 
-	const jsonDataScheduleById = dataScheduleById.json();
+	const jsonDataScheduleById = await dataScheduleById.json();
 	const scheduleDetail = scheduleDetailResponse.parse(jsonDataScheduleById);
-
-	const dataScheduleStream = await getScheduleStream({ request, id });
-	if (dataScheduleStream.status !== 200) {
+	if (!scheduleDetail.stream?.id) {
 		return redirect("/not-found");
 	}
 
-	const jsonDataScheduleStream = dataScheduleStream.json();
-	const scheduleStream = scheduleStreamResponseSchema.parse(
-		jsonDataScheduleStream,
-	);
+	const dataStreamDetail = await getStreamDetail({
+		request,
+		id: scheduleDetail.stream.id,
+	});
+	if (dataStreamDetail.status !== 200) {
+		return redirect("/not-found");
+	}
+
+	const jsonDatStreamDetail = await dataStreamDetail.json();
+	const scheduleStream = streamingResponseSchema.parse(jsonDatStreamDetail);
 
 	return { scheduleDetail, scheduleStream };
 };
