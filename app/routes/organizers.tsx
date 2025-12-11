@@ -2,6 +2,7 @@ import z from "zod";
 import { getOrganizersPublic } from "~/api/endpoint/.server/organizer";
 import { getVolunteerPublic } from "~/api/endpoint/.server/volunteer";
 import { organizerPublicListSchema } from "~/api/schema/organizer";
+import { volunteerPublicListSchema } from "~/api/schema/volunteer";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
 import { OrganizersSection } from "~/components/sections/organizers/organizers";
@@ -39,15 +40,25 @@ export const loader = async () => {
 		const parsedResponseOrganizers =
 			organizerPublicListSchema.safeParse(jsonDataOrganizers);
 
+		const parsedResponseVolunteer =
+			volunteerPublicListSchema.safeParse(jsonDataVolunteer);
+
 		if (!parsedResponseOrganizers.success) {
 			throw new Error(z.prettifyError(parsedResponseOrganizers.error));
 		}
 
-		return { organizers: parsedResponseOrganizers.data?.results || [] };
+		if (!parsedResponseVolunteer.success) {
+			throw new Error(z.prettifyError(parsedResponseVolunteer.error));
+		}
+
+		return {
+			organizers: parsedResponseOrganizers.data?.results || [],
+			volunteers: parsedResponseVolunteer.data?.results || [],
+		};
 	} catch (err) {
 		console.error("Failed to fetch organizers data: ", err);
 		// Return empty organizers if there's an error
-		return { organizers: [] };
+		return { organizers: [], volunteers: [] };
 	}
 };
 
@@ -55,7 +66,10 @@ export default function Organizers({ loaderData }: Route.ComponentProps) {
 	return (
 		<main>
 			<Header />
-			<OrganizersSection organizers={loaderData?.organizers || []} />
+			<OrganizersSection
+				organizers={loaderData?.organizers || []}
+				volunteers={loaderData.volunteers || []}
+			/>
 			<Footer />
 		</main>
 	);

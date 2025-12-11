@@ -59,3 +59,28 @@ export const getUserVolunteerSchema = z.object({
 		}),
 	),
 });
+
+export const volunteerPublicSchema = z.object({
+	id: z.string(),
+	user: z.object({
+		id: z.string(),
+		username: z.string().nullable(),
+		first_name: z.string().nullable(),
+		last_name: z.string().nullable(),
+		email: z.string().nullable(),
+		website: z.string().nullable(),
+		facebook_username: z.string().nullable(),
+		linkedin_username: z.string().nullable(),
+		twitter_username: z.string().nullable(),
+		instagram_username: z.string().nullable(),
+		profile_picture: z.string().nullable(),
+	}),
+});
+
+export type VolunteerPublicType = z.infer<typeof volunteerPublicSchema>;
+
+export const volunteerPublicListSchema = z.object({
+	results: z.array(volunteerPublicSchema),
+});
+
+export type VolunteerPublicListType = z.infer<typeof volunteerPublicListSchema>;
