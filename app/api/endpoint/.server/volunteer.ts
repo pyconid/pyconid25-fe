@@ -23,6 +23,10 @@ export const getVolunteer = async ({
 	return await http.get("/volunteer/", { request, params });
 };
 
+export const getVolunteerPublic = async () => {
+	return await http.get("/volunteer/public/");
+};
+
 export const postVolunteer = async ({
 	request,
 	body,
