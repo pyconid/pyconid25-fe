@@ -25,6 +25,8 @@ export default [
 	route("/schedule", "routes/schedule.tsx"),
 	route("/speakers", "routes/speakers.tsx"),
 	route("/speaker", "routes/speaker.tsx"),
+	route("/organizers", "routes/organizers.tsx"),
+	route("/organizer", "routes/organizer.tsx"),
 	layout("routes/layouts/auth.tsx", [
 		route("/login", "routes/login.tsx"),
 		route("/register", "routes/register.tsx"),
