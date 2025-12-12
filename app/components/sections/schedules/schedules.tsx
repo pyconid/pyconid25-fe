@@ -1,8 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { getScheduleById } from "~/api/endpoint/.client/schedule";
 import type {
 	ResultScheduleType,
-	ScheduleByIdResponseType,
 	ScheduleItemType,
 } from "~/api/schema/schedule";
 import { SessionCard } from "./session-card";
@@ -47,10 +48,8 @@ function groupScheduleByHour(schedules: ResultScheduleType) {
 
 export const SchedulesSection = ({
 	listSchedule,
-	listSpeakerDetail,
 }: {
 	listSchedule: ResultScheduleType;
-	listSpeakerDetail: ScheduleByIdResponseType[];
 }) => {
 	const sortedDates = Array.from(
 		new Set(listSchedule.map((item) => item.start.split("T")[0])),
@@ -59,8 +58,21 @@ export const SchedulesSection = ({
 	const [open, setOpen] = useState(false);
 	const [selectedDate, setSelectedDate] = useState(sortedDates[0]);
 	const [openDropdown, setOpenDropdown] = useState(false);
-	const [selectedSchedule, setSelectedSchedule] =
-		useState<ScheduleByIdResponseType | null>(null);
+	const [selectedScheduleId, setSelectedScheduleId] = useState<
+		ScheduleItemType["id"] | null
+	>();
+
+	const detailSchedule = useQuery({
+		queryKey: ["detailSchedule", selectedScheduleId],
+		queryFn: async () => {
+			const res = await getScheduleById({ id: selectedScheduleId || "" });
+			const data = await res.json();
+
+			setOpen(true);
+			return data;
+		},
+		enabled: !!selectedScheduleId,
+	});
 
 	useEffect(() => {
 		if (sortedDates.length > 0 && !selectedDate) {
@@ -105,11 +117,11 @@ export const SchedulesSection = ({
 			/>
 
 			<SpeakerModal
-				scheduleDetail={selectedSchedule}
-				isOpen={selectedSchedule ? open : false}
+				scheduleDetail={detailSchedule.data}
+				isOpen={detailSchedule.data ? open : false}
 				onClose={() => {
 					setOpen(false);
-					setSelectedSchedule(null);
+					setSelectedScheduleId(null);
 				}}
 			/>
 
@@ -177,12 +189,7 @@ export const SchedulesSection = ({
 									<li key={session.id}>
 										<SessionCard
 											onClick={() => {
-												setOpen(true);
-												const found =
-													listSpeakerDetail.find(
-														(item) => item.id === session.id,
-													) ?? null;
-												setSelectedSchedule(found);
+												setSelectedScheduleId(session.id);
 											}}
 											data={session}
 											time={time}
