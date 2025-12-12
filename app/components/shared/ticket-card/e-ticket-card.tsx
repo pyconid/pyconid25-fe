@@ -33,7 +33,7 @@ export const ETicketCard = ({
 				{" "}
 				<TicketBgGray />
 			</div>
-			<div className="absolute inset-0  gap-y-5 md:pt-5 md:gap-y-0 top-0 py-2 px-10 flex flex-col overflow-y-auto md:overflow-y-hidden">
+			<div className="absolute inset-0  gap-y-5 md:pt-5 md:gap-y-0 top-0 py-2 px-10 flex flex-col overflow-y-hidden">
 				<div className="flex items-center gap-x-1 justify-center md:justify-start font-sans font-bold text-[#224083]  text-lg">
 					<img src="/svg/ticket.svg" alt="ticket icon" className="w-5 h-5" />
 					<p>Ticket Details</p>
@@ -79,7 +79,7 @@ export const ETicketCard = ({
 				</div>
 				<div>
 					<div
-						className={`flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg ${user.t_shirt_size ? "mt-6 md:mt-0" : "mt-11 md:mt-0"}`}
+						className={`flex items-center justify-center md:justify-start font-sans font-bold text-[#224083] gap-x-1 text-lg ${user.t_shirt_size ? "mt-0 md:mt-0" : "mt-11 md:mt-0"}`}
 					>
 						<img src="/svg/ticket.svg" alt="ticket icon" className="w-5 h-5" />
 						<p>Event Details</p>
