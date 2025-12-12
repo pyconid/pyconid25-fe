@@ -1,5 +1,5 @@
-import { useQueries, useQuery } from "@tanstack/react-query";
-import { getSchedule, getScheduleById } from "~/api/endpoint/.client/schedule";
+import { useQuery } from "@tanstack/react-query";
+import { getSchedule } from "~/api/endpoint/.client/schedule";
 import { ScheduleResponseSchema } from "~/api/schema/schedule";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { Header } from "~/components/layouts/navigation/header";
@@ -44,35 +44,10 @@ export default function Schedules({ loaderData }: Route.ComponentProps) {
 		},
 	});
 
-	// 2. Ambil semua speakerId unik
-	const speakerIds =
-		dataSchedule?.results.map((item) => item.id).filter(Boolean) || [];
-
-	// 3. Fetch speaker detail paralel
-	const speakerQueries = useQueries({
-		queries: speakerIds.map((id) => ({
-			queryKey: ["speaker", id],
-			queryFn: async () => {
-				const res = await getScheduleById({ id });
-				const json = res.json();
-				return json;
-			},
-			enabled: !!id,
-		})),
-	});
-
-	// Ambil speaker yang sukses
-	const listSpeakerDetail = speakerQueries
-		.filter((q) => q.data)
-		.map((q) => q.data);
-
 	return (
 		<main>
 			<Header />
-			<SchedulesSection
-				listSchedule={dataSchedule?.results || []}
-				listSpeakerDetail={listSpeakerDetail}
-			/>
+			<SchedulesSection listSchedule={dataSchedule?.results || []} />
 			<Footer />
 		</main>
 	);
