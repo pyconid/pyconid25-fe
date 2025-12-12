@@ -154,6 +154,42 @@ export const DashboardSection = ({
 						</div>
 					</div>
 				</div>
+				{/* Check In */}
+				<div className="flex flex-col p-8 gap-5 border-t-2 border-[#224083]">
+					<h2 className="text-lg text-[#224083] font-bold">Event Check In</h2>
+					<div className="flex flex-col gap-4">
+						<div className="flex gap-4 justify-between max-w-[200px]">
+							<p>Check In Day 1:</p>
+							<input
+								type="checkbox"
+								readOnly
+								checked={
+									componentProps.loaderData.userProfile.attendance_day_1 ??
+									false
+								}
+								className="h-5 w-5"
+								style={{
+									accentColor: "#224083",
+								}}
+							/>
+						</div>
+						<div className="flex gap-4 justify-between  max-w-[200px]">
+							<p>Check In Day 2:</p>
+							<input
+								type="checkbox"
+								readOnly
+								checked={
+									componentProps.loaderData.userProfile.attendance_day_2 ??
+									false
+								}
+								className="h-5 w-5"
+								style={{
+									accentColor: "#224083",
+								}}
+							/>
+						</div>
+					</div>
+				</div>
 			</div>
 			<Footer />
 		</main>

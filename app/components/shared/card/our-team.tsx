@@ -1,11 +1,8 @@
 import { onAvatarError } from "~/lib/utils";
 
 export interface OurTeamCardProps {
-	title?: string;
-	time?: string;
 	jobTitle?: string;
 	affiliation?: string;
-	description?: string;
 	profile_picture?: string;
 	instagram_username?: string;
 	twitter_username?: string;
