@@ -192,7 +192,7 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 							/>
 						</div>
 
-						<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground">
+						<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground uppercase">
 							{organizer.name}
 						</h1>
 					</div>

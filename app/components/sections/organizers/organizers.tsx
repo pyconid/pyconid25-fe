@@ -113,7 +113,7 @@ export const OrganizersSection = ({
 			{ name: "Lead Organizers", items: lead },
 			{ name: "Programs", items: program },
 			{ name: "Website", items: website },
-			{ name: "Field Coordinator", items: coordinator },
+			{ name: "HIMASI Lead", items: coordinator },
 			{ name: "Participant Experience", items: experience },
 			{ name: "Logistic", items: logistic },
 			{ name: "Creative", items: creative },
@@ -198,7 +198,7 @@ export const OrganizersSection = ({
 							/>
 						</div>
 
-						<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground">
+						<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground uppercase">
 							{organizer.name}
 						</h1>
 					</div>
