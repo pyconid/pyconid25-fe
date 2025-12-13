@@ -51,6 +51,15 @@ export const OrganizersSection = ({
 						(organizer?.user?.instagram_username &&
 							`https://www.instagram.com/${organizer?.user?.instagram_username}`) ||
 						undefined,
+					linkedin_username:
+						(organizer?.user?.linkedin_username &&
+							`https://www.linkedin.com/in/${organizer?.user?.linkedin_username}`) ||
+						undefined,
+					facebook_username:
+						(organizer?.user?.facebook_username &&
+							`https://www.facebook.com/${organizer?.user?.facebook_username}`) ||
+						undefined,
+					website: organizer?.user?.website || undefined,
 				};
 
 				if (organizerType?.includes("lead")) {
@@ -86,6 +95,15 @@ export const OrganizersSection = ({
 						(volunteerItem?.user?.instagram_username &&
 							`https://www.instagram.com/${volunteerItem?.user?.instagram_username}`) ||
 						undefined,
+					facebook_username:
+						(volunteerItem?.user?.facebook_username &&
+							`https://www.facebook.com/${volunteerItem?.user?.facebook_username}`) ||
+						undefined,
+					linkedin_username:
+						(volunteerItem?.user?.linkedin_username &&
+							`https://www.linkedin.com/in/${volunteerItem?.user?.linkedin_username}`) ||
+						undefined,
+					website: volunteerItem?.user?.website || undefined,
 				};
 				volunteer.push(parsedItem);
 			});
@@ -185,12 +203,16 @@ export const OrganizersSection = ({
 						</h1>
 					</div>
 
-					<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
+					<div className="px-5 mx-auto md:px-12 lg:px-0">
 						<div
 							className={cn(
-								"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center",
-								organizer.items.length === 1 && "md:grid-cols-1",
-								organizer.items.length === 2 && "md:grid-cols-2",
+								"grid gap-4 justify-items-center md:gap-12 md:grid-cols-2 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4",
+								organizer.items.length === 1 &&
+									"md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1",
+								organizer.items.length === 2 &&
+									"md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2",
+								organizer.items.length === 3 &&
+									"md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3",
 							)}
 						>
 							{organizer.items.length > 0 ? (
