@@ -8,6 +8,13 @@ import { Header } from "~/components/layouts/navigation/header";
 import { OrganizersSection } from "~/components/sections/organizers/organizers";
 import type { Route } from "./+types/organizers";
 
+export function meta() {
+	return [
+		{ title: "PyCon ID 2025 Organizers" },
+		{ name: "Organizers", content: "Organizers page" },
+	];
+}
+
 export const loader = async () => {
 	try {
 		const [resOrganizers, resVolunteer] = await Promise.all([
