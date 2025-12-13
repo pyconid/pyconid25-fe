@@ -1,4 +1,7 @@
 import { onAvatarError } from "~/lib/utils";
+import { Facebook } from "../icons/facebook";
+import { Linkedin } from "../icons/linkedin";
+import { Earth } from "../icons/website";
 
 export interface OurTeamCardProps {
 	jobTitle?: string;
@@ -6,9 +9,13 @@ export interface OurTeamCardProps {
 	profile_picture?: string;
 	instagram_username?: string;
 	twitter_username?: string;
+	facebook_username?: string;
+	linkedin_username?: string;
+	website?: string;
 	email?: string;
 	github?: string;
 	name?: string;
+	bio?: string;
 }
 
 export const OurTeamCard = ({
@@ -20,9 +27,12 @@ export const OurTeamCard = ({
 	twitter_username,
 	email,
 	github,
+	facebook_username,
+	linkedin_username,
+	website,
 }: OurTeamCardProps) => {
 	return (
-		<div className="aspect-24/37 w-72 sm:w-80 md:w-full lg:w-64 xl:w-84 flex-shrink-0 bg-white rounded-4xl p-4 sm:p-5 md:p-4 lg:p-5 xl:p-6 pt-6 sm:pt-7 md:pt-6 lg:pt-7 xl:pt-8 border border-black/15 shadow-lg relative overflow-hidden mx-auto sm:mx-auto md:mx-0">
+		<div className="aspect-24/37 w-full md:max-w-80 bg-white rounded-4xl p-4 sm:p-5 md:p-4 lg:p-5 xl:p-6 pt-6 sm:pt-7 md:pt-6 lg:pt-7 xl:pt-8 border border-black/15 shadow-lg relative overflow-hidden mx-auto">
 			<div className="absolute inset-0 bg-[url('/svg/our-team-decoration-orange.svg')] bg-[100%_auto] bg-no-repeat" />
 			<div className="absolute inset-0 bg-[url('/svg/our-team-decoration-blue.svg')] bg-[100%_auto] bg-no-repeat bg-bottom" />
 
@@ -57,6 +67,16 @@ export const OurTeamCard = ({
 				</div>
 
 				<div className="flex items-center justify-center gap-x-2 md:gap-x-1">
+					{facebook_username && (
+						<a
+							href={facebook_username}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
+							<Facebook className="size-6 text-white" />
+						</a>
+					)}
+
 					{instagram_username && (
 						<a
 							href={instagram_username}
@@ -80,6 +100,22 @@ export const OurTeamCard = ({
 							rel="noreferrer noopener"
 						>
 							<img src="/svg/x.svg" alt="X formerly known as Twitter" />
+						</a>
+					)}
+
+					{linkedin_username && (
+						<a
+							href={linkedin_username}
+							target="_blank"
+							rel="noreferrer noopener"
+						>
+							<Linkedin className="size-6 text-white" />
+						</a>
+					)}
+
+					{website && (
+						<a href={website} target="_blank" rel="noreferrer noopener">
+							<Earth className="w-6 text-white" />
 						</a>
 					)}
 

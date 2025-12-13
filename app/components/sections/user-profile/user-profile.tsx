@@ -4,16 +4,19 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Form, Link } from "react-router";
 import { toast } from "sonner";
+import z from "zod";
 import {
 	cities as citiesApi,
 	countries as countriesApi,
 	states as statesApi,
 } from "~/api/endpoint/.client/locations";
+import { updateUserProfile } from "~/api/endpoint/.client/user_profile";
 import {
 	citiesSchema,
 	countriesSchema,
 	statesSchema,
 } from "~/api/schema/locations";
+import { updateUserProfileSchema } from "~/api/schema/user_profile";
 import { Footer } from "~/components/layouts/navigation/footer";
 import { parseProfileImage } from "~/lib/utils";
 import { useRootLoaderData } from "~/root";
@@ -88,8 +91,79 @@ export const UserProfileSection = ({
 			share_my_public_social_media:
 				userProfile.share_my_public_social_media || false,
 		},
-		onSubmit: (values) => {
-			console.log("Form Submitted:", values);
+		onSubmit: async (values) => {
+			const formData = new FormData();
+
+			for (const [key, value] of Object.entries(values.value)) {
+				if (typeof value === "string" && value.trim() !== "") {
+					formData.append(key, value);
+				} else if (typeof value === "boolean") {
+					formData.append(key, value.toString());
+				}
+			}
+			if (file && file.size > 0) formData.append("profile_picture", file);
+			if (!formData.has("share_my_email_and_phone_number")) {
+				formData.append("share_my_email_and_phone_number", "false");
+			}
+			if (!formData.has("share_my_job_and_company")) {
+				formData.append("share_my_job_and_company", "false");
+			}
+			if (!formData.has("share_my_location")) {
+				formData.append("share_my_location", "false");
+			}
+			if (!formData.has("share_my_interest")) {
+				formData.append("share_my_interest", "false");
+			}
+			if (!formData.has("share_my_public_social_media")) {
+				formData.append("share_my_public_social_media", "false");
+			}
+			if (!formData.has("coc_acknowledged")) {
+				formData.append("coc_acknowledged", "false");
+			}
+			if (!formData.has("terms_agreed")) {
+				formData.append("terms_agreed", "false");
+			}
+			if (!formData.has("privacy_agreed")) {
+				formData.append("privacy_agreed", "false");
+			}
+
+			const data = Object.fromEntries(formData.entries());
+			console.log({ data });
+
+			const results = updateUserProfileSchema.safeParse(data);
+			if (!results.success) {
+				console.log({ validationErrors: results.error });
+				return toast.error(z.prettifyError(results.error));
+			}
+
+			try {
+				const res = await updateUserProfile({ formData });
+				if (!res.ok) {
+					if (res.status === 400) {
+						const json = await res.json();
+						console.log({ status: res.status, message: json });
+						return toast.error(json?.message);
+					}
+
+					if (res.status === 422) {
+						const json = await res.json();
+						console.log({ status: res.status, message: JSON.stringify(json) });
+						return toast.error(
+							json?.message || "Invalid data, please check the form fields.",
+						);
+					}
+
+					throw new Error(
+						`Failed to update profile: ${res.status} ${res.statusText}`,
+					);
+				}
+
+				const json = await res.json();
+				toast.success(json?.message || "Profile updated successfully.");
+			} catch (err) {
+				console.log("Error: ", err);
+				toast.error("Failed to update profile.");
+			}
 		},
 	});
 
@@ -196,10 +270,16 @@ export const UserProfileSection = ({
 	});
 
 	const [previewImg, setPreviewImg] = useState<string | null>(null);
+	const [file, setFile] = useState<File | null>(null);
 
 	const onImageChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
 		const images = evt.target?.files ?? [];
 		if (images.length > 0) {
+			if (images[0] && images[0].size > 5 * 1024 * 1024) {
+				return toast.error("File size must be less than 5MB");
+			}
+
+			setFile(images[0]);
 			const fr = new FileReader();
 			fr.onload = () => {
 				setPreviewImg(fr.result?.toString() ?? null);
@@ -228,7 +308,11 @@ export const UserProfileSection = ({
 			<Form
 				method="post"
 				encType="multipart/form-data"
-				onSubmit={() => form.handleSubmit()}
+				onSubmit={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					form.handleSubmit();
+				}}
 			>
 				<div className="flex justify-center my-6">
 					<label htmlFor="profile_picture">
