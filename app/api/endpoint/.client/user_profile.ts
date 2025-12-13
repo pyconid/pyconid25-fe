@@ -16,3 +16,14 @@ export const getUserProfileSearch = async ({
 	}
 	return await httpClient.get("/user-profile/search/", { params });
 };
+
+export const updateUserProfile = async ({
+	formData,
+}: {
+	formData: FormData;
+}) => {
+	return await httpClient.put("/user-profile/", {
+		body: formData,
+		contentType: "multipart/form-data",
+	});
+};

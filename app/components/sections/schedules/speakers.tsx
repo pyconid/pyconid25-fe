@@ -8,7 +8,7 @@ import {
 	SpeakerCard,
 	type SpeakerCardProps,
 } from "~/components/shared/card/speaker";
-import { parseSpeakerImage } from "~/lib/utils";
+import { cn, parseSpeakerImage } from "~/lib/utils";
 
 interface SpeakersSectionProps {
 	speakers: SpeakerPublicType[];
@@ -28,51 +28,66 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 		const short: (OurTeamCardProps & { id: string })[] = [];
 		const regular: (OurTeamCardProps & { id: string })[] = [];
 
-		if (!speakers || !speakers.length) return { keynote, short, regular };
+		if (speakers?.length) {
+			speakers.forEach((speaker) => {
+				const speakerType = speaker.speaker_type?.name?.toLowerCase();
+				if (speakerType?.includes("keynote")) {
+					return keynote.push({
+						id: speaker.id,
+						name: getFullName(speaker),
+						description: speaker.user?.job_title || "",
+						company: speaker.user?.company || "",
+						twitter:
+							(speaker?.user?.twitter_username &&
+								`https://twitter.com/${speaker?.user?.twitter_username}`) ||
+							undefined,
+						image: parseSpeakerImage({ id: speaker.id }),
+						instagram:
+							(speaker?.user?.instagram_username &&
+								`https://www.instagram.com/${speaker?.user?.instagram_username}`) ||
+							undefined,
+						email: speaker?.user?.email || undefined,
+					});
+				}
 
-		speakers.forEach((speaker) => {
-			const speakerType = speaker.speaker_type?.name?.toLowerCase();
-			if (speakerType?.includes("keynote")) {
-				return keynote.push({
+				const parsedItem: OurTeamCardProps & { id: string } = {
 					id: speaker.id,
 					name: getFullName(speaker),
-					description: speaker.user?.job_title || "",
-					company: speaker.user?.company || "",
-					twitter:
+					email: speaker?.user?.email || undefined,
+					profile_picture: parseSpeakerImage({ id: speaker.id }),
+					twitter_username:
 						(speaker?.user?.twitter_username &&
 							`https://twitter.com/${speaker?.user?.twitter_username}`) ||
 						undefined,
-					image: parseSpeakerImage({ id: speaker.id }),
-					instagram:
+					instagram_username:
 						(speaker?.user?.instagram_username &&
 							`https://www.instagram.com/${speaker?.user?.instagram_username}`) ||
 						undefined,
-					email: speaker?.user?.email || undefined,
-				});
-			}
+					jobTitle: speaker.user?.job_title || undefined,
+					affiliation: speaker.user?.company || undefined,
+					linkedin_username:
+						(speaker?.user?.linkedin_username &&
+							`https://www.linkedin.com/in/${speaker?.user?.linkedin_username}`) ||
+						undefined,
+					facebook_username:
+						(speaker?.user?.facebook_username &&
+							`https://www.facebook.com/${speaker?.user?.facebook_username}`) ||
+						undefined,
+					website: speaker?.user?.website || undefined,
+				};
 
-			const parsedItem: OurTeamCardProps & { id: string } = {
-				id: speaker.id,
-				name: getFullName(speaker),
-				email: speaker?.user?.email || undefined,
-				profile_picture: parseSpeakerImage({ id: speaker.id }),
-				twitter_username:
-					(speaker?.user?.twitter_username &&
-						`https://twitter.com/${speaker?.user?.twitter_username}`) ||
-					undefined,
-				instagram_username:
-					(speaker?.user?.instagram_username &&
-						`https://www.instagram.com/${speaker?.user?.instagram_username}`) ||
-					undefined,
-				jobTitle: speaker.user?.job_title || undefined,
-				affiliation: speaker.user?.company || undefined,
-			};
+				if (speakerType?.includes("short")) short.push(parsedItem);
+				else regular.push(parsedItem);
+			});
+		}
 
-			if (speakerType?.includes("short")) short.push(parsedItem);
-			else regular.push(parsedItem);
-		});
-
-		return { keynote, short, regular };
+		return {
+			keynote,
+			talks: [
+				{ name: "Regular Talk Speaker", data: regular },
+				{ name: "Short Talk Speaker", data: short },
+			],
+		};
 	}, [speakers, speakers.length]);
 
 	return (
@@ -156,77 +171,57 @@ export const SpeakersSection = ({ speakers }: SpeakersSectionProps) => {
 				</div>
 			</div>
 
-			{/* REGULAR TALK SPEAKERS SECTION */}
-			<div className="container mx-auto relative pt-40">
-				<div className="mb-20 relative w-max mx-auto z-10">
-					{/* square decoration */}
-					<div className="absolute rotate-0 -left-[-3.5rem] -top-[4.5rem] hidden md:block">
-						<img
-							src="/svg/square-decoration.svg"
-							alt=""
-							width={85}
-							height={85}
-						/>
-					</div>
-					<div className="absolute rotate-0 -right-[-4.5rem] -bottom-[4.5rem] hidden md:block">
-						<img
-							src="/svg/square-decoration.svg"
-							alt=""
-							width={85}
-							height={85}
-						/>
-					</div>
+			{parsedSpeakers.talks.map((organizer) => (
+				<div key={organizer.name} className="container mx-auto relative pt-40">
+					<div className="mb-20 relative w-max mx-auto z-10">
+						{/* square decoration */}
+						<div className="absolute rotate-0 -left-[-3.5rem] -top-[4.5rem] hidden md:block">
+							<img
+								src="/svg/square-decoration.svg"
+								alt=""
+								width={85}
+								height={85}
+							/>
+						</div>
+						<div className="absolute rotate-0 -right-[-4.5rem] -bottom-[4.5rem] hidden md:block">
+							<img
+								src="/svg/square-decoration.svg"
+								alt=""
+								width={85}
+								height={85}
+							/>
+						</div>
 
-					<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground">
-						REGULAR TALK SPEAKERS
-					</h1>
-				</div>
-
-				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
-						{parsedSpeakers.regular.length > 0 ? (
-							parsedSpeakers.regular.map((speaker) => (
-								<OtherSpeakersCard key={speaker.id} {...speaker} />
-							))
-						) : (
-							<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
-								No regular talk speakers available
-							</div>
-						)}
-					</div>
-				</div>
-			</div>
-
-			{/* SHORT TALK SPEAKERS SECTION */}
-			<div className="container mx-auto relative pt-40">
-				<div className="mb-20 relative w-max mx-auto z-10">
-					{/* square decoration */}
-					<div className="absolute rotate-60 -left-[-3.5rem] -bottom-14 hidden md:block">
-						<img src="/svg/square-decoration.svg" alt="" width={90} />
-					</div>
-					<div className="absolute rotate-60 right-14 -top-16 hidden md:block">
-						<img src="/svg/square-decoration.svg" alt="" width={85} />
+						<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground uppercase">
+							{organizer.name}
+						</h1>
 					</div>
 
-					<h1 className="font-display relative text-center text-3xl md:text-4xl lg:text-[4rem] font-bold text-foreground">
-						SHORT TALK SPEAKERS
-					</h1>
-				</div>
-
-				<div className="flex justify-center xl:pb-20 xl:px-28 lg:pb-10 lg:px-24 md:pb-8 md:px-16 px-5 sm:mx-auto 2xl:px-0  overflow-x-hidden">
-					<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 sm:gap-x-4 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 gap-y-4 sm:gap-y-5 md:gap-y-6 w-full max-w-7xl sm:mx-auto justify-items-center">
-						{parsedSpeakers.short.length > 0 ? (
-							parsedSpeakers.short.map((speaker) => (
-								<OtherSpeakersCard key={speaker.id} {...speaker} />
-							))
-						) : (
-							<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
-								No short talk speakers available
-							</div>
-						)}
+					<div className="px-5 mx-auto md:px-12 lg:px-0">
+						<div
+							className={cn(
+								"grid gap-4 justify-items-center md:gap-12 md:grid-cols-2 lg:gap-6 lg:grid-cols-3 xl:grid-cols-4",
+								organizer.data.length === 1 &&
+									"md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-1",
+								organizer.data.length === 2 &&
+									"md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2",
+								organizer.data.length === 3 &&
+									"md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3",
+							)}
+						>
+							{organizer.data.length > 0 ? (
+								organizer.data.map((item) => (
+									<OtherSpeakersCard key={item.id} {...item} />
+								))
+							) : (
+								<div className="col-span-full text-center text-gray-500 py-8 h-[500px] flex items-center justify-center">
+									No {organizer.name} available
+								</div>
+							)}
+						</div>
 					</div>
 				</div>
-			</div>
+			))}
 		</section>
 	);
 };
