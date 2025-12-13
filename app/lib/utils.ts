@@ -16,13 +16,13 @@ export const formatRupiah = (amount: number) => {
 export const parseProfileImage = ({ token }: { token?: string }) => {
 	if (!token) return "";
 	const url = import.meta.env.VITE_BASE_API;
-	return `${url}/user-profile/${token}/profile-picture`;
+	return `${url}/user-profile/${token}/profile-picture/`;
 };
 
 export const parseSpeakerImage = ({ id }: { id: string }) => {
 	if (!id) return "";
 	const url = import.meta.env.VITE_BASE_API;
-	return `${url}/speaker/${id}/profile-picture`;
+	return `${url}/speaker/${id}/profile-picture/`;
 };
 
 export const parseOrganizerImage = ({ id }: { id: string }) => {
