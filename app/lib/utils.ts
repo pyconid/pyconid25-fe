@@ -31,6 +31,12 @@ export const parseOrganizerImage = ({ id }: { id: string }) => {
 	return `${url}/organizer/${id}/profile-picture`;
 };
 
+export const parseVolunteerImage = ({ id }: { id: string }) => {
+	if (!id) return "";
+	const url = import.meta.env.VITE_BASE_API;
+	return `${url}/volunteer/${id}/profile-picture/`;
+};
+
 export const onAvatarError = (
 	evt: React.SyntheticEvent<HTMLImageElement, Event>,
 ) => {
