@@ -5,7 +5,7 @@ import {
 	OurTeamCard,
 	type OurTeamCardProps,
 } from "~/components/shared/card/our-team";
-import { cn, parseOrganizerImage } from "~/lib/utils";
+import { cn, parseOrganizerImage, parseVolunteerImage } from "~/lib/utils";
 
 interface OrganizersSectionProps {
 	organizers: OrganizerPublicType[];
@@ -86,7 +86,7 @@ export const OrganizersSection = ({
 					id: volunteerItem.id,
 					name: getFullName(volunteerItem),
 					email: volunteerItem?.user?.email || undefined,
-					profile_picture: parseOrganizerImage({ id: volunteerItem.id }),
+					profile_picture: parseVolunteerImage({ id: volunteerItem.id }),
 					twitter_username:
 						(volunteerItem?.user?.twitter_username &&
 							`https://twitter.com/${volunteerItem?.user?.twitter_username}`) ||
