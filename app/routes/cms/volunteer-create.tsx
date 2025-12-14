@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { Form, Link, redirect, useNavigation } from "react-router";
 import { toast } from "sonner";
-import { geVolunteerUserSearch } from "~/api/endpoint/.client/volunteer";
+import { getUserProfileSearch } from "~/api/endpoint/.client/user_profile";
 import { postVolunteer } from "~/api/endpoint/.server/volunteer";
 import { clientErrorSchema } from "~/api/schema/shared";
 import { getUserVolunteerSchema } from "~/api/schema/volunteer";
@@ -80,7 +80,7 @@ export default function VolunteerCreatePage(
 	const volunteerUserQuery = useQuery({
 		queryKey: ["volunterUserSearch", searchUserProfile],
 		queryFn: async () => {
-			const res = await geVolunteerUserSearch({
+			const res = await getUserProfileSearch({
 				search: searchUserProfile,
 			});
 			const data = await res.json();
