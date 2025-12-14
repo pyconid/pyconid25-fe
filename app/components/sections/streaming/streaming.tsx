@@ -2,7 +2,7 @@ import type { Route } from ".react-router/types/app/routes/+types/streaming";
 import MuxPlayer from "@mux/mux-player-react";
 import { BadgeCheck } from "lucide-react";
 import { useState } from "react";
-import { cn } from "~/lib/utils";
+import { cn, parseSpeakerImage } from "~/lib/utils";
 
 export const StreamingSection = ({
 	componentProps,
@@ -25,10 +25,6 @@ export const StreamingSection = ({
 		scheduleDetail.speaker?.user.facebook_username ||
 		scheduleDetail.speaker?.user.email;
 
-	console.log("Instagram ", scheduleDetail.speaker?.user.instagram_username);
-	console.log("Facebook ", scheduleDetail.speaker?.user.facebook_username);
-	console.log("Email ", scheduleDetail.speaker?.user.email);
-
 	return (
 		<section className="bg-[#F1F1F1] p-5">
 			<div className="z-10 relative container m-auto">
@@ -46,7 +42,7 @@ export const StreamingSection = ({
 							/>
 						</div>
 						<div className="flex justify-between items-center">
-							<p className="font-display text-2xl font-bold">
+							<p className="font-display text-lg md:text-2xl font-bold">
 								{scheduleDetail.title}
 							</p>
 							<p className="font-sans text-sm font-light">
@@ -58,7 +54,7 @@ export const StreamingSection = ({
 								{scheduleDetail.speaker?.user ? (
 									<div className="flex items-center gap-x-5">
 										<img
-											src="/images/default-avatar.webp"
+											src={parseSpeakerImage({id: scheduleDetail.speaker.id})}
 											alt="placeholder"
 											className="w-10 h-10 rounded-full"
 										></img>
@@ -86,14 +82,14 @@ export const StreamingSection = ({
 								</div>
 							</div>
 							<div className="flex flex-col p-6">
-								<p className="font-display font-semibold text-2xl text-[#224083]">
+								<p className="font-display font-semibold text-lg md:text-2xl text-[#224083]">
 									{scheduleDetail.title}
 								</p>
 								{scheduleDetail.description ? (
 									<div>
 										<p
 											className={cn(
-												"font-sans text-base leading-loose",
+												"font-sans text-sm md:text-base leading-loose",
 												scheduleDetail.description.length > 100 && talkExpansion
 													? "line-clamp-3"
 													: "",
@@ -132,7 +128,7 @@ export const StreamingSection = ({
 						{scheduleDetail.speaker?.user ? (
 							<div className="flex md:flex-row flex-col gap-x-5 bg-[#F37F20] p-6 rounded-md">
 								<img
-									src="/images/default-avatar.webp"
+									src={parseSpeakerImage({id: scheduleDetail.speaker.id})}
 									alt="placeholder"
 									className="w-30 h-40 md:w-60 md:h-80 rounded-md object-cover"
 								></img>
