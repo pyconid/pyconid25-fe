@@ -1,8 +1,8 @@
 import type { Route } from ".react-router/types/app/routes/+types/streaming";
 import MuxPlayer from "@mux/mux-player-react";
 import { BadgeCheck } from "lucide-react";
-import { useState } from "react";
-import { cn } from "~/lib/utils";
+import { useEffect, useState } from "react";
+import { cn, parseSpeakerImage } from "~/lib/utils";
 
 export const StreamingSection = ({
 	componentProps,
@@ -11,6 +11,9 @@ export const StreamingSection = ({
 }) => {
 	const [talkExpansion, setTalkExpansion] = useState(true);
 	const [speakerBioExpansion, setSpeakerBioExpansion] = useState(true);
+	const [speakerImageSrc, setSpeakerImageSrc] = useState(
+		"/images/default-avatar.webp",
+	);
 
 	const scheduleDetail = componentProps.loaderData.scheduleDetail;
 	const scheduleStream = componentProps.loaderData.scheduleStream;
@@ -25,9 +28,26 @@ export const StreamingSection = ({
 		scheduleDetail.speaker?.user.facebook_username ||
 		scheduleDetail.speaker?.user.email;
 
-	console.log("Instagram ", scheduleDetail.speaker?.user.instagram_username);
-	console.log("Facebook ", scheduleDetail.speaker?.user.facebook_username);
-	console.log("Email ", scheduleDetail.speaker?.user.email);
+	const first_name = scheduleDetail.speaker?.user.first_name;
+	const last_name = scheduleDetail.speaker?.user.last_name;
+
+	useEffect(() => {
+		if (scheduleDetail.speaker?.id) {
+			const imageUrl = parseSpeakerImage({ id: scheduleDetail.speaker.id });
+			const img = new Image();
+
+			img.onload = () => {
+				setSpeakerImageSrc(imageUrl);
+			};
+
+			img.onerror = () => {
+				console.log("Failed to load speaker image, using default avatar");
+				setSpeakerImageSrc("/images/default-avatar.webp");
+			};
+
+			img.src = imageUrl;
+		}
+	}, [scheduleDetail.speaker?.id]);
 
 	return (
 		<section className="bg-[#F1F1F1] p-5">
@@ -46,7 +66,7 @@ export const StreamingSection = ({
 							/>
 						</div>
 						<div className="flex justify-between items-center">
-							<p className="font-display text-2xl font-bold">
+							<p className="font-display text-lg md:text-2xl font-bold">
 								{scheduleDetail.title}
 							</p>
 							<p className="font-sans text-sm font-light">
@@ -58,16 +78,18 @@ export const StreamingSection = ({
 								{scheduleDetail.speaker?.user ? (
 									<div className="flex items-center gap-x-5">
 										<img
-											src="/images/default-avatar.webp"
-											alt="placeholder"
+											src={speakerImageSrc}
+											alt={`${first_name} ${last_name}`}
 											className="w-10 h-10 rounded-full"
-										></img>
+										/>
 										<div className="flex flex-col">
 											<div className="flex items-center gap-x-1">
-												<p className="font-sans font-bold">{`${scheduleDetail.speaker?.user.first_name} ${scheduleDetail.speaker?.user.last_name}`}</p>
-												<div>
-													<BadgeCheck fill="blue" color="white" />
-												</div>
+												<p className="font-sans font-bold">
+													{`${first_name} ${last_name}`}{" "}
+													<span className="inline-block align-middle">
+														<BadgeCheck fill="blue" color="white" />
+													</span>
+												</p>
 											</div>
 											{scheduleDetail.speaker?.user.job_title && (
 												<p>
@@ -86,16 +108,16 @@ export const StreamingSection = ({
 								</div>
 							</div>
 							<div className="flex flex-col p-6">
-								<p className="font-display font-semibold text-2xl text-[#224083]">
+								<p className="font-display font-semibold text-lg md:text-2xl text-[#224083]">
 									{scheduleDetail.title}
 								</p>
 								{scheduleDetail.description ? (
 									<div>
 										<p
 											className={cn(
-												"font-sans text-base leading-loose",
+												"font-sans text-sm md:text-base leading-loose",
 												scheduleDetail.description.length > 100 && talkExpansion
-													? "line-clamp-3"
+													? "line-clamp-2"
 													: "",
 											)}
 										>
@@ -113,13 +135,13 @@ export const StreamingSection = ({
 														? "...show more"
 														: "show less..."}
 												</button>
-												<p>
-													{talkExpansion && scheduleDetail.slide_link ? (
+												<p className="mt-5">
+													{!talkExpansion && scheduleDetail.slide_link ? (
 														<a
 															href={scheduleDetail.slide_link}
 															className="text-base font-bold text-blue-900 underline"
 														>
-															Access Presentation File
+															Access presentation file
 														</a>
 													) : null}
 												</p>
@@ -130,14 +152,14 @@ export const StreamingSection = ({
 							</div>
 						</div>
 						{scheduleDetail.speaker?.user ? (
-							<div className="flex md:flex-row flex-col gap-x-5 bg-[#F37F20] p-6 rounded-md">
+							<div className="flex md:flex-row md:gap-y-0 gap-y-5 flex-col gap-x-5 bg-[#F37F20] p-6 rounded-md">
 								<img
-									src="/images/default-avatar.webp"
-									alt="placeholder"
+									src={speakerImageSrc}
+									alt={`${first_name} ${last_name} `}
 									className="w-30 h-40 md:w-60 md:h-80 rounded-md object-cover"
-								></img>
+								/>
 								<div className="flex flex-col font-sans text-white">
-									<p className="font-bold text-4xl">{`${scheduleDetail.speaker?.user.first_name} ${scheduleDetail.speaker?.user.last_name}`}</p>
+									<p className="font-bold text-lg md:text-4xl">{`${scheduleDetail.speaker?.user.first_name} ${scheduleDetail.speaker?.user.last_name}`}</p>
 									{scheduleDetail.speaker?.user.job_title ? (
 										<p className="font-semibold text-base">
 											{scheduleDetail.speaker?.user.job_title} at{" "}
@@ -147,13 +169,15 @@ export const StreamingSection = ({
 
 									{speakerBio ? (
 										<div>
-											<p className="font-semibold text-xl mt-3">Bio</p>
+											<p className="font-semibold text-base md:text-xl mt-3">
+												Bio
+											</p>
 											<div className="flex flex-col items-start gap-y-2">
 												<p
 													className={cn(
-														"font-semibold text-base text-justify",
+														"font-semibold text-sm md:text-base text-justify",
 														speakerBio.length > 100 && speakerBioExpansion
-															? "line-clamp-3"
+															? "line-clamp-2"
 															: "",
 													)}
 												>
